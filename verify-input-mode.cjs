@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict'),{Mode}=require('./input-mode.js');
+assert.equal(new Mode({coarse:true,touchPoints:5}).mode,'touch');
+assert.equal(new Mode({fine:true,touchPoints:5}).mode,'pc');
+const events=[],m=new Mode({fine:true},v=>events.push(v));
+m.down({pointerId:1,pointerType:'touch'},0);m.down({pointerId:2,pointerType:'touch'},100);
+assert.equal(m.mode,'pc');m.up(1);assert.equal(m.mode,'pc');m.up(2);assert.equal(m.mode,'touch');
+m.down({pointerId:3,pointerType:'mouse',sourceCapabilities:{firesTouchEvents:true}},200);m.up(3);assert.equal(m.mode,'touch');
+m.keyboard();assert.equal(m.mode,'pc');m.prefer('touch');m.keyboard();assert.equal(m.mode,'touch');m.prefer('auto');assert.equal(m.mode,'pc');
+m.down({pointerId:4,pointerType:'pen'},1100);m.cancel();assert.equal(m.mode,'touch');
+m.move({pointerType:'mouse',clientX:0,clientY:0},2100);m.move({pointerType:'mouse',clientX:20,clientY:0},2200);assert.equal(m.mode,'pc');
+assert.deepEqual(events,['touch','pc','touch','pc','touch','pc']);
+console.log('PASS: touch-capable defaults, hybrid PC, first gesture preserved, two-finger release, synthetic mouse suppression, keyboard/mouse switching, manual override, cancel.');

@@ -1,0 +1,9 @@
+{
+  "name": "backhoe-control-lab",
+  "version": "0.3.1",
+  "private": true,
+  "scripts": {
+    "build": "node build.cjs && node build-mobile.cjs && node publish-root.cjs",
+    "test": "node verify.cjs && node verify-game.cjs && node verify-flight.cjs && node verify-input-mode.cjs"
+  }
+}

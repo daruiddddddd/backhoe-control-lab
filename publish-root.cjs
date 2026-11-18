@@ -1,0 +1,1 @@
+const fs=require('node:fs'),path=require('node:path');for(const name of ["index.html","offline.html","sw.js","manifest.webmanifest","icon-180.png","icon-192.png","icon-512.png"])fs.copyFileSync(path.join(__dirname,'mobile-web',name),path.join(__dirname,name));
