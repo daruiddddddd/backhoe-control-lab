@@ -1,4 +1,4 @@
-const PREFIX='backhoe-field-',CACHE=PREFIX+'v05-yard-20261120b';
+const PREFIX='backhoe-field-',CACHE=PREFIX+'v05-transfer-20261120c';
 const assets=['./','./index.html','./contact-05.html','./terrain-04.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-180.png','./offline.html'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(assets)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith(PREFIX)&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
