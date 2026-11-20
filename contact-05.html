@@ -188,7 +188,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 #game.skating .workbar,#game.skating .top-actions .switch,#game.skating #settings-toggle,#game.skating .view-hud,#game.skating .view-bottom,#game.skating .soil-hud,#game.skating #touch-controls,#game.skating #travel-controls,#game.skating .reticle,#game.skating #flag-tooltip,#game.skating #minimap{display:none!important}
 #game.skating #viewport{flex:1;min-height:0}#game.skating .topbar{min-height:44px}#game.skating .brand .eyebrow{color:#d5f251}#game.skating .brand strong{font-size:12px}#game.skating .top-actions{margin-left:auto;width:auto}
 #skate-hud{position:absolute;inset:0;pointer-events:none;color:#f5f4ee;--skate-accent:#d5f251;--rush:0}
-#skate-hud::before{content:'';position:absolute;inset:0;box-shadow:inset 0 0 55px #151918;opacity:var(--rush);pointer-events:none}
+
 #skate-hud button,#skate-board{pointer-events:auto;touch-action:none;min-height:48px;min-width:44px;border:1px solid #ffffff45;border-radius:5px;background:#181d1de6;color:#f5f4ee;font-weight:750;padding:8px 14px;box-shadow:none}
 #skate-hud button small,#skate-board small{display:block;font-size:9px;letter-spacing:.12em;font-weight:500;opacity:.6;margin-top:4px}
 #skate-hud button.held,#skate-hud button:active,#skate-hud button.ready{background:var(--skate-accent);color:#161c17;border-color:var(--skate-accent)}
@@ -204,7 +204,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 #game.skating.controls-hidden .skate-steer,#game.skating.controls-hidden .skate-tricks{opacity:0}
 #game.skating .topbar{position:absolute;top:0;right:0;width:auto;z-index:20;border:0;background:transparent;backdrop-filter:none;pointer-events:none}#game.skating .topbar button{pointer-events:auto;background-color:#101214d6}#game.skating .brand{display:none}
 .skate-tools{top:65px}.skate-scoreboard{text-shadow:0 2px 5px #101214,0 0 12px #101214b0}.skate-steer>button{width:70px;height:76px}.skate-steer>div button{width:120px;height:68px}.skate-tricks{grid-template-columns:repeat(2,112px)}#skate-hud .skate-tricks button{min-height:58px}
-@media(prefers-reduced-motion:no-preference){#skate-hud::before{background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0 2.4deg,#ffffff24 2.4deg 3deg);mask-image:radial-gradient(ellipse,transparent 50%,#000 95%)}}
+#skate-rush{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 @media(max-height:500px){.skate-scoreboard{left:14px;top:10px;gap:16px}.skate-scoreboard>strong{font-size:26px}.skate-scoreboard b{font-size:22px}.skate-tools{top:57px;right:12px}.skate-tools button{padding:5px 10px}#skate-view{top:57px;left:14px}#skate-message{top:111px;font-size:12px;padding:6px 12px}.skate-steer{bottom:12px;left:12px}.skate-steer>div button{height:50px;width:90px}.skate-steer>button{height:60px;width:48px}.skate-tricks{right:12px;bottom:12px;grid-template-columns:repeat(2,85px);gap:5px}#skate-hud .skate-tricks button{padding:5px 7px;font-size:12px;min-height:44px}.skate-tricks button small{display:none!important}.skate-tricks .skate-ollie{min-height:48px!important}}
 @media(max-width:480px) and (orientation:portrait){.skate-scoreboard{left:12px;top:12px}.skate-tools{top:80px;left:12px;right:auto}#skate-view{top:140px;left:12px}#skate-message{top:175px;width:90%;max-width:90%}.skate-steer{bottom:190px}.skate-tricks{grid-template-columns:repeat(2,92px)}.skate-speed{display:none}}
 </style>
@@ -213,7 +213,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.4 / 同じ場内にスケボーパーク</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.5 / 同じ場内にスケボーパーク</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -224,7 +224,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.4</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.5</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -241,7 +241,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
    </div>
    <div class="view-bottom"><div><div class="heading" id="heading">旋回 0°</div><div class="view-tip" id="view-tip">左右の丸をドラッグ：レバー　中央をドラッグ：見回す</div></div><button class="secret" id="secret" aria-label="空から移動：ヘリコプター・戦闘機" title="空から移動する"><span class="secret-icon" aria-hidden="true">⬡</span><span><strong>空から移動</strong><small>AIR TRANSFER</small></span></button></div>
 <button id="skate-board" hidden><b>スケボーに変形</b><small>MONO / SKATE YARD</small></button>
-<section id="skate-hud" hidden aria-label="スケート操作">
+<section id="skate-hud" hidden aria-label="スケート操作"><canvas id="skate-rush" aria-hidden="true"></canvas>
  <div class="skate-scoreboard"><strong>MONO<span>/</span></strong><div><small>SESSION SCORE</small><b id="skate-score">0</b></div><div class="skate-speed"><b id="skate-speed">0</b><small>km/h</small></div></div>
  <div class="skate-tools"><button id="skate-reset">入口へ</button><button id="skate-help">技の操作</button><button id="skate-back">重機に戻る</button></div>
  <div id="skate-message" role="status"></div><div id="skate-view">三人称 · 後方追従</div>
@@ -13397,8 +13397,8 @@ function height(x,z){
 }
 function fresh(){return {x:0,z:24,y:height(0,24)+.12,heading:0,speed:0,vy:0,air:false,grind:null,grindCooldown:0,trick:null,needsCatch:false,caught:false,flash:0,combo:0,names:[],score:0,best:0,landed:0,bails:0,streak:0,notice:'プッシュして走ろう',noticeTime:4,completed:{},bail:0,fakie:false,travel:0,lastSlope:0};}
 // Cameras follow the direction of travel; a 180 trick changes the stance, not the view.
-function cameraFrame(s,world,mode='third',scale=1){const angle=s.heading+(s.speed<-.3?Math.PI:0),fx=-Math.sin(angle),fz=-Math.cos(angle),first=mode==='first',d=mode==='overview'?18:4.4+Math.abs(s.speed)*scale*.12;
- const position=first?{x:world.x+fx*.13,y:world.y+(s.bail?.65:1.45),z:world.z+fz*.13}:{x:world.x-fx*d,y:world.y+(mode==='overview'?24:2.25),z:world.z-fz*d};
+function cameraFrame(s,world,mode='third',scale=1){const angle=s.heading+(s.speed<-.3?Math.PI:0),fx=-Math.sin(angle),fz=-Math.cos(angle),first=mode==='first',rush=smooth(3,16,Math.abs(s.speed)),d=mode==='overview'?18:4.7+2.4*rush;
+ const position=first?{x:world.x+fx*.13,y:world.y+(s.bail?.56:1.25),z:world.z+fz*.13}:{x:world.x-fx*d,y:world.y+(mode==='overview'?24:2.15+.45*rush),z:world.z-fz*d};
  const target=first?{x:position.x+fx*9,y:position.y-.6,z:position.z+fz*9}:{x:world.x+fx*1.3,y:world.y+.85,z:world.z+fz*1.3};return {position,target,first};}
 function reset(s){const score=s.score,best=s.best,completed=s.completed,bails=s.bails;Object.assign(s,fresh(),{score,best,completed,bails});}
 function message(s,text,seconds=2){s.notice=text;s.noticeTime=seconds;}
@@ -14228,6 +14228,89 @@ const api={Monitor,upright,stowed,placement,recoverySpot};root.BackhoeRecovery=a
 </script>
 <script>
 (function(root){'use strict';
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),mix=(a,b,t)=>a+(b-a)*t;
+// Board-local joint targets. Feet stay on the deck except during a push, foot brake or trick.
+function sample(s,input={},time=0,landing=0){
+ const turn=clamp(input.turn||0,-1,1),speed=Math.abs(s.speed||0),air=s.air&&!s.grind;
+ let name='idle',hipY=.78,chestY=1.13,lean=-.06,hipX=0,chestX=0,yaw=1.15,roll=0,tilt=0;
+ let feet=[[-.055,.10,-.32],[.055,.10,.32]],knees=[[-.27,.43,-.28],[-.16,.44,.25]];
+ let elbows=[[-.28,1.02,-.33],[.28,1.04,.27]],hands=[[-.25,.83,-.44],[.27,.88,.40]];
+ if(speed>.8){name='cruise';hipY=.72;chestY=1.05;lean=-.12;}
+ if(speed>9&&!input.push&&!input.brake){name='tuck';hipY=.54;chestY=.81;lean=-.24;knees=[[-.32,.31,-.28],[-.25,.32,.24]];elbows=[[-.25,.65,-.30],[.22,.66,.23]];hands=[[-.28,.40,-.30],[.21,.43,.15]];}
+ if(input.push&&!air&&!s.grind){
+  name='push';const p=(time*1.28)%1,stroke=Math.sin(p*Math.PI*2),lift=Math.max(0,-stroke);
+  hipY=.69+lift*.045;chestY=1.0+lift*.045;lean=-.24;
+  feet[1]=[.28+.09*Math.sin(p*Math.PI),-.095+lift*.27,.10+stroke*.57];knees[1]=[.18,.38+lift*.12,.14+stroke*.20];
+  elbows=[[-.28,.98,-.43],[.33,1.00,.15-stroke*.12]];hands=[[-.17,.83,-.58],[.38,.91,.32-stroke*.3]];
+ }
+ if(input.brake&&!air&&!s.grind&&speed>.3){name='brake';hipY=.60;chestY=.91;lean=-.20;feet[1]=[.30,-.095,.59];knees[1]=[.22,.36,.36];elbows=[[-.43,.99,-.28],[.45,1.02,.24]];hands=[[-.55,.84,-.40],[.60,.89,.42]];}
+ if(Math.abs(turn)>.1&&!air&&!s.grind){name=turn>0?'carve-left':'carve-right';hipY-=.06;chestY-=.08;hipX=turn*.08;chestX=turn*.24;roll=-turn*.11;elbows=[[-.38+turn*.1,1.02,-.34],[.38+turn*.12,.99,.25]];hands=[[-.64+turn*.12,.91+turn*.14,-.40],[.61+turn*.16,.88-turn*.14,.30]];}
+ if(air){
+  const tuck=clamp((6-(s.vy||0))/7,0,1),extend=clamp((-(s.vy||0)-1.5)/4,0,1);
+  name=(s.vy||0)>4.2?'pop':(s.vy||0)<-1.5?'air-descend':'air-tuck';
+  hipY=.60+extend*.10;chestY=.98+extend*.06;lean=-.13;
+  feet=[[-.06,.10+tuck*.16*(1-extend),-.32],[.06,.10+tuck*.12*(1-extend),.32]];
+  knees=[[-.32,.42+tuck*.06,-.28],[-.25,.43+tuck*.06,.27]];
+  elbows=[[-.40,1.12,-.32],[.42,1.19,.22]];hands=[[-.63,1.17,-.44],[.65,1.31,.34]];
+  if(s.trick){const t=clamp(s.trick.time/s.trick.duration,0,1),flick=Math.sin(Math.PI*t);name=s.trick.type;
+   if(name==='flip'){feet[0]=[-.06-flick*.32,.12+flick*.23,-.39];feet[1]=[.08,.13+flick*.21,.31];hipY=.60;chestX=-flick*.09;hands=[[-.61,1.22,-.45],[.59,1.37,.32]];}
+   if(name==='shuv'){feet[0]=[-.06-flick*.12,.13+flick*.15,-.32-flick*.12];feet[1]=[.08+flick*.24,.14+flick*.15,.32+flick*.19];yaw+=flick*.38;elbows=[[-.48,1.02,-.22],[.37,1.24,.17]];hands=[[-.70,1.00,-.15],[.59,1.37,.12]];}
+   if(name==='spin'){yaw+=Math.sin(t*Math.PI)*.75;chestX=flick*.08;elbows=[[-.30,1.19,-.45],[.36,1.04,-.15]];hands=[[-.43,1.36,-.54],[.59,.99,-.35]];}
+  }
+  if(s.caught){name='catch';feet=[[-.06,.10,-.32],[.06,.10,.32]];hipY=.61;chestY=.97;hands=[[-.51,1.03,-.44],[.55,1.12,.30]];}
+ }
+ if(s.grind){name='grind';hipY=.60;chestY=.96;lean=-.10;const balance=Math.sin(time*4)*.06;chestX=balance;elbows=[[-.43,1.05,-.30],[.44,1.06,.28]];hands=[[-.77,1.11+balance,-.42],[.79,1.12-balance,.39]];}
+ if(!air&&!s.grind&&landing>0){name='landing';const compression=Math.sin(clamp(landing,0,1)*Math.PI/2);hipY-=.22*compression;chestY-=.25*compression;lean-=.13*compression;knees.forEach(k=>k[1]-=.11*compression);elbows=[[-.41,.84,-.32],[.40,.92,.26]];hands=[[-.57,.57,-.47],[.56,.69,.42]];}
+ if(s.bail){
+  const p=clamp((1.25-s.bail)/.7,0,1),type=(s.bails||1)%3;
+  if(type===0){name='bail-side';roll=1.45*p;hipY=.64;chestY=.94;lean=.02;feet=[[-.08,.12,-.39],[.17,.17,.48]];elbows=[[-.40,.68,-.17],[.38,.76,.28]];hands=[[-.61,.39,-.32],[.60,.45,.42]];}
+  else if(type===1){name='bail-forward';tilt=-.55*p;hipY=mix(.68,.36,p);chestY=mix(1.02,.62,p);lean=-.35*p;feet=[[-.08,.10,.08],[.18,.12,.59]];knees=[[-.28,.30,.05],[.20,.28,.40]];elbows=[[-.35,.48,-.46],[.37,.49,-.43]];hands=[[-.42,.12,-.64],[.46,.12,-.62]];}
+  else{name='bail-slide';hipY=mix(.65,.23,p);chestY=mix(1.03,.58,p);lean=.22*p;feet=[[-.17,.10,-.60],[.22,.13,-.42]];knees=[[-.20,.25,-.35],[.24,.34,-.22]];elbows=[[-.35,.32,.22],[.36,.35,.27]];hands=[[-.43,.08,.48],[.46,.08,.43]];}
+ }
+ const breath=speed<.5&&!air&&!s.bail?Math.sin(time*1.8)*.008:0;hipY+=breath;chestY+=breath;
+ const pelvis=[hipX,hipY,.03],chest=[chestX,chestY,lean],head=[chestX*.8,chestY+.34,lean-.04];
+ const span=[Math.cos(yaw)*.19,0,-Math.sin(yaw)*.19];
+ const shoulders=[[span[0]+chestX,chestY+.12,lean+span[2]],[-span[0]+chestX,chestY+.12,lean-span[2]]];
+ const hips=[[hipX-.065,hipY,-.105],[hipX+.065,hipY,.105]];
+ return {name,pelvis,chest,head,shoulders,hips,knees,feet,elbows,hands,yaw,roll,tilt};
+}
+root.SkatePoses={sample};if(typeof module!=='undefined')module.exports=root.SkatePoses;
+})(globalThis);
+
+</script>
+<script>
+(function(root){'use strict';
+function create(canvas){
+ const ctx=canvas.getContext('2d'),reduce=matchMedia('(prefers-reduced-motion: reduce)');let intensity=0;
+ function draw(state,time,visible=true,dt=1/60){
+  const w=Math.round(canvas.clientWidth),h=Math.round(canvas.clientHeight);if(!w||!h)return;
+  if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h;}
+  ctx.clearRect(0,0,w,h);if(!visible){intensity=0;return;}
+  const speed=Math.abs(state.speed||0),goal=reduce.matches?0:Math.min(1,Math.max(0,(speed-4)/12));
+  intensity+=(goal-intensity)*(1-Math.exp(-6*dt));
+  if(intensity>.005){
+   const cx=w*.5,cy=h*.46,phase=time*(.55+intensity*1.8);
+   // Every line begins outside the central 68% ellipse; the riding line stays clear.
+   for(let i=0;i<34;i++){
+    const a=i*2.399963,cycle=(phase+i*.618034)%1,r=.72+cycle*.53;
+    const dx=Math.cos(a)*w*.56,dy=Math.sin(a)*h*.60,length=(.075+intensity*.12)*(0.6+(i%4)*.19);
+    const alpha=intensity*(.18+.23*Math.sin(cycle*Math.PI)),x=cx+dx*r,y=cy+dy*r;
+    ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(cx+dx*(r+length),cy+dy*(r+length));
+    ctx.lineWidth=i%5===0?3:1.7;ctx.strokeStyle='rgba(21,32,36,'+alpha*.34+')';ctx.stroke();
+    ctx.lineWidth=i%5===0?1.5:.85;ctx.strokeStyle='rgba(250,255,255,'+alpha+')';ctx.stroke();
+   }
+   const shade=ctx.createRadialGradient(cx,cy,h*.42,cx,cy,Math.max(w,h)*.7);shade.addColorStop(0,'rgba(11,25,30,0)');shade.addColorStop(1,'rgba(11,25,30,'+intensity*.16+')');ctx.fillStyle=shade;ctx.fillRect(0,0,w,h);
+  }
+  if(state.flash>0&&!reduce.matches){const g=ctx.createRadialGradient(w/2,h/2,h*.28,w/2,h/2,Math.max(w,h)*.75);g.addColorStop(0,'rgba(216,242,74,0)');g.addColorStop(1,'rgba(216,242,74,'+state.flash*.32+')');ctx.fillStyle=g;ctx.fillRect(0,0,w,h);}
+ }
+ return {draw};
+}
+root.SkateWind={create};
+})(globalThis);
+
+</script>
+<script>
+(function(root){'use strict';
 function create(world,options={}){
 const T=THREE,K=SkateCore,height=options.height||K.height,sx=options.scale||1,sy=options.verticalScale||1,origin=options.origin||{x:0,y:0,z:0},scene=new T.Group();scene.position.set(origin.x,origin.y,origin.z);scene.scale.set(sx,sy,sx);world.add(scene);
 const toWorld=s=>({x:origin.x+s.x*sx,y:origin.y+(s.y-.12)*sy+.13,z:origin.z+s.z*sx,heading:s.heading});const toLocal=s=>({x:(s.x-origin.x)/sx,z:(s.z-origin.z)/sx});
@@ -14258,23 +14341,43 @@ if(options.ground!==false){const distant=new T.InstancedMesh(new T.BoxGeometry(1
 const rider=new T.Group(),pose=new T.Group(),board=new T.Group(),body=new T.Group();world.add(rider);rider.add(pose);pose.add(board,body);
 const deckShape=new T.Shape();deckShape.absellipse(0,0,.17,.55,0,Math.PI*2,false);const deckGeo=new T.ExtrudeGeometry(deckShape,{depth:.035,bevelEnabled:false});deckGeo.rotateX(-Math.PI/2);mesh(deckGeo,dark,board);const grip=mesh(new T.PlaneGeometry(.27,.82),mat('#343b3e'),board,0,.038,0);grip.rotation.x=-Math.PI/2;
 for(const z of [-.34,.34]){box(board,.36,.035,.04,0,-.045,z,steel);for(const x of [-.2,.2]){const wheel=mesh(new T.CylinderGeometry(.055,.055,.045,12),white,board,x,-.075,z);wheel.rotation.z=Math.PI/2;}}
-const torso=box(body,.29,.47,.24,0,1.04,0,white),hips=box(body,.31,.19,.24,0,.74,0,dark);const head=mesh(new T.SphereGeometry(.15,16,12),mat('#d6d8d5'),body,0,1.48,0);const helmet=mesh(new T.SphereGeometry(.164,16,10,0,Math.PI*2,0,Math.PI*.58),dark,body,0,1.5,0);box(body,.22,.028,.2,0,1.52,-.10,white);box(body,.10,.06,.02,0,1.48,-.146,dark);box(body,.035,.26,.025,.147,1.06,.04,dark);
-box(body,.19,.18,.012,0,1.09,.127,dark);box(body,.04,.12,.014,-.04,1.09,.137,white);box(body,.04,.12,.014,.04,1.09,.137,white);const limbs=[];for(let i=0;i<8;i++)limbs.push(mesh(new T.CylinderGeometry(i<4?.07:.047,i<4?.075:.05,1,8),i<4?dark:white,body));const shoes=[box(body,.14,.09,.27,-.11,.08,-.29,dark),box(body,.14,.09,.27,.11,.08,.29,dark)];shoes.forEach(s=>box(s,.145,.022,.28,0,-.035,0,white));
-function segment(m,a,b){const d=b.clone().sub(a);m.position.copy(a).add(b).multiplyScalar(.5);m.scale.y=d.length();m.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());}
-const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=64;const sc=shadowCanvas.getContext('2d'),sg=sc.createRadialGradient(32,32,3,32,32,31);sg.addColorStop(0,'rgba(20,32,39,.32)');sg.addColorStop(1,'rgba(20,32,39,0)');sc.fillStyle=sg;sc.fillRect(0,0,64,64);const shadow=mesh(new T.PlaneGeometry(1.5,2.2),new T.MeshBasicMaterial({map:new T.CanvasTexture(shadowCanvas),transparent:true,depthWrite:false}),world);shadow.rotation.x=-Math.PI/2;shadow.castShadow=shadow.receiveShadow=false;
-function animate(state,steer,time,first=false){steer={push:false,turn:0,...steer};const jump=state.air&&!state.grind,fold=jump?.18:Math.abs(state.speed)*.006,push=steer.push&&!jump?Math.sin(time*7)*.13:0;
- const wp=toWorld(state);rider.position.set(wp.x,wp.y,wp.z);body.visible=!first;rider.rotation.y=state.heading+(state.fakie?Math.PI:0);const e=.35,dx=-Math.sin(state.heading),dz=-Math.cos(state.heading),slope=(height(state.x+dx*e,state.z+dz*e)-height(state.x-dx*e,state.z-dz*e))/(2*e);pose.rotation.x=T.MathUtils.lerp(pose.rotation.x,jump?0:Math.atan(slope*sy/sx),.15);pose.rotation.z=T.MathUtils.lerp(pose.rotation.z,-steer.turn*Math.min(.18,state.speed*.018),.1);if(state.bail)pose.rotation.z=1.25;board.rotation.set(0,0,0);board.position.set(state.bail?(1.25-state.bail)*1.3:0,0,0);if(state.bail)board.rotation.y=(1.25-state.bail)*7;body.position.y=fold;
- if(state.trick){const t=Math.min(1,state.trick.time/state.trick.duration),a=t*Math.PI*2;if(state.trick.type==='flip')board.rotation.z=a;else if(state.trick.type==='shuv')board.rotation.y=a;else rider.rotation.y+=t*Math.PI;}
- torso.rotation.y=1.22;hips.rotation.y=1.4;torso.rotation.z=steer.turn*.09;const feet=[V(-.1,.09,-.29),V(.1,.09+Math.max(0,-push),.29+push)],knees=[V(-.2,.42-fold,-.20),V(.22,.43-fold,.20+push*.4)],hip=[V(-.09,.73-fold,-.07),V(.09,.73-fold,.07)];for(let i=0;i<2;i++){segment(limbs[i*2],hip[i],knees[i]);segment(limbs[i*2+1],knees[i],feet[i]);shoes[i].position.copy(feet[i]);}
- const arms=[V(-.14,1.22,0),V(.14,1.22,0)],elbows=[V(-.35,1.05,-.19-steer.turn*.1),V(.38,1.08,.17)],hands=[V(-.48,jump?1.2:.88,-.32),V(.52,jump?1.2:.91,.30)];for(let i=0;i<2;i++){segment(limbs[4+i*2],arms[i],elbows[i]);segment(limbs[5+i*2],elbows[i],hands[i]);}
- shadow.position.set(wp.x,origin.y+sy*height(state.x,state.z)+.025,wp.z);shadow.material.opacity=1/(1+Math.max(0,state.y-height(state.x,state.z))*.5);
 
+// Rounded, featureless charcoal silhouette. No face, shirt graphics or contrasting joints.
+pose.scale.setScalar(.86);
+const ink=new T.MeshStandardMaterial({color:'#090d10',roughness:1,metalness:0});
+function oval(parent,rx,ry,rz){const m=mesh(new T.SphereGeometry(1,16,12),ink,parent);m.scale.set(rx,ry,rz);return m;}
+const torso=oval(body,.22,.28,.15),hips=oval(body,.17,.14,.14),head=oval(body,.113,.15,.117),neck=oval(body,.071,.105,.071);
+const limbs=[],joints=[];for(let i=0;i<8;i++){limbs.push(mesh(new T.CylinderGeometry(i<4?.073:.047,i<4?.085:.055,1,12),ink,body));joints.push(oval(body,i<4?.079:.051,i<4?.079:.051,i<4?.079:.051));}
+const hands=[oval(body,.046,.072,.042),oval(body,.046,.072,.042)];
+const shoes=[oval(body,.18,.055,.074),oval(body,.18,.055,.074)];
+function segment(m,a,b){const d=b.clone().sub(a);m.position.copy(a).add(b).multiplyScalar(.5);m.scale.y=Math.max(.001,d.length());m.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());}
+let previousTime=null,wasAir=false,landAt=-100,previousPose=null;
+const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=64;const sc=shadowCanvas.getContext('2d'),sg=sc.createRadialGradient(32,32,3,32,32,31);sg.addColorStop(0,'rgba(20,32,39,.32)');sg.addColorStop(1,'rgba(20,32,39,0)');sc.fillStyle=sg;sc.fillRect(0,0,64,64);const shadow=mesh(new T.PlaneGeometry(1.5,2.2),new T.MeshBasicMaterial({map:new T.CanvasTexture(shadowCanvas),transparent:true,depthWrite:false}),world);shadow.rotation.x=-Math.PI/2;shadow.castShadow=shadow.receiveShadow=false;
+function animate(state,steer,time,first=false){
+ steer={push:false,brake:false,turn:0,...steer};const wp=toWorld(state),air=state.air&&!state.grind,dt=previousTime===null?1/30:Math.max(0,Math.min(.1,time-previousTime));
+ if(time<previousTime)landAt=-100;if(wasAir&&!air&&!state.bail)landAt=time;wasAir=air;previousTime=time;
+ const landing=Math.max(0,1-(time-landAt)/.34),p=SkatePoses.sample(state,steer,time,landing),blend=1-Math.exp(-20*dt);
+ // Keep foot contact exact; soften only the upper-body transitions between actions.
+ if(previousPose&&dt>0){for(const key of ['pelvis','chest','head'])p[key]=p[key].map((v,i)=>T.MathUtils.lerp(previousPose[key][i],v,blend));for(const key of ['elbows','hands','shoulders'])p[key]=p[key].map((pt,j)=>pt.map((v,i)=>T.MathUtils.lerp(previousPose[key][j][i],v,blend)));}previousPose=p;
+ rider.position.set(wp.x,wp.y,wp.z);rider.rotation.y=state.heading+(state.fakie?Math.PI:0);body.visible=!first;
+ const e=.35,dx=-Math.sin(state.heading),dz=-Math.cos(state.heading),slope=(height(state.x+dx*e,state.z+dz*e)-height(state.x-dx*e,state.z-dz*e))/(2*e);
+ pose.rotation.x=T.MathUtils.lerp(pose.rotation.x,air?0:Math.atan(slope*sy/sx),blend);pose.rotation.z=T.MathUtils.lerp(pose.rotation.z,state.bail?0:-steer.turn*Math.min(.15,Math.abs(state.speed)*.015),blend);
+ body.rotation.set(p.tilt,0,p.roll);body.position.set(0,0,0);
+ const q=arr=>V(...arr),chest=q(p.chest),pelvis=q(p.pelvis),headPoint=q(p.head),spine=chest.clone().sub(pelvis);
+ torso.position.copy(chest).add(pelvis).multiplyScalar(.5);torso.quaternion.setFromUnitVectors(V(0,1,0),spine.normalize());torso.rotateY(p.yaw);torso.scale.y=chest.distanceTo(pelvis)/2+.09;
+ hips.position.copy(pelvis);hips.rotation.y=p.yaw;head.position.copy(headPoint);head.rotation.z=-steer.turn*.08;neck.position.copy(headPoint).add(chest).multiplyScalar(.5);neck.position.y-=.01;
+ for(let i=0;i<2;i++){const h=q(p.hips[i]),k=q(p.knees[i]),f=q(p.feet[i]),a=q(p.shoulders[i]),el=q(p.elbows[i]),hand=q(p.hands[i]);segment(limbs[i*2],h,k);segment(limbs[i*2+1],k,f);joints[i*2].position.copy(h);joints[i*2+1].position.copy(k);shoes[i].position.copy(f);shoes[i].rotation.y=i===0?-.15:.12;segment(limbs[4+i*2],a,el);segment(limbs[5+i*2],el,hand);joints[4+i*2].position.copy(a);joints[5+i*2].position.copy(el);hands[i].position.copy(hand);hands[i].rotation.z=i===0?-.25:.25;}
+ if(state.bail){const points=[...p.feet,...p.hands,...p.knees,p.pelvis,p.chest,p.head],rotation=new T.Quaternion().setFromEuler(body.rotation);let minY=Infinity;for(const pt of points)minY=Math.min(minY,q(pt).applyQuaternion(rotation).y-.07);body.position.y=(-.14-minY)*Math.min(1,(1.25-state.bail)/.4);}
+ board.rotation.set(0,0,0);board.position.set(0,0,0);
+ if(state.bail){const t=1.25-state.bail;board.position.set(t*1.25,Math.max(-.02,.18*Math.sin(Math.min(1,t/.45)*Math.PI)),t*.35);board.rotation.y=t*7;board.rotation.z=Math.sin(t*8)*.18;}
+ if(state.trick){const t=Math.min(1,state.trick.time/state.trick.duration),a=t*Math.PI*2;if(state.trick.type==='flip')board.rotation.z=a;else if(state.trick.type==='shuv')board.rotation.y=a;else rider.rotation.y+=t*Math.PI;}
+ shadow.position.set(wp.x,origin.y+sy*height(state.x,state.z)+.025,wp.z);shadow.material.opacity=1/(1+Math.max(0,state.y-height(state.x,state.z))*.5);rider.userData.pose=p.name;
 }
 
 function follow(camera,state,mode='third',dt=1/30,snap=false){
  const wp=toWorld(state),frame=K.cameraFrame(state,wp,mode,sx),first=frame.first;body.visible=!first;const goal=new T.Vector3(frame.position.x,frame.position.y,frame.position.z),aim=new T.Vector3(frame.target.x,frame.target.y,frame.target.z);
  if(first)camera.position.copy(goal);else {const local=toLocal(goal);goal.y=Math.max(goal.y,origin.y+sy*height(local.x,local.z)+1.2);camera.position.lerp(goal,snap?1:1-Math.exp(-9*dt));}
- camera.up.set(0,1,0);camera.lookAt(aim);camera.fov=T.MathUtils.lerp(camera.fov,mode==='overview'?53:(first?76:60)+Math.min(14,Math.abs(state.speed)*.9),snap?1:1-Math.exp(-5*dt));camera.updateProjectionMatrix();
+ camera.up.set(0,1,0);camera.lookAt(aim);camera.fov=T.MathUtils.lerp(camera.fov,mode==='overview'?53:(first?76:62)+Math.min(16,Math.abs(state.speed)),snap?1:1-Math.exp(-5*dt));camera.updateProjectionMatrix();
 }
 return {scene,rider,shadow,animate,follow,toWorld,toLocal,setVisible(on){rider.visible=shadow.visible=on;}};
 }
@@ -14288,6 +14391,7 @@ function create(scene,soil,canPlay,onReturn){
  const K=SkateCore,S=BackhoeSite.skate,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],keys=new Set(),held=new Map();
  const ground=(x,z)=>(soil.sample(S.x+x*S.scale,S.z+z*S.scale)-S.base)/S.verticalScale;
  const view=SkateView.create(scene,{ground:false,height:ground,scale:S.scale,verticalScale:S.verticalScale,origin:{x:S.x,y:S.base,z:S.z}}),state=K.fresh();
+ const wind=SkateWind.create($('#skate-rush'));
  let active=false,mode='third',time=0,lastScore=0;view.setVisible(false);
  function clear(){keys.clear();held.clear();$$('[data-skate-hold]').forEach(b=>b.classList.remove('held'));}
  function input(){const a=[...held.values()],has=(n,...c)=>a.includes(n)||c.some(k=>keys.has(k));return {push:has('push','KeyW','ArrowUp'),brake:has('brake','KeyS','ArrowDown'),turn:(has('left','KeyA','ArrowLeft')?1:0)-(has('right','KeyD','ArrowRight')?1:0)};}
@@ -14305,7 +14409,7 @@ function create(scene,soil,canPlay,onReturn){
   exit(){active=false;clear();view.setVisible(false);$('#skate-hud').hidden=true;},
   transform(progress){view.setVisible(true);view.animate(K.fresh(),{},time,false);view.rider.scale.setScalar(Math.max(.001,progress));},
   key(e,down){if(!active)return false;const codes=['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','KeyF','KeyG','KeyR','KeyC'];if(!codes.includes(e.code))return false;e.preventDefault();if(!down){keys.delete(e.code);return true;}if(!canPlay())return true;keys.add(e.code);if(!e.repeat){const a={Space:'ollie',KeyF:'flip',KeyG:'shuv',KeyR:'spin',KeyC:'catch'}[e.code];if(a)action(a);}return true;},
-  update(dt,camera){if(dt>0){time+=dt;K.step(state,input(),Math.min(.1,dt),ground);}view.animate(state,input(),time,mode==='first');view.follow(camera,state,mode,dt);ui();}
+  update(dt,camera){if(dt>0){time+=dt;K.step(state,input(),Math.min(.1,dt),ground);}view.animate(state,input(),time,mode==='first');view.follow(camera,state,mode,dt);wind.draw(state,time,active,dt);ui();}
  };
 }
 root.BackhoeSkate={create};
