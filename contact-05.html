@@ -213,7 +213,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.7 / 同じ場内にスケボーパーク</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.8 / 同じ場内にスケボーパーク</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -224,7 +224,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.7</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.8</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -14232,10 +14232,10 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),mix=(a,b,t)=>a+(b-a)*t;
 // Board-local joint targets. Feet stay on the deck except during a push, foot brake or trick.
 function sample(s,input={},time=0,landing=0){
  const turn=clamp(input.turn||0,-1,1),speed=Math.abs(s.speed||0),air=s.air&&!s.grind;
- let name='idle',hipY=.78,chestY=1.13,lean=-.06,hipX=0,chestX=0,yaw=1.15,roll=0,tilt=0;
- let feet=[[-.055,.10,-.32],[.055,.10,.32]],knees=[[-.27,.43,-.28],[-.16,.44,.25]];
- let elbows=[[-.23,1.0,-.33],[.23,1.0,.32]],hands=[[-.24,.75,-.39],[.24,.75,.40]];
- if(speed>.8){name='cruise';hipY=.72;chestY=1.05;lean=-.12;}
+ let name='idle',hipY=.63,chestY=.94,lean=-.14,hipX=.05,chestX=-.18,yaw=1.15,roll=0,tilt=0;
+ let feet=[[-.055,.10,-.32],[.055,.10,.32]],knees=[[-.29,.34,-.30],[-.22,.35,.27]];
+ let elbows=[[-.34,.91,-.37],[.20,.95,.33]],hands=[[-.43,.80,-.50],[.29,.88,.46]];
+ if(speed>.8){name='cruise';hipY=.61;chestY=.91;lean=-.17;}
  if(speed>9&&!input.push&&!input.brake){name='tuck';hipY=.54;chestY=.81;lean=-.24;knees=[[-.32,.31,-.28],[-.25,.32,.24]];elbows=[[-.25,.65,-.30],[.22,.66,.23]];hands=[[-.28,.40,-.30],[.21,.43,.15]];}
  if(input.push&&!air&&!s.grind){
   name='push';const p=(time*1.28)%1,stroke=Math.sin(p*Math.PI*2),lift=Math.max(0,-stroke);
@@ -14246,6 +14246,7 @@ function sample(s,input={},time=0,landing=0){
  if(input.brake&&!air&&!s.grind&&speed>.3){name='brake';hipY=.60;chestY=.91;lean=-.20;feet[1]=[.30,-.095,.59];knees[1]=[.22,.36,.36];elbows=[[-.43,.99,-.28],[.45,1.02,.24]];hands=[[-.55,.84,-.40],[.60,.89,.42]];}
  if(Math.abs(turn)>.1&&!air&&!s.grind){name=turn>0?'carve-left':'carve-right';hipY-=.06;chestY-=.08;hipX=turn*.08;chestX=turn*.24;roll=-turn*.11;elbows=[[-.38+turn*.1,1.02,-.34],[.38+turn*.12,.99,.25]];hands=[[-.64+turn*.12,.91+turn*.14,-.40],[.61+turn*.16,.88-turn*.14,.30]];}
  if(air){
+  hipX=0;chestX=0;
   const tuck=clamp((6-(s.vy||0))/7,0,1),extend=clamp((-(s.vy||0)-1.5)/4,0,1);
   name=(s.vy||0)>4.2?'pop':(s.vy||0)<-1.5?'air-descend':'air-tuck';
   hipY=.60+extend*.10;chestY=.98+extend*.06;lean=-.13;
@@ -14348,10 +14349,10 @@ const ink=new T.MeshBasicMaterial({color:'#4b1e78'}),eyeInk=new T.MeshBasicMater
 function oval(parent,rx,ry,rz){const m=mesh(new T.SphereGeometry(1,16,12),ink,parent);m.scale.set(rx,ry,rz);return m;}
 function shadowTorso(){const rings=[[-.5,.67,.75],[-.3,.82,.90],[.17,1,1],[.40,1.06,.94],[.5,.70,.74]],points=[],indices=[],n=16;for(const [y,w,d] of rings)for(let i=0;i<n;i++){const a=i/n*Math.PI*2;points.push(Math.cos(a)*w,y,Math.sin(a)*d);}for(let j=0;j<rings.length-1;j++)for(let i=0;i<n;i++){const a=j*n+i,b=j*n+(i+1)%n;indices.push(a,b,b+n,a,b+n,a+n);}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(points,3));g.setIndex(indices);g.computeVertexNormals();return g;}
 const torso=mesh(shadowTorso(),ink,body),hips=oval(body,.17,.16,.14),head=new T.Group();body.add(head);
-oval(head,.16,.18,.10);for(const side of [-1,1]){const point=mesh(new T.ConeGeometry(.045,.20,8),ink,head,side*.10,.18,0);point.rotation.z=-side*.20;}
+oval(head,.16,.18,.10);
 for(const side of [-1,1]){const eye=new T.Shape();eye.moveTo(side*.123,.052);eye.quadraticCurveTo(side*.047,.035,side*.027,-.033);eye.quadraticCurveTo(side*.105,-.028,side*.123,.052);const source=new T.ShapeGeometry(eye,12).toNonIndexed().attributes.position,vertices=[];function triangle(a,b,c,d){if(d){const mid=(u,v)=>[(u[0]+v[0])/2,(u[1]+v[1])/2],ab=mid(a,b),bc=mid(b,c),ca=mid(c,a);triangle(a,ab,ca,d-1);triangle(ab,b,bc,d-1);triangle(ca,bc,c,d-1);triangle(ab,bc,ca,d-1);}else for(const [x,y] of [a,b,c])vertices.push(x,y,-.10*Math.sqrt(Math.max(.02,1-(x/.16)**2-(y/.18)**2))-.005);}for(let i=0;i<source.count;i+=3)triangle([source.getX(i),source.getY(i)],[source.getX(i+1),source.getY(i+1)],[source.getX(i+2),source.getY(i+2)],2);const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices,3));const m=mesh(g,eyeInk,head);m.castShadow=m.receiveShadow=false;}
 const limbs=[],joints=[];for(let i=0;i<8;i++){const leg=i<4,upper=i%2===0;limbs.push(mesh(new T.CylinderGeometry(leg?(upper?.10:.075):(upper?.082:.056),leg?(upper?.112:.098):(upper?.095:.08),1,12),ink,body));const r=leg?(upper?.107:.096):(upper?.09:.078);joints.push(oval(body,r,r,r));}
-const hands=[];for(let i=0;i<2;i++){const h=new T.Group();body.add(h);oval(h,.064,.071,.047);for(let j=0;j<3;j++){const finger=mesh(new T.ConeGeometry(.018,.085,7),ink,h,(j-1)*.038,-.075,0);finger.rotation.z=Math.PI+(j-1)*.19;}hands.push(h);}
+const hands=[];for(let i=0;i<2;i++){const h=new T.Group();body.add(h);oval(h,.064,.071,.047);hands.push(h);}
 const shoes=[oval(body,.16,.055,.074),oval(body,.16,.055,.074)];
 function segment(m,a,b){const d=b.clone().sub(a);m.position.copy(a).add(b).multiplyScalar(.5);m.scale.y=Math.max(.001,d.length());m.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());}
 let previousTime=null,wasAir=false,landAt=-100,previousPose=null;
