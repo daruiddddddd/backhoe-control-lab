@@ -184,14 +184,37 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 @media(max-width:650px){#game .topbar{padding-left:max(6px,env(safe-area-inset-left));padding-right:max(6px,env(safe-area-inset-right))}#game .top-actions{gap:4px!important}#game .top-actions button{padding:0 8px!important;font-size:14px!important}#game .switch{margin-right:auto}#game .workbar{gap:7px}#game .workbar label{display:none}#game .workbar select{width:132px}#game #route-distance{min-width:82px;padding:6px}}
 @media(max-width:480px){#game .top-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px!important}#game .switch{grid-column:1/-1;justify-self:start;margin:0}#game .top-actions>button{padding:0 3px!important;font-size:12px!important;gap:5px}#game .workbar{flex-wrap:wrap;row-gap:3px;padding-top:3px;padding-bottom:3px}#game .workbar #area-name{font-size:12px}#game .workbar select{width:120px;font-size:13px}#game #route-distance{font-size:13px;min-width:76px}}
 @media(prefers-reduced-motion:no-preference){#game .top-actions button{transition:background-color .12s,color .12s}}
+
+#game.skating .workbar,#game.skating .top-actions .switch,#game.skating #settings-toggle,#game.skating .view-hud,#game.skating .view-bottom,#game.skating .soil-hud,#game.skating #touch-controls,#game.skating #travel-controls,#game.skating .reticle,#game.skating #flag-tooltip,#game.skating #minimap{display:none!important}
+#game.skating #viewport{flex:1;min-height:0}#game.skating .topbar{min-height:44px}#game.skating .brand .eyebrow{color:#d5f251}#game.skating .brand strong{font-size:12px}#game.skating .top-actions{margin-left:auto;width:auto}
+#skate-hud{position:absolute;inset:0;pointer-events:none;color:#f5f4ee;--skate-accent:#d5f251;--rush:0}
+#skate-hud::before{content:'';position:absolute;inset:0;box-shadow:inset 0 0 55px #151918;opacity:var(--rush);pointer-events:none}
+#skate-hud button,#skate-board{pointer-events:auto;touch-action:none;min-height:48px;min-width:44px;border:1px solid #ffffff45;border-radius:5px;background:#181d1de6;color:#f5f4ee;font-weight:750;padding:8px 14px;box-shadow:none}
+#skate-hud button small,#skate-board small{display:block;font-size:9px;letter-spacing:.12em;font-weight:500;opacity:.6;margin-top:4px}
+#skate-hud button.held,#skate-hud button:active,#skate-hud button.ready{background:var(--skate-accent);color:#161c17;border-color:var(--skate-accent)}
+.skate-scoreboard{position:absolute;left:22px;top:18px;display:flex;gap:22px;align-items:center;text-shadow:0 2px 12px #0007}.skate-scoreboard>strong{font-size:34px;font-weight:950;letter-spacing:-.08em}.skate-scoreboard>strong span{color:var(--skate-accent)}.skate-scoreboard small{display:block;font-size:9px;letter-spacing:.16em}.skate-scoreboard b{font-size:27px;font-variant-numeric:tabular-nums}.skate-speed{border-left:1px solid #ffffff60;padding-left:18px}
+.skate-tools{position:absolute;right:18px;top:16px;display:flex;gap:6px}.skate-tools button{font-size:12px}
+#skate-view{position:absolute;top:79px;left:23px;font-size:10px;letter-spacing:.08em;text-shadow:0 1px 4px #000;background:#181d1d8a;padding:4px 8px}
+#skate-message{position:absolute;top:90px;left:50%;transform:translateX(-50%);max-width:65%;background:#161e1be6;border-left:3px solid var(--skate-accent);padding:8px 16px;font-size:15px;font-weight:800;text-align:center}#skate-message:empty{display:none}
+.skate-steer{position:absolute;left:max(16px,env(safe-area-inset-left));bottom:max(18px,env(safe-area-inset-bottom));display:flex;gap:7px;align-items:flex-end}.skate-steer>button{width:55px;height:70px;font-size:22px}.skate-steer>div{display:grid;gap:7px}.skate-steer>div button{width:104px;height:63px}
+.skate-tricks{position:absolute;right:max(16px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(2,100px);gap:7px}.skate-tricks .skate-ollie{grid-column:1/-1;background:var(--skate-accent)!important;color:#141914!important;border-color:var(--skate-accent)!important}
+#skate-catch-guide{position:absolute;left:50%;top:38%;transform:translateX(-50%);background:#131b17ed;color:var(--skate-accent);padding:11px 20px;min-width:180px;text-align:center;border:1px solid #d5f25160;border-radius:4px}#skate-catch-guide>div{height:3px;background:#ffffff30;margin-top:8px}#skate-catch-progress{display:block;background:var(--skate-accent);height:100%;width:0}
+#skate-hud.landed #skate-message{color:#141914;background:var(--skate-accent);transform:translateX(-50%) rotate(-2deg)}#skate-hud.fallen #skate-message{border-color:#ff8c71}
+#skate-board{position:absolute;left:50%;top:28%;transform:translateX(-50%);z-index:4;border-color:#d5f251;background:#182119ed;color:#d5f251;min-width:200px}
+#game.skating.controls-hidden .skate-steer,#game.skating.controls-hidden .skate-tricks{opacity:0}
+#game.skating .topbar{position:absolute;top:0;right:0;width:auto;z-index:20;border:0;background:transparent;backdrop-filter:none;pointer-events:none}#game.skating .topbar button{pointer-events:auto;background-color:#101214d6}#game.skating .brand{display:none}
+.skate-tools{top:65px}.skate-scoreboard{text-shadow:0 2px 5px #101214,0 0 12px #101214b0}.skate-steer>button{width:70px;height:76px}.skate-steer>div button{width:120px;height:68px}.skate-tricks{grid-template-columns:repeat(2,112px)}#skate-hud .skate-tricks button{min-height:58px}
+@media(prefers-reduced-motion:no-preference){#skate-hud::before{background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0 2.4deg,#ffffff24 2.4deg 3deg);mask-image:radial-gradient(ellipse,transparent 50%,#000 95%)}}
+@media(max-height:500px){.skate-scoreboard{left:14px;top:10px;gap:16px}.skate-scoreboard>strong{font-size:26px}.skate-scoreboard b{font-size:22px}.skate-tools{top:57px;right:12px}.skate-tools button{padding:5px 10px}#skate-view{top:57px;left:14px}#skate-message{top:111px;font-size:12px;padding:6px 12px}.skate-steer{bottom:12px;left:12px}.skate-steer>div button{height:50px;width:90px}.skate-steer>button{height:60px;width:48px}.skate-tricks{right:12px;bottom:12px;grid-template-columns:repeat(2,85px);gap:5px}#skate-hud .skate-tricks button{padding:5px 7px;font-size:12px;min-height:44px}.skate-tricks button small{display:none!important}.skate-tricks .skate-ollie{min-height:48px!important}}
+@media(max-width:480px) and (orientation:portrait){.skate-scoreboard{left:12px;top:12px}.skate-tools{top:80px;left:12px;right:auto}#skate-view{top:140px;left:12px}#skate-message{top:175px;width:90%;max-width:90%}.skate-steer{bottom:190px}.skate-tricks{grid-template-columns:repeat(2,92px)}.skate-speed{display:none}}
 </style>
 </head>
 <body>
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.3 / 段差・溝・長辺の吊り穴</div><h1>旗を目指して、現場を走ろう。</h1>
-  <p>平坦路から山・谷、穴掘り、荷揚げ、鉄板置き場へ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる６区画</span><span>荷・鉄板の重力と衝突</span></div>
+  <div class="edition-note">05.4 / 同じ場内にスケボーパーク</div><h1>旗を目指して、現場を走ろう。</h1>
+  <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
    <button class="choice" data-pattern="horizontal" aria-pressed="false"><canvas id="preview-horizontal" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">02 / HORIZONTAL SWING</div><h2>横旋回</h2><div>左レバーの <b>左右</b> で旋回</div><small>BLUE / ISO・クボタパターン</small></div></button>
@@ -201,7 +224,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.3</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.4</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -217,6 +240,16 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
     </div>
    </div>
    <div class="view-bottom"><div><div class="heading" id="heading">旋回 0°</div><div class="view-tip" id="view-tip">左右の丸をドラッグ：レバー　中央をドラッグ：見回す</div></div><button class="secret" id="secret" aria-label="空から移動：ヘリコプター・戦闘機" title="空から移動する"><span class="secret-icon" aria-hidden="true">⬡</span><span><strong>空から移動</strong><small>AIR TRANSFER</small></span></button></div>
+<button id="skate-board" hidden><b>スケボーに変形</b><small>MONO / SKATE YARD</small></button>
+<section id="skate-hud" hidden aria-label="スケート操作">
+ <div class="skate-scoreboard"><strong>MONO<span>/</span></strong><div><small>SESSION SCORE</small><b id="skate-score">0</b></div><div class="skate-speed"><b id="skate-speed">0</b><small>km/h</small></div></div>
+ <div class="skate-tools"><button id="skate-reset">入口へ</button><button id="skate-help">技の操作</button><button id="skate-back">重機に戻る</button></div>
+ <div id="skate-message" role="status"></div><div id="skate-view">三人称 · 後方追従</div>
+ <div id="skate-catch-guide" hidden><b id="skate-catch-label">回転中…</b><div><i id="skate-catch-progress"></i></div></div>
+ <div class="skate-steer"><button data-skate-hold="left" aria-label="スケボーで左へ曲がる">←</button><div><button data-skate-hold="push">プッシュ<small>W / ↑</small></button><button data-skate-hold="brake">ブレーキ<small>S / ↓</small></button></div><button data-skate-hold="right" aria-label="スケボーで右へ曲がる">→</button></div>
+ <div class="skate-tricks"><button data-skate-action="flip">フリップ<small>F</small></button><button data-skate-action="shuv">ショービット<small>G</small></button><button data-skate-action="spin">180°<small>R</small></button><button id="skate-catch" data-skate-action="catch">キャッチ<small>C</small></button><button class="skate-ollie" data-skate-action="ollie">オーリー / JUMP<small>SPACE</small></button></div>
+</section>
+
    <div class="flight-ui" id="flight-ui" hidden><div class="flight-alt"><span>FLIGHT SYSTEM</span><b id="flight-altitude">0.0 m</b></div><span id="flight-name">変形中</span><div id="flight-position">X 0.0 / Z 0.0</div><div class="flight-progress"><i id="flight-progress-bar"></i></div><button id="return-machine">バックホーへ戻る</button></div>
    <div id="recovery-overlay" hidden role="alert"><div><h2>車体が倒れました</h2><p>最後に安定していた場所へ戻せます。<br>掘った穴・置いた荷物は残ります。</p><button id="recover-machine" class="primary">車体を起こす</button><span id="recovery-status"></span></div></div><div id="pause-overlay" hidden><div><div class="eyebrow">PAUSED</div><h2>ひと息つこう。</h2><p>レバーを離して、いつでも再開。</p><button class="primary" id="resume">練習を再開</button></div></div>
   </section>
@@ -228,7 +261,8 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <div class="settings"><label for="speed">動作の速さ</label><select id="speed"><option value="0.25">とてもゆっくり</option><option value="0.45" selected>ゆっくり</option><option value="0.8">ふつう</option></select></div><div class="settings-actions"><button id="look-reset">視線を正面へ</button><button id="help">操作方法</button><button id="soil-reset">土と穴をリセット</button><button id="back-select">操作選択へ戻る</button></div><p class="tiny">操作・地盤・荷重は試作用のモデルです。実機の安全限界を示すものではありません。</p></dialog>
 <dialog id="map-dialog"><button class="close" data-close>閉じる</button><h2>ひとつにつながる現場</h2><p>色の旗が区画の入口。図の濃い矢印が現在地です。</p><canvas id="map-canvas" width="500" height="500" aria-label="120メートル四方の場内図"></canvas><p>目印を選んで走行してください。土・穴・荷物はそのまま残ります。</p></dialog>
 <dialog id="help-dialog"><button class="close" data-close>閉じる</button><div class="eyebrow">VERIFIED CONTROL MAP</div><h2>縦旋回と横旋回の違い</h2><p>前＝運転者から奥へ倒す。手前＝運転者へ引く。<br>今回切り替わるのは左レバーです。</p><table><thead><tr><th>左レバー / キー</th><th>縦旋回 / C</th><th>横旋回 / ISO</th></tr></thead><tbody><tr><td>前 / W</td><td>右旋回</td><td>アーム伸ばし</td></tr><tr><td>手前 / S</td><td>左旋回</td><td>アームかき込み</td></tr><tr><td>左 / A</td><td>アーム伸ばし</td><td>左旋回</td></tr><tr><td>右 / D</td><td>アームかき込み</td><td>右旋回</td></tr></tbody></table><table><thead><tr><th>右レバー / キー</th><th>２方式で共通</th></tr></thead><tbody><tr><td>前 / ↑</td><td>ブーム下げ</td></tr><tr><td>手前 / ↓</td><td>ブーム上げ</td></tr><tr><td>左 / ←</td><td>バケットかき込み</td></tr><tr><td>右 / →</td><td>バケットダンプ</td></tr></tbody></table><h3>走行は２本の専用レバーで操作</h3><p>作業レバーとは独立し、同時に使えます。前後の倒し量で左右それぞれのクローラを動かし、手を離すと中立です。左右の割当は足回りに固定。上部を180度旋回すると、運転席から見た進行方向は逆になります。</p><p>PC用の代用キーは左走行 I／K、右走行 O／L。見回すときは画面の空いた所をドラッグします。</p><p class="tiny">走行の照合：<a class="source-link" href="https://media.kubota.io/uploads/Kubota-Excavators-U17-3-Manual.pdf" target="_blank" rel="noopener">クボタ U17-3 取扱説明書（誌面38〜40ページ：左右走行レバー・方向転換）</a><br>操作配置と方向を練習する試作です。接地点と重心から支持荷重を計算し、接地摩擦で動作が抵抗を受けます。数値は試作用で、RX-506の実測油圧・強度・転倒限界に合わせたものではありません。</p><h3>接地動作の参考と制約</h3><p>上記クボタ説明書の誌面38ページは、ブーム・アーム・バケットによる片側クローラの持ち上げを説明しています。誌面42ページはバケットの横振りで土山を動かす使い方を避けるよう記載しています。接地旋回を、実機での推奨作業手順として扱わないでください。</p><p>05では硬質地盤の支持、土の沈み込み、接地摩擦、浮いたクローラの空転を計算します。支持範囲を超える入力は試作の計算範囲として止めます。実機の安全限界を示すものではありません。</p><p class="tiny">照合日：2026-11-20<br>操作：<a class="source-link" href="https://kubotakenki.co.jp/manual/pdf/rx-series/rx-506/manual/rx-506_manual03.pdf" target="_blank" rel="noopener">クボタ建機ジャパン RX-506 操作パターン（PDF 6〜7ページ）</a><br>内観：<a class="source-link" href="https://www.kubota.co.jp/product/machinery/support/pdf/RX-506.pdf" target="_blank" rel="noopener">クボタ RX-506 公式カタログ（PDF 7ページ）</a><br>名称の補助照合：<a class="source-link" href="https://www.kobelco-ts.com/assets/pdf/rental/shovel/1-11.pdf" target="_blank" rel="noopener">コベルコ教習所・レンタル資料（ISO / H方式）</a><br>方式記号は資料・機種で異なります。この試作の縦旋回は上表のCパターンです。</p></dialog>
-<dialog id="secret-dialog"><button class="close" data-close>閉じる</button><div class="eyebrow">AIR TRANSFER / TRANSFORM</div><h2>空から、次の区画へ。</h2><p>ヘリ・戦闘機に変形して敷地を移動します。<br>空中の案内風船へ近づき、区画の固定降り場へ着地できます。</p><div class="forms"><button data-form="heli"><div class="form-code">FORM 01 / ROTOR</div><svg viewBox="0 0 300 100" aria-hidden="true"><g fill="none" stroke="#8eacb7" stroke-width="2"><path d="M30 20h235M150 20v22M105 88h91M120 74v14M178 74v14"/></g><path fill="#eaa34e" d="M83 63q4-22 41-23h50l22 16 56-9 25-21 7 2-15 32-73 8q-10 12-56 12H106z"/><path fill="#234959" stroke="#b8dde2" d="M93 61q8-16 33-16h20v20H93z"/><path fill="#21343e" d="M154 46h18l16 14h-34z"/><circle cx="270" cy="48" r="13" fill="none" stroke="#b8dde2"/><path d="m263 41 14 14m0-14-14 14" stroke="#b8dde2"/></svg><strong>ヘリコプター</strong><span>ローター展開 → 自由飛行</span></button><button data-form="jet"><div class="form-code">FORM 02 / WING</div><svg viewBox="0 0 300 100" aria-hidden="true"><path fill="#eeae5a" d="m150 4 14 36 105 31-4 10-104-9 15 19h-52l15-19-104 9-4-10 105-31z"/><path fill="#253d4a" d="m150 10 11 50-11 20-11-20z"/><path fill="#89c7d6" d="m150 25 6 27-6 6-6-6z"/><path fill="#253d4a" d="m128 67-15 28 23-9 5-21m31 2 15 28-23-9-5-21"/><path stroke="#b9edf4" stroke-width="3" d="M144 82v15m12-15v15"/><path stroke="#fbe0ac" stroke-width="3" d="m51 73 48-6m150 6-48-6"/></svg><strong>戦闘機</strong><span>翼を展開 → 自由飛行</span></button></div><p class="tiny hangar-foot">左レバーで前後移動・向き、右で昇降・横移動。「ここに降りる」で近くの風船の固定位置へ着地し、バックホーに戻ります。</p></dialog>
+<dialog id="skate-help-dialog"><button class="close" data-close>閉じる</button><h2>MONO / 自分のラインを走ろう。</h2><p>左手で曲がる・プッシュ・ブレーキ。右手でジャンプと技。両手で同時に操作できます。<br>技の回転が終わる頃、画面に「今！」が出たらキャッチ。早押しや押し忘れは転倒。転んでも入口へ戻れます。</p><p>PC：WASD・矢印で走行、Space オーリー、F フリップ、G ショービット、R 180度、C キャッチ。Esc 一時停止。主観は進行方向を見る視点です。「重機に戻る」でパークの固定降り場へ戻ります。</p></dialog>
+<dialog id="secret-dialog"><button class="close" data-close>閉じる</button><div class="eyebrow">AIR TRANSFER / TRANSFORM</div><h2>空から、次の区画へ。</h2><p>ヘリ・戦闘機に変形して敷地を移動します。<br>空中の案内風船へ近づき、区画の固定降り場へ着地できます。</p><div class="forms"><button data-form="heli"><div class="form-code">FORM 01 / ROTOR</div><svg viewBox="0 0 300 100" aria-hidden="true"><g fill="none" stroke="#8eacb7" stroke-width="2"><path d="M30 20h235M150 20v22M105 88h91M120 74v14M178 74v14"/></g><path fill="#eaa34e" d="M83 63q4-22 41-23h50l22 16 56-9 25-21 7 2-15 32-73 8q-10 12-56 12H106z"/><path fill="#234959" stroke="#b8dde2" d="M93 61q8-16 33-16h20v20H93z"/><path fill="#21343e" d="M154 46h18l16 14h-34z"/><circle cx="270" cy="48" r="13" fill="none" stroke="#b8dde2"/><path d="m263 41 14 14m0-14-14 14" stroke="#b8dde2"/></svg><strong>ヘリコプター</strong><span>ローター展開 → 自由飛行</span></button><button data-form="jet"><div class="form-code">FORM 02 / WING</div><svg viewBox="0 0 300 100" aria-hidden="true"><path fill="#eeae5a" d="m150 4 14 36 105 31-4 10-104-9 15 19h-52l15-19-104 9-4-10 105-31z"/><path fill="#253d4a" d="m150 10 11 50-11 20-11-20z"/><path fill="#89c7d6" d="m150 25 6 27-6 6-6-6z"/><path fill="#253d4a" d="m128 67-15 28 23-9 5-21m31 2 15 28-23-9-5-21"/><path stroke="#b9edf4" stroke-width="3" d="M144 82v15m12-15v15"/><path stroke="#fbe0ac" stroke-width="3" d="m51 73 48-6m150 6-48-6"/></svg><strong>戦闘機</strong><span>翼を展開 → 自由飛行</span></button></div><p class="tiny hangar-foot">左レバーで前後移動・向き、右で昇降・横移動。「ここに降りる」で近くの風船の固定位置へ着地し、バックホーに戻ります。スケボーの風船ではスケボーへ変形します。</p></dialog>
 <div id="toast" hidden></div>
 <script>
 console.warn('Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation'),
@@ -13351,9 +13385,81 @@ exports.World = World;
 globalThis.CANNON=exports;})();
 </script>
 <script>
+(function(root){'use strict';
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v)),smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
+const rails=[{x:0,z:3,axis:'x',length:9,height:.48},{x:-15,z:14,axis:'z',length:8,height:.55}];
+function height(x,z){
+ const pipe=3.1*Math.pow(clamp((Math.abs(x+22)-2.1)/4.8,0,1),2)*(1-smooth(6.2,8.8,Math.abs(x+22)))*(1-smooth(7.8,10.5,Math.abs(z+13)));
+ const funbox=.95*(1-smooth(1.5,5.2,Math.abs(x)))*(1-smooth(2.1,5.5,Math.abs(z+13)));
+ const bowl=-2.5*(1-smooth(2.8,9.2,Math.hypot(x-20,z-16)));
+ const bank=1.7*smooth(14,20,x)*(1-smooth(23,28,x))*(1-smooth(6,9,Math.abs(z+15)));
+ return pipe+funbox+bowl+bank;
+}
+function fresh(){return {x:0,z:24,y:height(0,24)+.12,heading:0,speed:0,vy:0,air:false,grind:null,grindCooldown:0,trick:null,needsCatch:false,caught:false,flash:0,combo:0,names:[],score:0,best:0,landed:0,bails:0,streak:0,notice:'プッシュして走ろう',noticeTime:4,completed:{},bail:0,fakie:false,travel:0,lastSlope:0};}
+// Cameras follow the direction of travel; a 180 trick changes the stance, not the view.
+function cameraFrame(s,world,mode='third',scale=1){const angle=s.heading+(s.speed<-.3?Math.PI:0),fx=-Math.sin(angle),fz=-Math.cos(angle),first=mode==='first',d=mode==='overview'?18:4.4+Math.abs(s.speed)*scale*.12;
+ const position=first?{x:world.x+fx*.13,y:world.y+(s.bail?.65:1.45),z:world.z+fz*.13}:{x:world.x-fx*d,y:world.y+(mode==='overview'?24:2.25),z:world.z-fz*d};
+ const target=first?{x:position.x+fx*9,y:position.y-.6,z:position.z+fz*9}:{x:world.x+fx*1.3,y:world.y+.85,z:world.z+fz*1.3};return {position,target,first};}
+function reset(s){const score=s.score,best=s.best,completed=s.completed,bails=s.bails;Object.assign(s,fresh(),{score,best,completed,bails});}
+function message(s,text,seconds=2){s.notice=text;s.noticeTime=seconds;}
+function bail(s){s.bail=1.25;s.air=false;s.grind=null;s.trick=null;s.needsCatch=false;s.caught=false;s.combo=0;s.names=[];s.streak=0;s.bails++;message(s,'着地ミス · もう一回',1.25);}
+function takeoff(s){s.air=true;s.vy=6.2+Math.min(.8,Math.abs(s.speed)*.06);s.grind=null;s.grindCooldown=.35;s.combo+=100;s.names.push('オーリー');}
+function action(s,name){
+ if(s.bail)return false;
+ if(name==='reset'){reset(s);return true;}
+ if(name==='catch'){if(!s.air||!s.needsCatch||s.caught)return false;if(s.trick&&s.trick.time<s.trick.duration*.82){bail(s);message(s,'早すぎる！ 板の回転を待とう',1.25);return false;}s.caught=true;s.flash=.45;s.combo+=150;message(s,'CATCH!  着地へ',1);return true;}
+ if(name==='ollie'){if(s.air&&!s.grind)return false;takeoff(s);message(s,'OLLIE');return true;}
+ if(s.trick)return false;
+ const def={flip:['キックフリップ',300,.66],shuv:['ショービット',250,.56],spin:['180°',200,.53]}[name];if(!def)return false;
+ if(!s.air||s.grind)takeoff(s);
+ s.needsCatch=true;s.caught=false;s.trick={type:name,time:0,duration:def[2],points:def[1],name:def[0]};message(s,def[0]+' → 回転後にキャッチ');return true;
+}
+function land(s){
+ if((s.trick&&s.trick.time<s.trick.duration*.92)||(s.needsCatch&&!s.caught)){bail(s);return;}
+ s.air=false;s.vy=0;s.grind=null;s.needsCatch=false;s.caught=false;if(s.combo){const earned=Math.round(s.combo*(1+Math.min(s.streak,4)*.2));s.score+=earned;s.best=Math.max(s.best,earned);s.landed++;s.streak++;s.flash=.65;s.completed.ollie=true;for(const n of s.names){if(n==='キックフリップ')s.completed.flip=true;if(n==='ショービット')s.completed.shuv=true;if(n==='50-50 GRIND')s.completed.grind=true;}message(s,'LANDED! '+s.names.join(' + ')+'  /  +'+earned,3.4);s.combo=0;s.names=[];}
+}
+function step(s,input,dt,surface=height){
+ const steps=Math.max(1,Math.ceil(Math.min(dt,.1)*120)),h=Math.min(dt,.1)/steps;for(let i=0;i<steps;i++)tick(s,input,h,surface);return s;
+}
+function tick(s,input,dt,height){
+ s.noticeTime=Math.max(0,s.noticeTime-dt);s.flash=Math.max(0,s.flash-dt);s.grindCooldown=Math.max(0,s.grindCooldown-dt);
+ if(s.bail){s.bail=Math.max(0,s.bail-dt);s.x-=Math.sin(s.heading)*s.speed*dt*.45;s.z-=Math.cos(s.heading)*s.speed*dt*.45;s.speed*=Math.exp(-4*dt);s.y=Math.max(height(s.x,s.z)+.13,s.y-7*dt);if(!s.bail)reset(s);return;}
+ if(s.trick){s.trick.time+=dt;if(s.trick.time>=s.trick.duration){s.combo+=s.trick.points;s.names.push(s.trick.name);if(s.trick.type==='spin')s.fakie=!s.fakie;s.trick=null;}}
+ const oldX=s.x,oldZ=s.z,oldH=height(s.x,s.z),dx=-Math.sin(s.heading),dz=-Math.cos(s.heading);
+ const gx=(height(s.x+.1,s.z)-height(s.x-.1,s.z))/.2,gz=(height(s.x,s.z+.1)-height(s.x,s.z-.1))/.2,slope=gx*dx+gz*dz;
+ if(!s.grind)s.heading+=(input.turn||0)*dt*(s.air?1.1:1.65)*Math.min(1,Math.abs(s.speed)/1.5+.2);
+ if(s.grind){
+  const r=rails[s.grind.index],dir=s.grind.dir;s.speed=Math.max(1.5,s.speed-.35*dt);s.x+=r.axis==='x'?dir*s.speed*dt:0;s.z+=r.axis==='z'?dir*s.speed*dt:0;s.y=height(s.x,s.z)+r.height+.12;s.combo+=60*dt;
+  if(Math.abs((r.axis==='x'?s.x-r.x:s.z-r.z))>r.length/2){s.grind=null;s.air=true;s.vy=.6;s.grindCooldown=.5;}
+ }else{
+  if(!s.air){s.speed+=(input.push?5.2:0)*dt;s.speed-=9.81*slope/(1+slope*slope)*dt;s.speed*=Math.exp(-(input.brake?4:.1)*dt);if(Math.abs(s.speed)<.05&&!input.push&&Math.abs(slope)<.02)s.speed=0;}
+  else if(input.brake)s.speed*=Math.exp(-.4*dt);
+  s.speed=clamp(s.speed,-5,16);s.x-=Math.sin(s.heading)*s.speed*dt;s.z-=Math.cos(s.heading)*s.speed*dt;s.travel+=Math.hypot(s.x-oldX,s.z-oldZ);
+  const ground=height(s.x,s.z)+.12;
+  if(s.air){const oldY=s.y;s.vy-=13.5*dt;s.y+=s.vy*dt;
+   if(!s.grindCooldown&&s.vy<=0)for(let i=0;i<rails.length;i++){const r=rails[i],across=r.axis==='x'?s.z-r.z:s.x-r.x,along=r.axis==='x'?s.x-r.x:s.z-r.z,level=height(s.x,s.z)+r.height+.12,alignment=r.axis==='x'?Math.abs(Math.sin(s.heading)):Math.abs(Math.cos(s.heading));if(Math.abs(across)<.38&&Math.abs(along)<r.length/2&&oldY>=level-.08&&s.y<=level+.08&&alignment>.65&&Math.abs(s.speed)>1.4&&!s.trick&&(!s.needsCatch||s.caught)){s.grind={index:i,dir:(r.axis==='x'?-Math.sin(s.heading):-Math.cos(s.heading))*Math.sign(s.speed)>0?1:-1};s.heading=r.axis==='x'?-s.grind.dir*Math.PI/2:s.grind.dir>0?Math.PI:0;s.speed=Math.abs(s.speed);if(r.axis==='x')s.z=r.z;else s.x=r.x;s.y=level;s.vy=0;s.combo+=200;s.names.push('50-50 GRIND');message(s,'50-50 GRIND');break;}}
+   if(!s.grind&&s.y<=ground){s.y=ground;land(s);}
+  }else{const rise=(ground-(oldH+.12))/dt;if(s.lastSlope>1.7&&rise<s.lastSlope-1.5&&s.speed>3){s.air=true;s.vy=Math.min(7,s.lastSlope);s.combo+=80;s.names.push('エア');}else{s.y=ground;s.lastSlope=rise;}
+   for(const r of rails){const across=r.axis==='x'?s.z-r.z:s.x-r.x,along=r.axis==='x'?s.x-r.x:s.z-r.z;if(Math.abs(across)<.21&&Math.abs(along)<r.length/2&&s.speed>1){s.x=oldX;s.z=oldZ;s.speed=0;message(s,'レールへはオーリーで乗ろう');}}
+  }
+ }
+ if(Math.hypot(s.x-20,s.z-16)<6)s.completed.bowl=true;
+ if(Math.abs(s.x)>37||Math.abs(s.z)>37){s.x=clamp(s.x,-36.9,36.9);s.z=clamp(s.z,-36.9,36.9);s.speed=0;message(s,'広場の端です · 向きを変えよう');}
+}
+root.SkateCore={fresh,reset,action,step,height,rails,cameraFrame};if(typeof module!=='undefined')module.exports=root.SkateCore;
+})(globalThis);
+
+</script>
+<script>
 (function(root){
 'use strict';
+const K=root.SkateCore||(typeof require==='function'?require('../skate-park/skate-core.js'):null);
+const skate={x:-35,z:40,scale:.48,verticalScale:.7,base:.2,half:38*.48};
+const skateLocal=(x,z)=>({x:(x-skate.x)/skate.scale,z:(z-skate.z)/skate.scale});
+const inSkate=(x,z)=>Math.abs(x-skate.x)<skate.half&&Math.abs(z-skate.z)<skate.half;
+const skateHeight=(x,z)=>{const p=skateLocal(x,z);return skate.base+K.height(p.x,p.z)*skate.verticalScale;};
 const zones=[
+ {id:'skate',name:'スケボーパーク',short:'スケボー',color:'#d8f24a',x:-35,z:40,gate:[-42,54],bounds:[-53.24,-16.76,21.76,58.24]},
  {id:'flat',name:'平坦・基本走行',short:'平坦',color:'#56cbb4',x:-15,z:20,gate:[-9,22],bounds:[-27,5,8,34]},
  {id:'dig',name:'穴掘り・土置き場',short:'穴掘り',color:'#ffbd47',x:0,z:-4,gate:[0,1],bounds:[-6,6,-11,3]},
  {id:'hill',name:'山・谷・凸凹コース',short:'起伏',color:'#ff865e',x:-12,z:-17,gate:[-11,7],bounds:[-32,12,-39,7]},
@@ -13361,8 +13467,8 @@ const zones=[
  {id:'lift',name:'荷揚げ・着地',short:'荷揚げ',color:'#69baf7',x:36,z:9,gate:[29,16],bounds:[28,49,-3,23]},
  {id:'plate',name:'敷鉄板の移動',short:'鉄板',color:'#b99aff',x:36,z:34,gate:[27,30],bounds:[25,49,25,46]}
 ];
-const landingPoints={flat:[-15,24],dig:[0,3],hill:[-11,5],support:[16,16],lift:[31,17],plate:[29,37]};zones.forEach(z=>z.landing=landingPoints[z.id]);
-const roads=[[-29,22,45,22],[26,-6,26,42],[-35,40,45,40],[-35,8,-35,40],[-11,22,-11,7],[0,22,0,1]];
+const landingPoints={skate:[-35,51.52],flat:[-15,24],dig:[0,3],hill:[-11,5],support:[16,16],lift:[31,17],plate:[29,37]};zones.forEach(z=>z.landing=landingPoints[z.id]);
+const roads=[[-29,22,45,22],[26,-6,26,42],[-12,40,45,40],[-12,22,-12,53],[-12,53,-35,53],[-11,22,-11,7],[0,22,0,1]];
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const smooth=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t);};
 // Three compact practice features; the landing apron (z >= 13) and connected roads stay level.
@@ -13376,7 +13482,7 @@ const supportFeatures=[{name:'段差 50cm',x:12,z:3.25,width:3.8},{name:'浅い�
 function segmentDistance(x,z,[a,b,c,d]){const u=clamp(((x-a)*(c-a)+(z-b)*(d-b))/((c-a)**2+(d-b)**2),0,1);return Math.hypot(x-a-u*(c-a),z-b-u*(d-b));}
 function roadDistance(x,z){return Math.min(...roads.map(r=>segmentDistance(x,z,r)));}
 function zoneAt(x,z){return zones.find(q=>x>q.bounds[0]&&x<q.bounds[1]&&z>q.bounds[2]&&z<q.bounds[3]);}
-const api={zones,roads,roadDistance,zoneAt,supportElevation,supportFeatures,spawn:{x:0,z:18,heading:0},size:120};
+const api={zones,roads,roadDistance,zoneAt,supportElevation,supportFeatures,skate,skateLocal,inSkate,skateHeight,spawn:{x:0,z:18,heading:0},size:120};
 root.BackhoeSite=api;if(typeof module!=='undefined')module.exports=api;
 })(globalThis);
 
@@ -13448,12 +13554,15 @@ function elevation(x,z){
  // Rounded alternating humps on the west extension, connected to the ridge course.
  const rough=clamp(Math.min(x+34,-22-x,z+40,-8-z)/3,0,1);
  result+=rough*(.28+.28*Math.sin(z*1.05))*(.65+.35*Math.cos(x*.6));
- return result+(root.BackhoeSite?.supportElevation(x,z)||0);
+ result+=root.BackhoeSite?.supportElevation(x,z)||0;
+ const park=root.BackhoeSite?.skate;
+ if(park){const cover=clamp((park.half+1-Math.max(Math.abs(x-park.x),Math.abs(z-park.z))),0,1);result=result*(1-cover)+root.BackhoeSite.skateHeight(x,z)*cover;}
+ return result;
 }
 class SoilField{
  constructor(size=120,segments=600){this.size=size;this.segments=segments;this.n=segments+1;this.spacing=size/segments;this.area=this.spacing**2;this.heights=new Float64Array(this.n*this.n);this.base=new Float64Array(this.n*this.n);this.scars=new Float32Array(this.n*this.n);this.version=0;this.minimum=-3;this.dirty=new Set();this.reset();}
  inside(x,z){return Math.abs(x)<this.size/2-this.spacing&&Math.abs(z)<this.size/2-this.spacing;}
- surfaceAt(x,z){return (x>8&&x<25&&z>2&&z<19)||(x>26&&x<49&&z>-3&&z<46)?{name:'硬質地盤',friction:.9,bearing:1}:{name:'土の地盤',friction:.45,bearing:.28};}
+ surfaceAt(x,z){return root.BackhoeSite.inSkate(x,z)||(x>8&&x<25&&z>2&&z<19)||(x>26&&x<49&&z>-3&&z<46)?{name:'硬質地盤',friction:.9,bearing:1}:{name:'土の地盤',friction:.45,bearing:.28};}
  index(x,z){return z*this.n+x;}
  mark(i){this.dirty.add(i);this.version++;}
  sample(x,z){
@@ -13665,11 +13774,13 @@ const api={step,equilibrium,tracks,sole,center};root.BackhoeContact=api;if(typeo
 <script>
 (function(root){
 class TerrainView {
- constructor(scene,field,T,V){this.scene=scene;this.field=field;this.T=T;this.V=V;this.tiles=[];this.tileCells=50;this.count=field.segments/this.tileCells;this.color=new T.Color();this.material=V.groundMaterial(true);this.material.map.repeat.set(field.size/2,field.size/2);this.material.roughness=1;
+ constructor(scene,field,T,V){this.scene=scene;this.field=field;this.T=T;this.V=V;this.tiles=[];this.tileCells=50;this.count=field.segments/this.tileCells;this.color=new T.Color();this.material=V.groundMaterial(true);this.material.map.repeat.set(field.size/2,field.size/2);this.material.roughness=1;this.concrete=new T.MeshStandardMaterial({vertexColors:true,roughness:.95});
   for(let tz=0;tz<this.count;tz++)for(let tx=0;tx<this.count;tx++){
    const n=this.tileCells+1,g=new T.BufferGeometry(),p=new Float32Array(n*n*3),c=new Float32Array(n*n*3),uv=new Float32Array(n*n*2),norm=new Float32Array(n*n*3),indices=[];
    for(let j=0;j<n;j++)for(let i=0;i<n;i++){const k=j*n+i,gx=tx*this.tileCells+i,gz=tz*this.tileCells+j;p[k*3]=gx*field.spacing-field.size/2;p[k*3+2]=gz*field.spacing-field.size/2;uv[k*2]=gx/field.segments;uv[k*2+1]=gz/field.segments;if(i<n-1&&j<n-1)indices.push(k,k+n,k+1,k+1,k+n,k+n+1);}
-   g.setAttribute('position',new T.BufferAttribute(p,3));g.setAttribute('color',new T.BufferAttribute(c,3));g.setAttribute('normal',new T.BufferAttribute(norm,3));g.setAttribute('uv',new T.BufferAttribute(uv,2));g.setIndex(indices);const mesh=new T.Mesh(g,this.material);mesh.receiveShadow=true;scene.add(mesh);this.tiles.push({tx,tz,mesh});
+   g.setAttribute('position',new T.BufferAttribute(p,3));g.setAttribute('color',new T.BufferAttribute(c,3));g.setAttribute('normal',new T.BufferAttribute(norm,3));g.setAttribute('uv',new T.BufferAttribute(uv,2));g.setIndex(indices);
+   let start=0,previous=-1,offset=0;for(let j=0;j<this.tileCells;j++)for(let i=0;i<this.tileCells;i++){const x=(tx*this.tileCells+i+.5)*field.spacing-field.size/2,z=(tz*this.tileCells+j+.5)*field.spacing-field.size/2,material=BackhoeSite.inSkate(x,z)?1:0;if(material!==previous){if(previous>=0)g.addGroup(start,offset-start,previous);start=offset;previous=material;}offset+=6;}g.addGroup(start,offset-start,previous);
+   const mesh=new T.Mesh(g,[this.material,this.concrete]);mesh.receiveShadow=true;scene.add(mesh);this.tiles.push({tx,tz,mesh});
   }
   this.update();
  }
@@ -13682,7 +13793,9 @@ class TerrainView {
     const green=(Math.abs(x+12)>8&&z<-11&&h>1)||(x>22&&z<-19)||(x<-24&&z>7);
     if(green)base=0x9caa6c;
     if(BackhoeSite.roadDistance(x,z)<2.8)base=0xd9c89c;if(f.surfaceAt(x,z).bearing>.9)base=0x9da9a3;
-    const feature=BackhoeSite.supportElevation(x,z);if(feature>.03)base=0xb8a078;else if(feature<-.03)base=0x87775f;this.color.setHex(base);
+    const feature=BackhoeSite.supportElevation(x,z);if(feature>.03)base=0xb8a078;else if(feature<-.03)base=0x87775f;
+    if(BackhoeSite.inSkate(x,z)){const local=BackhoeSite.skateLocal(x,z);base=Math.hypot(local.x-20,local.z-16)<9.3?0x9aa8a3:Math.abs(local.x+22)<8&&Math.abs(local.z+13)<10?0xb2b9b1:0xd8d6cb;}
+    this.color.setHex(base);
     if(depth>.02){this.color.setHex(depth<.25?0xa8824e:depth<.75?0x826042:0x624932);this.color.multiplyScalar(.96+Math.sin(h*22)*.04);}
     else if(depth<-.02)this.color.setHex(0xad804d);
     this.color.multiplyScalar(1+grain-f.scars[idx]*.04);c.setXYZ(k,this.color.r,this.color.g,this.color.b);
@@ -14020,6 +14133,8 @@ class Yard{
   this.add('鉄板 B',37,.2+.011,33,[1.524,.011,.762],802,0x617c85,'plate');
   this.add('鉄板台',36,.2+.22,40,[3.4,.22,1.65],0,0x7c8b86);
   this.add('防護壁',45,.2+.65,9,[.28,.65,8],0,0xc3beb0);
+  // Fixed park rails stop the machine and loads, just as the skater's rail contacts do.
+  const park=root.BackhoeSite?.skate,K=root.SkateCore;if(park&&K)for(const r of K.rails){const x=park.x+r.x*park.scale,z=park.z+r.z*park.scale,y=park.base+r.height*park.verticalScale,half=r.length*park.scale/2;this.add('スケートレール',x,y,z,r.axis==='x'?[half,.04,.04]:[.04,.04,half],0,0x181b1e,'park');for(const t of [-.75,0,.75])this.add('レール支柱',x+(r.axis==='x'?half*t:0),park.base+r.height*park.verticalScale/2,z+(r.axis==='z'?half*t:0),[.035,r.height*park.verticalScale/2,.035],0,0x6f757b,'park');}
   this.anchor=new Cn.Body({type:Cn.Body.KINEMATIC,allowSleep:false,collisionFilterGroup:0,collisionFilterMask:0});this.world.addBody(this.anchor);
  }
  add(name,x,y,z,half,mass,color,kind='load'){const b=new Cn.Body({mass,shape:new Cn.Box(new Cn.Vec3(...half)),position:new Cn.Vec3(x,y,z),linearDamping:.08,angularDamping:.25,collisionFilterGroup:1,collisionFilterMask:7,allowSleep:true,sleepTimeLimit:.6});b.half=V(...half);b.label=name;b.color=color;b.kind=kind;b.liftLocal=kind==='plate'?new Cn.Vec3(0,0,half[2]-.075):new Cn.Vec3(0,half[1]+.04,0);b.initial={x,y,z};this.world.addBody(b);this.items.push(b);return b;}
@@ -14065,7 +14180,7 @@ class Yard{
   return {vehicle:v,state:s};
  }
  createView(scene){
-  this.meshes=this.items.map(b=>{const m=new T.Mesh(b.kind==='plate'?plateGeometry(b):new T.BoxGeometry(b.half.x*2,b.half.y*2,b.half.z*2),new T.MeshStandardMaterial({color:b.color,roughness:.8,metalness:b.label.includes('鉄板')?.65:.12}));m.castShadow=m.receiveShadow=true;scene.add(m);if(b.mass){const edge=new T.LineSegments(new T.EdgesGeometry(m.geometry),new T.LineBasicMaterial({color:0x243d49}));m.add(edge);if(b.kind==='plate'){
+  this.meshes=this.items.map(b=>{const m=new T.Mesh(b.kind==='plate'?plateGeometry(b):new T.BoxGeometry(b.half.x*2,b.half.y*2,b.half.z*2),new T.MeshStandardMaterial({color:b.color,roughness:.8,metalness:b.label.includes('鉄板')?.65:.12}));m.castShadow=m.receiveShadow=true;m.visible=b.kind!=='park';scene.add(m);if(b.mass){const edge=new T.LineSegments(new T.EdgesGeometry(m.geometry),new T.LineBasicMaterial({color:0x243d49}));m.add(edge);if(b.kind==='plate'){
    const mark=new T.Mesh(new T.RingGeometry(.75,1,32),new T.MeshBasicMaterial({color:0xecc759,side:T.DoubleSide}));mark.rotation.x=-Math.PI/2;mark.scale.set(.075,.045,1);mark.position.set(b.liftLocal.x,b.half.y+.001,b.liftLocal.z);m.add(mark);
   }else{const eye=new T.Mesh(new T.TorusGeometry(.10,.022,6,14),new T.MeshStandardMaterial({color:0xffdb61,metalness:.5,roughness:.3}));eye.position.set(b.liftLocal.x,b.liftLocal.y+.03,b.liftLocal.z);m.add(eye);}}return m;});
   this.ropeView=new T.Line(new T.BufferGeometry().setFromPoints([V(),V()]),new T.LineBasicMaterial({color:0xffd35d}));scene.add(this.ropeView);
@@ -14112,6 +14227,92 @@ const api={Monitor,upright,stowed,placement,recoverySpot};root.BackhoeRecovery=a
 
 </script>
 <script>
+(function(root){'use strict';
+function create(world,options={}){
+const T=THREE,K=SkateCore,height=options.height||K.height,sx=options.scale||1,sy=options.verticalScale||1,origin=options.origin||{x:0,y:0,z:0},scene=new T.Group();scene.position.set(origin.x,origin.y,origin.z);scene.scale.set(sx,sy,sx);world.add(scene);
+const toWorld=s=>({x:origin.x+s.x*sx,y:origin.y+(s.y-.12)*sy+.13,z:origin.z+s.z*sx,heading:s.heading});const toLocal=s=>({x:(s.x-origin.x)/sx,z:(s.z-origin.z)/sx});
+const mat=(color,more={})=>new T.MeshStandardMaterial({color,roughness:.8,...more}),concrete=mat('#d7d9cf'),dark=mat('#28353d'),white=mat('#f8f8ed'),orange=mat('#d8f24a'),steel=mat('#9eaaa9',{metalness:.75,roughness:.28});
+function mesh(g,m,p,x=0,y=0,z=0){const a=new T.Mesh(g,m);a.position.set(x,y,z);a.castShadow=a.receiveShadow=true;p.add(a);return a;}
+function box(p,w,h,d,x,y,z,m){return mesh(new T.BoxGeometry(w,h,d),m,p,x,y,z);}
+function tube(p,a,b,r,m){const d=new T.Vector3().subVectors(b,a),o=mesh(new T.CylinderGeometry(r,r,d.length(),8),m,p);o.position.copy(a).add(b).multiplyScalar(.5);o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),d.normalize());return o;}
+const V=(x,y,z)=>new T.Vector3(x,y,z);
+function line(points,color,width=.025){const curve=new T.CatmullRomCurve3(points),g=new T.TubeGeometry(curve,Math.max(8,points.length*2),width,4,false);return mesh(g,mat(color),scene);}
+function sign(text,x,z,color='#24373f'){const c=document.createElement('canvas');c.width=768;c.height=128;const ctx=c.getContext('2d');ctx.fillStyle='#101214';ctx.fillRect(0,0,c.width,c.height);ctx.fillStyle='#d8f24a';ctx.fillRect(0,0,20,128);ctx.fillStyle='#f4f2ec';ctx.font='800 49px sans-serif';ctx.textAlign='center';ctx.fillText(text,384,83);const tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;const m=mesh(new T.PlaneGeometry(8,1.3),mat('#fff',{map:tex,side:T.DoubleSide}),scene,x,height(x,z)+1.9,z);for(const dx of [-1.8,1.8])box(scene,.045,1.25,.045,x+dx,height(x,z)+.63,z,dark);return m;}
+// A single continuous collision/rendering surface: all ramps use the same height function.
+if(options.ground!==false){const g=new T.PlaneGeometry(76,76,240,240);g.rotateX(-Math.PI/2);const colors=[],pos=g.attributes.position,col=new T.Color();for(let i=0;i<pos.count;i++){const x=pos.getX(i),z=pos.getZ(i),h=height(x,z);pos.setY(i,h);col.set(Math.hypot(x-20,z-16)<9.3?'#b7b8ae':Math.abs(x+22)<7&&Math.abs(z+13)<9?'#d8d4cb':Math.abs(x)<5.2&&Math.abs(z+13)<5.5?'#aaa69d':'#cfcbc2');const noise=Math.sin(x*12.37+z*17.2)*.012;col.multiplyScalar(1+noise);colors.push(col.r,col.g,col.b);}g.setAttribute('color',new T.Float32BufferAttribute(colors,3));g.computeVertexNormals();mesh(g,mat('#fff',{vertexColors:true}),scene).castShadow=false;
+const outside=mesh(new T.PlaneGeometry(300,300),mat('#a4b395'),scene,0,-2.8,0);outside.rotation.x=-Math.PI/2;}
+for(let x=-36;x<=36;x+=6){const points=[];for(let z=-36;z<=36;z+=.5)points.push(V(x,height(x,z)+.018,z));line(points,'#c1c7bd',.009);}for(let z=-36;z<=36;z+=6){const points=[];for(let x=-36;x<=36;x+=.5)points.push(V(x,height(x,z)+.018,z));line(points,'#c0c7bd',.009);}
+for(const radius of [9.25,9.65]){const points=[];for(let i=0;i<=128;i++){const a=i/128*Math.PI*2,x=20+Math.sin(a)*radius,z=16+Math.cos(a)*radius;points.push(V(x,height(x,z)+.025,z));}line(points,radius===9.25?'#14171a':'#181b1e',.045);}
+for(const x of [-28.65,-15.35]){const points=[];for(let z=-21;z<=-5;z+=.25)points.push(V(x,height(x,z)+.03,z));line(points,'#d8f24a',.065);}
+for(const r of K.rails){const d=r.axis==='x'?V(r.length/2,0,0):V(0,0,r.length/2),a=V(r.x,r.height,r.z).sub(d),b=V(r.x,r.height,r.z).add(d);tube(scene,a,b,.045,steel);for(const v of [-.75,0,.75]){const x=r.x+d.x*v,z=r.z+d.z*v;tube(scene,V(x,.04,z),V(x,r.height,z),.035,steel);}for(const side of [-.55,.55]){const x=r.x+(r.axis==='z'?side:0),z=r.z+(r.axis==='x'?side:0);line([V(x-d.x,.025,z-d.z),V(x+d.x,.025,z+d.z)],'#d8f24a',.035);}}
+sign('01 / PIPE',-22,-26);sign('02 / STREET',0,-22);sign('03 / BOWL',26,30);sign('MONO / SOUTHWEST',-10,34);
+floorGraphic('PIPE',-22,-2,12,3);floorGraphic('STREET',0,-4,12,3);floorGraphic('BOWL',20,3,10,3);floorGraphic('PUSH. POP. REPEAT.',0,29,21,3);
+const pad=mesh(new T.CircleGeometry(5,64),mat('#14171a'),scene,0,.022,24);pad.rotation.x=-Math.PI/2;const padRing=mesh(new T.RingGeometry(4.55,4.8,64),mat('#d8f24a'),scene,0,.035,24);padRing.rotation.x=-Math.PI/2;
+function floorGraphic(text,x,z,w,h){const c=document.createElement('canvas');c.width=1024;c.height=256;const g=c.getContext('2d');g.fillStyle='#101214';g.font='italic 900 100px sans-serif';g.textAlign='center';g.fillText(text,512,142);g.fillStyle='#d8f24a';g.fillRect(90,175,840,12);const tex=new T.CanvasTexture(c);tex.colorSpace=T.SRGBColorSpace;const m=mesh(new T.PlaneGeometry(w,h),new T.MeshBasicMaterial({map:tex,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-2}),scene,x,height(x,z)+.045,z);m.rotation.x=-Math.PI/2;m.castShadow=false;}
+for(const z of [-35,35])line([V(-35,.04,z),V(35,.04,z)],'#14171a',.15);for(const x of [-35,35])for(const range of [[-35,19],[32,35]])line([V(x,.04,range[0]),V(x,.04,range[1])],'#14171a',.15);
+// A quiet perimeter keeps the riding space open.
+for(const x of [-31,31])for(const z of [-28,0,28]){box(scene,.12,6,.12,x,3,z,dark);box(scene,1.8,.14,.45,x+.6,6,z,white);}
+for(const x of [-32,32])for(const z of [9,15]){box(scene,1.7,.12,.6,x,.5,z,orange);for(const dx of [-.6,.6])box(scene,.06,.5,.45,x+dx,.25,z,dark);}
+if(options.ground!==false){const distant=new T.InstancedMesh(new T.BoxGeometry(1,1,1),mat('#acbbb7'),30),dummy=new T.Object3D();for(let i=0;i<30;i++){const a=i/30*Math.PI*2,r=85+(i%5)*5,h=4+(i*7%9);dummy.position.set(Math.sin(a)*r,h/2-2,Math.cos(a)*r);dummy.scale.set(9+(i%3)*7,h,8);dummy.rotation.y=a;dummy.updateMatrix();distant.setMatrixAt(i,dummy.matrix);}scene.add(distant);}
+// Monochrome skater: articulated legs and arms, independent animated board.
+const rider=new T.Group(),pose=new T.Group(),board=new T.Group(),body=new T.Group();world.add(rider);rider.add(pose);pose.add(board,body);
+const deckShape=new T.Shape();deckShape.absellipse(0,0,.17,.55,0,Math.PI*2,false);const deckGeo=new T.ExtrudeGeometry(deckShape,{depth:.035,bevelEnabled:false});deckGeo.rotateX(-Math.PI/2);mesh(deckGeo,dark,board);const grip=mesh(new T.PlaneGeometry(.27,.82),mat('#343b3e'),board,0,.038,0);grip.rotation.x=-Math.PI/2;
+for(const z of [-.34,.34]){box(board,.36,.035,.04,0,-.045,z,steel);for(const x of [-.2,.2]){const wheel=mesh(new T.CylinderGeometry(.055,.055,.045,12),white,board,x,-.075,z);wheel.rotation.z=Math.PI/2;}}
+const torso=box(body,.29,.47,.24,0,1.04,0,white),hips=box(body,.31,.19,.24,0,.74,0,dark);const head=mesh(new T.SphereGeometry(.15,16,12),mat('#d6d8d5'),body,0,1.48,0);const helmet=mesh(new T.SphereGeometry(.164,16,10,0,Math.PI*2,0,Math.PI*.58),dark,body,0,1.5,0);box(body,.22,.028,.2,0,1.52,-.10,white);box(body,.10,.06,.02,0,1.48,-.146,dark);box(body,.035,.26,.025,.147,1.06,.04,dark);
+box(body,.19,.18,.012,0,1.09,.127,dark);box(body,.04,.12,.014,-.04,1.09,.137,white);box(body,.04,.12,.014,.04,1.09,.137,white);const limbs=[];for(let i=0;i<8;i++)limbs.push(mesh(new T.CylinderGeometry(i<4?.07:.047,i<4?.075:.05,1,8),i<4?dark:white,body));const shoes=[box(body,.14,.09,.27,-.11,.08,-.29,dark),box(body,.14,.09,.27,.11,.08,.29,dark)];shoes.forEach(s=>box(s,.145,.022,.28,0,-.035,0,white));
+function segment(m,a,b){const d=b.clone().sub(a);m.position.copy(a).add(b).multiplyScalar(.5);m.scale.y=d.length();m.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());}
+const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=64;const sc=shadowCanvas.getContext('2d'),sg=sc.createRadialGradient(32,32,3,32,32,31);sg.addColorStop(0,'rgba(20,32,39,.32)');sg.addColorStop(1,'rgba(20,32,39,0)');sc.fillStyle=sg;sc.fillRect(0,0,64,64);const shadow=mesh(new T.PlaneGeometry(1.5,2.2),new T.MeshBasicMaterial({map:new T.CanvasTexture(shadowCanvas),transparent:true,depthWrite:false}),world);shadow.rotation.x=-Math.PI/2;shadow.castShadow=shadow.receiveShadow=false;
+function animate(state,steer,time,first=false){steer={push:false,turn:0,...steer};const jump=state.air&&!state.grind,fold=jump?.18:Math.abs(state.speed)*.006,push=steer.push&&!jump?Math.sin(time*7)*.13:0;
+ const wp=toWorld(state);rider.position.set(wp.x,wp.y,wp.z);body.visible=!first;rider.rotation.y=state.heading+(state.fakie?Math.PI:0);const e=.35,dx=-Math.sin(state.heading),dz=-Math.cos(state.heading),slope=(height(state.x+dx*e,state.z+dz*e)-height(state.x-dx*e,state.z-dz*e))/(2*e);pose.rotation.x=T.MathUtils.lerp(pose.rotation.x,jump?0:Math.atan(slope*sy/sx),.15);pose.rotation.z=T.MathUtils.lerp(pose.rotation.z,-steer.turn*Math.min(.18,state.speed*.018),.1);if(state.bail)pose.rotation.z=1.25;board.rotation.set(0,0,0);board.position.set(state.bail?(1.25-state.bail)*1.3:0,0,0);if(state.bail)board.rotation.y=(1.25-state.bail)*7;body.position.y=fold;
+ if(state.trick){const t=Math.min(1,state.trick.time/state.trick.duration),a=t*Math.PI*2;if(state.trick.type==='flip')board.rotation.z=a;else if(state.trick.type==='shuv')board.rotation.y=a;else rider.rotation.y+=t*Math.PI;}
+ torso.rotation.y=1.22;hips.rotation.y=1.4;torso.rotation.z=steer.turn*.09;const feet=[V(-.1,.09,-.29),V(.1,.09+Math.max(0,-push),.29+push)],knees=[V(-.2,.42-fold,-.20),V(.22,.43-fold,.20+push*.4)],hip=[V(-.09,.73-fold,-.07),V(.09,.73-fold,.07)];for(let i=0;i<2;i++){segment(limbs[i*2],hip[i],knees[i]);segment(limbs[i*2+1],knees[i],feet[i]);shoes[i].position.copy(feet[i]);}
+ const arms=[V(-.14,1.22,0),V(.14,1.22,0)],elbows=[V(-.35,1.05,-.19-steer.turn*.1),V(.38,1.08,.17)],hands=[V(-.48,jump?1.2:.88,-.32),V(.52,jump?1.2:.91,.30)];for(let i=0;i<2;i++){segment(limbs[4+i*2],arms[i],elbows[i]);segment(limbs[5+i*2],elbows[i],hands[i]);}
+ shadow.position.set(wp.x,origin.y+sy*height(state.x,state.z)+.025,wp.z);shadow.material.opacity=1/(1+Math.max(0,state.y-height(state.x,state.z))*.5);
+
+}
+
+function follow(camera,state,mode='third',dt=1/30,snap=false){
+ const wp=toWorld(state),frame=K.cameraFrame(state,wp,mode,sx),first=frame.first;body.visible=!first;const goal=new T.Vector3(frame.position.x,frame.position.y,frame.position.z),aim=new T.Vector3(frame.target.x,frame.target.y,frame.target.z);
+ if(first)camera.position.copy(goal);else {const local=toLocal(goal);goal.y=Math.max(goal.y,origin.y+sy*height(local.x,local.z)+1.2);camera.position.lerp(goal,snap?1:1-Math.exp(-9*dt));}
+ camera.up.set(0,1,0);camera.lookAt(aim);camera.fov=T.MathUtils.lerp(camera.fov,mode==='overview'?53:(first?76:60)+Math.min(14,Math.abs(state.speed)*.9),snap?1:1-Math.exp(-5*dt));camera.updateProjectionMatrix();
+}
+return {scene,rider,shadow,animate,follow,toWorld,toLocal,setVisible(on){rider.visible=shadow.visible=on;}};
+}
+root.SkateView={create};
+})(globalThis);
+
+</script>
+<script>
+(function(root){'use strict';
+function create(scene,soil,canPlay,onReturn){
+ const K=SkateCore,S=BackhoeSite.skate,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],keys=new Set(),held=new Map();
+ const ground=(x,z)=>(soil.sample(S.x+x*S.scale,S.z+z*S.scale)-S.base)/S.verticalScale;
+ const view=SkateView.create(scene,{ground:false,height:ground,scale:S.scale,verticalScale:S.verticalScale,origin:{x:S.x,y:S.base,z:S.z}}),state=K.fresh();
+ let active=false,mode='third',time=0,lastScore=0;view.setVisible(false);
+ function clear(){keys.clear();held.clear();$$('[data-skate-hold]').forEach(b=>b.classList.remove('held'));}
+ function input(){const a=[...held.values()],has=(n,...c)=>a.includes(n)||c.some(k=>keys.has(k));return {push:has('push','KeyW','ArrowUp'),brake:has('brake','KeyS','ArrowDown'),turn:(has('left','KeyA','ArrowLeft')?1:0)-(has('right','KeyD','ArrowRight')?1:0)};}
+ function action(a){if(active&&canPlay())K.action(state,a);}
+ for(const b of $$('[data-skate-hold]')){b.onpointerdown=e=>{if(!active||!canPlay())return;e.preventDefault();b.setPointerCapture(e.pointerId);held.set(e.pointerId,b.dataset.skateHold);b.classList.add('held');};for(const n of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(n,e=>{held.delete(e.pointerId);if(![...held.values()].includes(b.dataset.skateHold))b.classList.remove('held');});}
+ for(const b of $$('[data-skate-action]'))b.onclick=()=>action(b.dataset.skateAction);
+ $('#skate-back').onclick=onReturn;$('#skate-reset').onclick=()=>{clear();K.reset(state);};
+ $('#skate-help').onclick=()=>{clear();$('#skate-help-dialog').showModal();};
+ function toggle(camera){clear();mode=mode==='third'?'first':'third';view.follow(camera,state,mode,0,true);labels();}
+ function labels(){const first=mode==='first';$('#view-toggle').textContent=first?'三人称':'主観';$('#view-toggle').setAttribute('aria-label',first?'三人称へ切り替える':'主観へ切り替える');$('#skate-view').textContent=first?'主観 · 進行方向':'三人称 · 後方追従';}
+ function ui(){const needed=state.air&&state.needsCatch&&!state.bail,ready=needed&&(!state.trick||state.trick.time>=state.trick.duration*.82);$('#skate-catch-guide').hidden=!needed;$('#skate-catch-label').textContent=state.caught?'CATCH!':ready?'今！ キャッチ':'回転中…';$('#skate-catch-progress').style.width=(state.trick?Math.min(100,state.trick.time/state.trick.duration*100):100)+'%';$('#skate-catch').classList.toggle('ready',ready&&!state.caught);$('#skate-score').textContent=Math.floor(state.score).toLocaleString();$('#skate-speed').textContent=Math.round(Math.abs(state.speed)*S.scale*3.6);$('#skate-message').textContent=state.noticeTime?state.notice:'';$('#skate-hud').classList.toggle('landed',state.score>lastScore&&state.flash>0);if(!state.flash)lastScore=state.score;$('#skate-hud').classList.toggle('fallen',!!state.bail);$('#skate-hud').style.setProperty('--rush',Math.max(0,(Math.abs(state.speed)-7)/12));$('#scene').setAttribute('aria-label','スケボーパーク / '+(mode==='first'?'主観・進行方向':'三人称・後方追従')+' / 得点 '+Math.floor(state.score)+' / '+(state.bail?'転倒':state.air?'空中':'走行'));}
+ return {view,state,get active(){return active;},get mode(){return mode;},clear,toggle,
+  get position(){return view.toWorld(state);},
+  enter(camera){active=true;clear();K.reset(state);view.rider.scale.setScalar(1);view.setVisible(true);$('#skate-hud').hidden=false;scene.attach(camera);view.animate(state,input(),time,mode==='first');view.follow(camera,state,mode,0,true);labels();ui();},
+  exit(){active=false;clear();view.setVisible(false);$('#skate-hud').hidden=true;},
+  transform(progress){view.setVisible(true);view.animate(K.fresh(),{},time,false);view.rider.scale.setScalar(Math.max(.001,progress));},
+  key(e,down){if(!active)return false;const codes=['KeyW','KeyA','KeyS','KeyD','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space','KeyF','KeyG','KeyR','KeyC'];if(!codes.includes(e.code))return false;e.preventDefault();if(!down){keys.delete(e.code);return true;}if(!canPlay())return true;keys.add(e.code);if(!e.repeat){const a={Space:'ollie',KeyF:'flip',KeyG:'shuv',KeyR:'spin',KeyC:'catch'}[e.code];if(a)action(a);}return true;},
+  update(dt,camera){if(dt>0){time+=dt;K.step(state,input(),Math.min(.1,dt),ground);}view.animate(state,input(),time,mode==='first');view.follow(camera,state,mode,dt);ui();}
+ };
+}
+root.BackhoeSkate={create};
+})(globalThis);
+
+</script>
+<script>
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], C=BackhoeCore, F=BackhoeFlight, D=BackhoeDrive, P=BackhoeContact, T=THREE;
@@ -14122,7 +14323,7 @@ const travel=new D.TravelLevers(),travelElements=[];
 let vehicle=D.fresh(),terrainView,effects,yard,siteView,backdrop,savedVehicle,homeZone='hub',driveSpeed=1.4;
 let cargo=0,deposited=0,terrainMesh,terrainLines,soilVersion=-1,dugFrame=0,dumpedFrame=0,groundContact=false,controlsVisible=true;
 let pattern='vertical', running=false, paused=false, state=C.fresh(), speed=.45, lookX=0,lookY=-.16, toastTimer, flight=null;
-const recovery=new BackhoeRecovery.Monitor();let cameraMode='cockpit';
+const recovery=new BackhoeRecovery.Monitor();let cameraMode='cockpit',skate=null;
 const v=(x=0,y=0,z=0)=>new T.Vector3(x,y,z), lerp=T.MathUtils.lerp, smooth=t=>t*t*(3-2*t), clamp=T.MathUtils.clamp;
 const mats=BackhoeVisuals.materials;
 function box(parent,w,h,d,x,y,z,mat=mats.dark){const m=new T.Mesh(new T.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
@@ -14167,7 +14368,7 @@ function updateSoilHud(){
 }
 try{
  render=renderer($('#scene'));scene=new T.Scene();scene.background=new T.Color(0xa9c7cd);scene.fog=new T.Fog(0xa9c7cd,25,100);camera=new T.PerspectiveCamera(72,1,.025,450);machine=model();scene.add(machine.root);machine.upper.add(camera);camera.position.set(-.51,2.17,.28);camera.rotation.order='YXZ';
- backdrop=BackhoeVisuals.site(scene,soil);buildTerrain();siteView=BackhoeSiteView.create(scene,soil,T);yard=new BackhoeYard.Yard(soil);yard.createView(scene);
+ backdrop=BackhoeVisuals.site(scene,soil);buildTerrain();siteView=BackhoeSiteView.create(scene,soil,T);yard=new BackhoeYard.Yard(soil);yard.createView(scene);skate=BackhoeSkate.create(scene,soil,()=>running&&!paused&&!document.querySelector('dialog[open]'),leaveSkate);
  contactMarker=new T.Mesh(new T.RingGeometry(.32,.36,36),new T.MeshBasicMaterial({color:0x55e9c8,side:T.DoubleSide,depthWrite:false}));contactMarker.rotation.x=-Math.PI/2;contactMarker.visible=false;scene.add(contactMarker);
  label(scene,'CONTACT FIELD',v(16,1.5,2.5),3.2,'#94f2e0');
  for(const x of [8.5,24.5])for(const z of [2.5,18.5]){box(scene,.09,.5,.09,x,.45,z,mats.white);box(scene,.11,.1,.11,x,.68,z,mats.yellow);}
@@ -14178,7 +14379,7 @@ effects=new BackhoeFieldEffects(T,scene,machine,soil);D.settle(vehicle,soil,1);a
  }
 }catch(err){const el=document.createElement('div');el.className='error';el.textContent='3D画面を開けませんでした。WebGL対応のEdge / ChromeでHTMLを開いてください。 '+err.message;document.body.appendChild(el);console.error(err);return;}
 function toast(text){$('#toast').textContent=text;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,2600);}
-function clearInput(){travel.clear();vehicle.velocity=0;travelElements.forEach(el=>{el.classList.remove('engaged');el.querySelector('.travel-knob').style.transform='translateY(0px)';});for(const k of keys)blockedKeys.add(k);keys.clear();pointerKeys.clear();drag=null;sticks.forEach((s,i)=>{s.x=s.y=0;s.id=null;const el=stickElements[i];if(el){el.classList.remove('engaged');el.querySelector('.stick-knob').style.transform='translate(0px,0px)';}});$$('.key').forEach(b=>b.classList.remove('held'));}
+function clearInput(){skate?.clear();travel.clear();vehicle.velocity=0;travelElements.forEach(el=>{el.classList.remove('engaged');el.querySelector('.travel-knob').style.transform='translateY(0px)';});for(const k of keys)blockedKeys.add(k);keys.clear();pointerKeys.clear();drag=null;sticks.forEach((s,i)=>{s.x=s.y=0;s.id=null;const el=stickElements[i];if(el){el.classList.remove('engaged');el.querySelector('.stick-knob').style.transform='translate(0px,0px)';}});$$('.key').forEach(b=>b.classList.remove('held'));}
 function activeKeys(){return new Set([...keys,...pointerKeys.values()]);}
 const inputMode=new BackhoeInput.Mode({coarse:matchMedia('(pointer:coarse)').matches,fine:matchMedia('(pointer:fine)').matches,touchPoints:navigator.maxTouchPoints||0},()=>applyInputMode());
 function updateInputHint(){const touch=inputMode.mode==='touch';$('#input-hint').textContent=(inputMode.preference==='auto'?'自動：':'固定：')+(touch?'指操作':'PC操作');$('#view-tip').textContent=flight?'左：移動・旋回 / 右：昇降・横移動':touch?'両端：作業 / 中央２本：走行 / 空いた所：見回す':'作業 WASD＋矢印 / 走行 左 I・K、右 O・L';}
@@ -14215,7 +14416,7 @@ function pause(on){clearInput();paused=on;document.body.dataset.paused=String(on
 function resetPose(){clearInput();state=C.fresh();if(homeZone==='dig')state.bucket=.8;vehicle.support=null;lookX=0;lookY=-.16;}
 function relocate(){if(flight||yard.hook)return;recovery.reset();$('#recovery-overlay').hidden=true;$('#game').classList.remove('recovery-needed');clearInput();homeZone='hub';vehicle=D.fresh(0,18,0);D.settle(vehicle,soil,1);resetPose();state.boom=.95;state.arm=-2.05;state.bucket=-.2;vehicle=P.equilibrium(vehicle,state,soil,cargo).vehicle;applyVehicle();effects.lastTrack=null;updateLabels();updateInputHint();$('#scene').focus();}
 for(const zone of BackhoeSite.zones){const option=document.createElement('option');option.value=zone.id;option.textContent=zone.short+'の旗';$('#destination').appendChild(option);}$('#destination').value='dig';
-$('#minimap').onclick=()=>{BackhoeSiteView.drawMap($('#map-canvas'),soil,vehicle,$('#destination').value);openDialog('#map-dialog');};
+$('#minimap').onclick=()=>{BackhoeSiteView.drawMap($('#map-canvas'),soil,skate?.active?skate.position:vehicle,$('#destination').value);openDialog('#map-dialog');};
 $('#hook-toggle').onclick=()=>{clearInput();toast(yard.toggle(vehicle,state));};
 $('#drive-speed').onchange=e=>{driveSpeed=Number(e.target.value);clearInput();};
 
@@ -14231,11 +14432,11 @@ $('#soil-reset').onclick=()=>{if(yard.hook){toast('先に荷を着地させて�
 $('#help').onclick=$('#intro-help').onclick=()=>{$('#settings-dialog').close();openDialog('#help-dialog');};$('#secret').onclick=()=>openDialog('#secret-dialog');$$('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
 $('#back-select').onclick=()=>{$('#settings-dialog').close();running=false;clearInput();pause(false);$('#game').hidden=true;$('#selection').hidden=false;updateLabels();resize();};
 const controlCodes=new Set([...Object.keys(C.mapping('vertical')),...Object.keys(D.mapping),'Space','KeyV']);
-addEventListener('keydown',e=>{if(!running||!controlCodes.has(e.code)||document.querySelector('dialog[open]')||/SELECT|INPUT|TEXTAREA/.test(e.target.tagName))return;e.preventDefault();if(e.code==='Space'){if(!e.repeat)pause(!paused);return;}if(e.code==='KeyV'){lookX=0;lookY=-.16;return;}if(paused||recovery.active||(flight&&!flight.controllable)||blockedKeys.has(e.code))return;keys.add(e.code);});
-addEventListener('keyup',e=>{keys.delete(e.code);blockedKeys.delete(e.code);});addEventListener('blur',()=>{clearInput();blockedKeys.clear();if(running)pause(true);});document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)pause(true);});
-let drag=null;$('#scene').addEventListener('pointerdown',e=>{if(paused||recovery.active||(flight&&!flight.controllable))return;drag={id:e.pointerId,x:e.clientX,y:e.clientY};$('#scene').setPointerCapture(e.pointerId);});$('#scene').addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;lookX=clamp(lookX-(e.clientX-drag.x)*.003,-1.25,1.25);lookY=clamp(lookY-(e.clientY-drag.y)*.003,-.7,.5);drag.x=e.clientX;drag.y=e.clientY;});for(let event of ['pointerup','pointercancel','lostpointercapture'])$('#scene').addEventListener(event,()=>drag=null);
+addEventListener('keydown',e=>{if(skate?.active){if(e.code==='Escape'&&!e.repeat){e.preventDefault();pause(!paused);return;}if(skate.key(e,true))return;}if(!running||!controlCodes.has(e.code)||document.querySelector('dialog[open]')||/SELECT|INPUT|TEXTAREA/.test(e.target.tagName))return;e.preventDefault();if(e.code==='Space'){if(!e.repeat)pause(!paused);return;}if(e.code==='KeyV'){lookX=0;lookY=-.16;return;}if(paused||recovery.active||(flight&&!flight.controllable)||blockedKeys.has(e.code))return;keys.add(e.code);});
+addEventListener('keyup',e=>{skate?.key(e,false);keys.delete(e.code);blockedKeys.delete(e.code);});addEventListener('blur',()=>{clearInput();blockedKeys.clear();if(running)pause(true);});document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)pause(true);});
+let drag=null;$('#scene').addEventListener('pointerdown',e=>{if(skate?.active||paused||recovery.active||(flight&&!flight.controllable))return;drag={id:e.pointerId,x:e.clientX,y:e.clientY};$('#scene').setPointerCapture(e.pointerId);});$('#scene').addEventListener('pointermove',e=>{if(!drag||e.pointerId!==drag.id)return;lookX=clamp(lookX-(e.clientX-drag.x)*.003,-1.25,1.25);lookY=clamp(lookY-(e.clientY-drag.y)*.003,-.7,.5);drag.x=e.clientX;drag.y=e.clientY;});for(let event of ['pointerup','pointercancel','lostpointercapture'])$('#scene').addEventListener(event,()=>drag=null);
 let savedState=null;
-function startFlight(type){if(flight||recovery.active)return;if(yard.hook){toast('荷を着地させ、玉掛けを外してから変形してください');return;}$('#secret-dialog').close();pause(false);clearInput();savedState={...state};savedVehicle={...vehicle};flight={type,t:0,clock:0,reverse:false,returning:false,controllable:false,air:F.fresh(vehicle.x,vehicle.z,vehicle.heading,vehicle.y+8)};scene.attach(camera);$('#flight-ui').hidden=false;$('#game').classList.add('aircraft');$('#secret').disabled=true;$('#view-label').textContent='空から移動 / 外観視点';$('#scene').setAttribute('aria-label','飛行中の敷地の俯瞰画面');$('.reticle').hidden=true;$$('[data-set-pattern]').forEach(b=>b.disabled=true);$('#view-toggle').disabled=true;$('#return-machine').disabled=true;$('#return-machine').textContent='離陸準備中';updateLabels();updateInputHint();}
+function startFlight(type){if(flight||skate?.active||recovery.active)return;if(yard.hook){toast('荷を着地させ、玉掛けを外してから変形してください');return;}$('#secret-dialog').close();pause(false);clearInput();savedState={...state};savedVehicle={...vehicle};flight={type,t:0,clock:0,reverse:false,returning:false,controllable:false,air:F.fresh(vehicle.x,vehicle.z,vehicle.heading,vehicle.y+8)};scene.attach(camera);$('#flight-ui').hidden=false;$('#game').classList.add('aircraft');$('#secret').disabled=true;$('#view-label').textContent='空から移動 / 外観視点';$('#scene').setAttribute('aria-label','飛行中の敷地の俯瞰画面');$('.reticle').hidden=true;$$('[data-set-pattern]').forEach(b=>b.disabled=true);$('#view-toggle').disabled=true;$('#return-machine').disabled=true;$('#return-machine').textContent='離陸準備中';updateLabels();updateInputHint();}
 $$('[data-form]').forEach(b=>b.onclick=()=>startFlight(b.dataset.form));$('#return-machine').onclick=()=>{if(!flight?.controllable)return;const zone=F.nearestLanding(flight.air,BackhoeSite.zones);if(!zone){toast('案内風船へ近づいてください');return;}const target=BackhoeRecovery.placement(soil,yard,...zone.landing,0,cargo);if(!target){toast('降り場に荷物があるか、地面が崩れています。別の降り場を選んでください。');return;}clearInput();flight.target=target;flight.zone=zone;$('#destination').value=zone.id;flight.controllable=false;flight.returning=true;flight.t=8.5;$('#game').classList.remove('flying');};
 function animateFlight(dt,time){
  const f=flight;if(!f)return;f.clock+=dt;const steps=Math.max(1,Math.ceil(dt/.05));let flightWeights={};if(f.controllable){flightWeights=F.inputs(activeKeys(),sticks);for(let i=0;i<steps;i++)f.air=F.step(f.air,flightWeights,dt/steps);f.air.y=Math.max(f.air.y,soil.sample(f.air.x,f.air.z)+4.5);}if(f.returning){let arrival;const target={x:f.target.vehicle.x,z:f.target.vehicle.z,y:f.target.vehicle.y+8,heading:f.target.vehicle.heading};for(let i=0;i<steps;i++){arrival=F.approach(f.air,target,dt/steps);f.air=arrival.state;}if(arrival.done){savedVehicle={...f.target.vehicle};savedState={...f.target.state};f.returning=false;f.reverse=true;f.t=8.5;}}if(!f.reverse&&!f.returning&&!f.controllable&&f.t>=8.5){f.controllable=true;clearInput();$('#game').classList.add('flying');toast('空中の案内風船へ。近づいたら固定降り場へ着地できます。');}f.t=clamp(f.t+(f.reverse?-dt:dt),0,10);
@@ -14251,13 +14452,19 @@ function animateFlight(dt,time){
  for(let i=0;i<2;i++){machine.wings[i].rotation.z=(i===0?-1:1)*(1-deploy)*Math.PI*.49;machine.exhausts[i].scale.y=(.15+stage(4.5,2)*1.1)*(1+Math.sin(time*29+i)*.12);machine.exhausts[i].material.opacity=stage(4.5,2)*.6;}
  const overview=stage(5.5,3),angle=(cruising?f.air.heading:savedVehicle.heading)+.65,dist=lerp(9.6,14,overview);const target=machine.root.position;camera.position.set(target.x+Math.sin(angle)*dist,target.y+lerp(4.9,10,overview),target.z+Math.cos(angle)*dist);camera.lookAt(target.x,target.y+lerp(.7,-1,overview),target.z);
  const stageName=f.t<1.5?'01 / アーム・バケット収納':f.t<3?'02 / キャビン・足回り収納':f.t<5.5?'03 / '+(f.type==='heli'?'ローター展開':'主翼・尾翼を展開'):f.t<8.5?'04 / 離陸シーケンス':f.type==='heli'?'HELICOPTER / 自由飛行':'FIGHTER / 自由飛行';
- const near=F.nearestLanding(f.air,BackhoeSite.zones);$('#flight-name').textContent=f.returning?'固定降り場へ / '+f.zone.short:f.reverse?'着地・バックホーへ復帰':stageName;const actions=Object.keys(flightWeights).filter(k=>flightWeights[k]>.025);$('#motion').textContent=f.returning?'降り場へ自動移動中':f.reverse?'固定位置でバックホーへ戻っています':f.t<5.5?'移動形態へ変形中':f.controllable?(actions.length?actions.map(k=>F.labels[k]).join(' ＋ '):'左：移動・向き / 右：昇降・横移動'):'離陸中';$('#flight-progress-bar').style.width=(clamp(f.t/8.5,0,1)*100)+'%';$('#flight-altitude').textContent=Math.max(0,machine.root.position.y-soil.sample(machine.root.position.x,machine.root.position.z)).toFixed(1)+' m';$('#flight-position').textContent=near?'近くの降り場：'+near.name:'案内風船へ移動してください';$('#return-machine').disabled=!f.controllable||!near;$('#return-machine').textContent=f.returning||f.reverse?'着地中':f.controllable?(near?near.short+'に降りる':'風船に近づいて降りる'):'離陸準備中';
+ const near=F.nearestLanding(f.air,BackhoeSite.zones);$('#flight-name').textContent=f.returning?'固定降り場へ / '+f.zone.short:f.reverse?(f.zone?.id==='skate'?'着地・スケボーへ変形':'着地・バックホーへ復帰'):stageName;const actions=Object.keys(flightWeights).filter(k=>flightWeights[k]>.025);$('#motion').textContent=f.returning?'降り場へ自動移動中':f.reverse?(f.zone?.id==='skate'?'固定乗り場でスケボーへ変形中':'固定位置でバックホーへ戻っています'):f.t<5.5?'移動形態へ変形中':f.controllable?(actions.length?actions.map(k=>F.labels[k]).join(' ＋ '):'左：移動・向き / 右：昇降・横移動'):'離陸中';$('#flight-progress-bar').style.width=(clamp(f.t/8.5,0,1)*100)+'%';$('#flight-altitude').textContent=Math.max(0,machine.root.position.y-soil.sample(machine.root.position.x,machine.root.position.z)).toFixed(1)+' m';$('#flight-position').textContent=near?'近くの降り場：'+near.name:'案内風船へ移動してください';$('#return-machine').disabled=!f.controllable||!near;$('#return-machine').textContent=f.returning||f.reverse?'着地中':f.controllable?(near?(near.id==='skate'?'スケボーに変形して降りる':near.short+'に降りる'):'風船に近づいて降りる'):'離陸準備中';
 
 
- if(f.reverse&&f.t<=0){flight=null;state={...savedState};vehicle={...savedVehicle};machine.root.position.set(vehicle.x,vehicle.y,vehicle.z);machine.root.scale.setScalar(1);machine.root.rotation.set(0,0,0);machine.undercarriage.scale.set(1,1,1);machine.undercarriage.rotation.set(0,0,0);machine.trackPods.forEach((q,i)=>{q.rotation.set(0,0,0);q.position.x=i===0?-.84:.84;});machine.cabin.position.set(-.5,0,0);machine.cabin.scale.set(1,1,1);machine.boomPivot.scale.setScalar(1);machine.heli.visible=machine.jet.visible=false;machine.upper.add(camera);camera.position.set(-.51,2.17,.28);camera.rotation.order='YXZ';lookX=0;lookY=-.16;$('#flight-ui').hidden=true;$('#game').classList.remove('aircraft','flying');updateLabels();$('#secret').disabled=false;$('#view-label').textContent='運転席 / 主観視点';$('.reticle').hidden=false;$$('[data-set-pattern]').forEach(b=>b.disabled=false);pose(machine,state);applyVehicle();updateInputHint();clearInput();$('#view-toggle').disabled=false;recovery.reset();updateGroundCamera();toast('降り場へ着地しました。バックホーで作業を続けられます。');}
+ if(f.reverse&&f.zone?.id==='skate'&&f.t<5.5){const progress=1-f.t/5.5;machine.root.scale.multiplyScalar(Math.max(.001,1-progress));skate.transform(progress);}
+ if(f.reverse&&f.t<=0){const becomeSkate=f.zone?.id==='skate';flight=null;state={...savedState};vehicle={...savedVehicle};machine.root.position.set(vehicle.x,vehicle.y,vehicle.z);machine.root.scale.setScalar(1);machine.root.rotation.set(0,0,0);machine.undercarriage.scale.set(1,1,1);machine.undercarriage.rotation.set(0,0,0);machine.trackPods.forEach((q,i)=>{q.rotation.set(0,0,0);q.position.x=i===0?-.84:.84;});machine.cabin.position.set(-.5,0,0);machine.cabin.scale.set(1,1,1);machine.boomPivot.scale.setScalar(1);machine.heli.visible=machine.jet.visible=false;machine.upper.add(camera);camera.position.set(-.51,2.17,.28);camera.rotation.order='YXZ';lookX=0;lookY=-.16;$('#flight-ui').hidden=true;$('#game').classList.remove('aircraft','flying');updateLabels();$('#secret').disabled=false;$('#view-label').textContent='運転席 / 主観視点';$('.reticle').hidden=false;$$('[data-set-pattern]').forEach(b=>b.disabled=false);pose(machine,state);applyVehicle();updateInputHint();clearInput();$('#view-toggle').disabled=false;recovery.reset();updateGroundCamera();if(becomeSkate)enterSkate();else toast('降り場へ着地しました。バックホーで作業を続けられます。');}
 }
-function updateGroundCamera(){if(flight)return;if(cameraMode==='cockpit'){if(camera.parent!==machine.upper)machine.upper.add(camera);camera.position.set(-.51,2.17,.28);camera.rotation.set(lookY,lookX,0,'YXZ');}else{if(camera.parent!==scene)scene.add(camera);const a=vehicle.heading+state.yaw+lookX,d=7.5,target=v(vehicle.x,vehicle.y+1.3,vehicle.z);camera.position.set(target.x+Math.sin(a)*d,target.y+2.0-lookY*3,target.z+Math.cos(a)*d);camera.position.y=Math.max(camera.position.y,soil.sample(camera.position.x,camera.position.z)+1.2);camera.lookAt(target.x,target.y-2.6,target.z);}$('#view-label').textContent=cameraMode==='cockpit'?'運転席 / 主観':'車体の後方 / 三人称';$('#scene').setAttribute('aria-label',cameraMode==='cockpit'?'運転席からの主観画面':'車体後方からの三人称画面');}
-$('#view-toggle').onclick=()=>{if(flight)return;clearInput();cameraMode=cameraMode==='cockpit'?'third':'cockpit';$('#view-toggle').textContent=cameraMode==='cockpit'?'三人称':'主観';$('#view-toggle').setAttribute('aria-label',cameraMode==='cockpit'?'三人称へ切り替える':'主観へ切り替える');lookX=0;lookY=-.16;updateGroundCamera();};
+
+function enterSkate(){clearInput();pause(false);machine.root.visible=false;skate.enter(camera);$('#game').classList.add('skating');$('#destination').value='skate';resize();toast('スケボーへ変形。左で走行、右で技・キャッチ。');}
+function leaveSkate(){const pad=BackhoeSite.zones.find(z=>z.id==='skate').landing,result=BackhoeRecovery.placement(soil,yard,...pad,0,cargo);if(!result){toast('降り場が塞がっています。入口を空けてから戻ってください。');return;}clearInput();skate.exit();machine.root.visible=true;vehicle=result.vehicle;state=result.state;$('#game').classList.remove('skating');recovery.reset();pose(machine,state);applyVehicle();camera.fov=72;camera.updateProjectionMatrix();updateGroundCamera();$('#view-toggle').textContent=cameraMode==='cockpit'?'三人称':'主観';$('#view-toggle').setAttribute('aria-label',cameraMode==='cockpit'?'三人称へ切り替える':'主観へ切り替える');resize();toast('パークの固定降り場でバックホーへ戻りました。');}
+$('#skate-board').onclick=()=>{if(!yard.hook&&!flight&&!skate.active)enterSkate();};
+
+function updateGroundCamera(){if(flight||skate?.active)return;if(cameraMode==='cockpit'){if(camera.parent!==machine.upper)machine.upper.add(camera);camera.position.set(-.51,2.17,.28);camera.rotation.set(lookY,lookX,0,'YXZ');}else{if(camera.parent!==scene)scene.add(camera);const a=vehicle.heading+state.yaw+lookX,d=7.5,target=v(vehicle.x,vehicle.y+1.3,vehicle.z);camera.position.set(target.x+Math.sin(a)*d,target.y+2.0-lookY*3,target.z+Math.cos(a)*d);camera.position.y=Math.max(camera.position.y,soil.sample(camera.position.x,camera.position.z)+1.2);camera.lookAt(target.x,target.y-2.6,target.z);}$('#view-label').textContent=cameraMode==='cockpit'?'運転席 / 主観':'車体の後方 / 三人称';$('#scene').setAttribute('aria-label',cameraMode==='cockpit'?'運転席からの主観画面':'車体後方からの三人称画面');}
+$('#view-toggle').onclick=()=>{if(flight)return;if(skate?.active){clearInput();skate.toggle(camera);return;}clearInput();cameraMode=cameraMode==='cockpit'?'third':'cockpit';$('#view-toggle').textContent=cameraMode==='cockpit'?'三人称':'主観';$('#view-toggle').setAttribute('aria-label',cameraMode==='cockpit'?'三人称へ切り替える':'主観へ切り替える');lookX=0;lookY=-.16;updateGroundCamera();};
 $('#recover-machine').onclick=()=>{const result=BackhoeRecovery.recoverySpot(soil,yard,recovery.lastSafe,cargo);if(!result){$('#recovery-status').textContent='戻り先が塞がっています。荷物を避けられる場所が必要です。';return;}if(yard.hook)yard.releaseForRecovery();clearInput();vehicle=result.vehicle;state=result.state;recovery.reset();$('#recovery-overlay').hidden=true;$('#game').classList.remove('recovery-needed');lookX=0;lookY=-.16;effects.lastTrack=null;pose(machine,state);applyVehicle();updateGroundCamera();pause(false);toast('車体を復帰しました。土と荷物は残っています。');};
 function resize(){const compact=inputMode.mode==='touch'||innerWidth<=1100;$('#game').classList.toggle('compact',compact);if(running){const el=$('#viewport'),w=el.clientWidth,h=el.clientHeight;render.setSize(w,h,false);camera.aspect=w/h;camera.fov=w<h?Math.min(108,72+(1-w/h)*64):72;camera.updateProjectionMatrix();}else for(const p of preview){const w=p.r.domElement.clientWidth,h=p.r.domElement.clientHeight;p.r.setSize(w,h,false);p.cam.aspect=w/h;p.cam.updateProjectionMatrix();}}
 addEventListener('resize',()=>{clearInput();resize();});if(window.visualViewport)visualViewport.addEventListener('resize',()=>{clearInput();resize();});new ResizeObserver(()=>resize()).observe($('#viewport'));
@@ -14266,9 +14473,9 @@ function updateContactHud(){const s=vehicle.support;if(s?.foot&&s.contact){conta
 function trackLabel(value){return value>.01?'前':value<-.01?'後':'中立';}
 function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;const dialog=!!document.querySelector('dialog[open]');if(!paused&&!dialog)elapsed+=dt;
  if(!running){for(const p of preview){const selected=p.type===pattern;p.spot.intensity=lerp(p.spot.intensity,selected?220:0,.12);p.beam.material.opacity=lerp(p.beam.material.opacity,selected?.045:0,.12);p.r.render(p.s,p.cam);}return;}
- if(!flight&&!paused&&!dialog){const was=recovery.active;if(recovery.update(vehicle,dt)&&!was){clearInput();$('#recovery-overlay').hidden=false;$('#game').classList.add('recovery-needed');}}
- const active=activeKeys(),trackInput=paused||recovery.active||flight||dialog?{left:0,right:0}:D.inputs(active,travel.levers),weights=paused||recovery.active||flight||dialog?{}:C.inputs(pattern,active,sticks),acts=Object.keys(weights).filter(a=>weights[a]>.025);dugFrame=dumpedFrame=0;groundContact=false;
- if(flight){animateFlight(paused||dialog?0:dt,elapsed);}else{
+ if(!flight&&!skate?.active&&!paused&&!dialog){const was=recovery.active;if(recovery.update(vehicle,dt)&&!was){clearInput();$('#recovery-overlay').hidden=false;$('#game').classList.add('recovery-needed');}}
+ const active=activeKeys(),trackInput=paused||recovery.active||flight||skate?.active||dialog?{left:0,right:0}:D.inputs(active,travel.levers),weights=paused||recovery.active||flight||skate?.active||dialog?{}:C.inputs(pattern,active,sticks),acts=Object.keys(weights).filter(a=>weights[a]>.025);dugFrame=dumpedFrame=0;groundContact=false;
+ if(flight){animateFlight(paused||dialog?0:dt,elapsed);}else if(skate?.active){skate.update(paused||dialog?0:dt,camera);}else{
   if(!paused&&!dialog&&!recovery.active&&recovery.timer===0){const steps=Math.max(1,Math.ceil(Math.min(dt,.15)/(1/60))),stepDt=Math.min(dt,.15)/steps;for(let i=0;i<steps;i++){
    const oldState={...state},oldVehicle={...vehicle};simulateSoil(weights,stepDt);
    const contact=P.step(vehicle,oldState,state,soil,trackInput,stepDt,driveSpeed,cargo+yard.carriedMass()/1600);
@@ -14280,12 +14487,14 @@ function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;co
   const trackText=movingTracks?(vehicle.blocked?(vehicle.blockReason||'傾斜または敷地の端で走行停止'):'左 '+trackLabel(trackInput.left)+(Math.abs(trackInput.left)>.01&&(vehicle.support?.trackLoads[0]||0)<.01?'（空転）':'')+' / 右 '+trackLabel(trackInput.right)+(Math.abs(trackInput.right)>.01&&(vehicle.support?.trackLoads[1]||0)<.01?'（空転）':'')):'';
   $('#motion').textContent=recovery.active?'車体が倒れています / 車体を起こすを押してください':paused?'一時停止中':[vehicle.support?.limited?'支持範囲の限界 / 操作を戻してください':'',trackText,...acts.map(a=>C.labels[a])].filter(Boolean).join(' ＋ ')||'作業・走行レバー中立';
  }
- paintTravel(trackInput);updateContactHud();yard.updateView(flight?null:vehicle,state);siteView.update(elapsed,{airborne:!!flight,camera,viewportHeight:$('#viewport').clientHeight});backdrop.update(elapsed);backdrop.light.position.set(vehicle.x-25,40,vehicle.z-18);backdrop.light.target.position.set(vehicle.x,0,vehicle.z);
- if(!flight&&!recovery.active){camera.updateMatrixWorld(true);const gate=BackhoeSiteView.facingFlag(camera,soil,vehicle,T);const el=$('#flag-tooltip');el.hidden=!gate;if(gate){el.querySelector('strong').textContent=gate.zone.name;el.querySelector('span').textContent=Math.round(gate.distance)+' m / 旗が入口';const view=$('#viewport');el.style.left=clamp((gate.screen.x*.5+.5)*view.clientWidth-100,12,view.clientWidth-212)+'px';el.style.top=(innerHeight<=520&&innerWidth>innerHeight?8:clamp((-gate.screen.y*.5+.5)*view.clientHeight+18,75,view.clientHeight-240))+'px';el.style.borderColor=gate.zone.color;}if(elapsed-lastMini>.15||lastMini<0){BackhoeSiteView.drawMap($('#mini-canvas'),soil,vehicle,$('#destination').value,true);lastMini=elapsed;}}else $('#flag-tooltip').hidden=true;
- const navVehicle=flight?{...vehicle,x:flight.air.x,z:flight.air.z,heading:flight.air.heading}:vehicle;const zone=BackhoeSite.zoneAt(navVehicle.x,navVehicle.z),target=BackhoeSite.zones.find(z=>z.id===$('#destination').value);$('#area-name').textContent=zone?zone.name:'場内の連絡路';
+ const navVehicle=skate?.active?skate.position:flight?{...vehicle,x:flight.air.x,z:flight.air.z,heading:flight.air.heading}:vehicle;
+ const skatePad=BackhoeSite.zones.find(z=>z.id==='skate').landing;$('#skate-board').hidden=!!flight||skate?.active||recovery.active||!!yard.hook||Math.hypot(vehicle.x-skatePad[0],vehicle.z-skatePad[1])>7;
+ paintTravel(trackInput);updateContactHud();if(skate?.active)contactMarker.visible=false;yard.updateView(flight||skate?.active?null:vehicle,state);siteView.update(elapsed,{airborne:!!flight,camera,viewportHeight:$('#viewport').clientHeight});backdrop.update(elapsed);backdrop.light.position.set(navVehicle.x-25,40,navVehicle.z-18);backdrop.light.target.position.set(navVehicle.x,0,navVehicle.z);
+ if(!flight&&!skate?.active&&!recovery.active){camera.updateMatrixWorld(true);const gate=BackhoeSiteView.facingFlag(camera,soil,vehicle,T);const el=$('#flag-tooltip');el.hidden=!gate;if(gate){el.querySelector('strong').textContent=gate.zone.name;el.querySelector('span').textContent=Math.round(gate.distance)+' m / 旗が入口';const view=$('#viewport');el.style.left=clamp((gate.screen.x*.5+.5)*view.clientWidth-100,12,view.clientWidth-212)+'px';el.style.top=(innerHeight<=520&&innerWidth>innerHeight?8:clamp((-gate.screen.y*.5+.5)*view.clientHeight+18,75,view.clientHeight-240))+'px';el.style.borderColor=gate.zone.color;}if(elapsed-lastMini>.15||lastMini<0){BackhoeSiteView.drawMap($('#mini-canvas'),soil,vehicle,$('#destination').value,true);lastMini=elapsed;}}else $('#flag-tooltip').hidden=true;
+ const zone=BackhoeSite.zoneAt(navVehicle.x,navVehicle.z),target=BackhoeSite.zones.find(z=>z.id===$('#destination').value);$('#area-name').textContent=zone?zone.name:'場内の連絡路';
  if(flight&&elapsed-lastMini>.15){BackhoeSiteView.drawMap($('#mini-canvas'),soil,navVehicle,$('#destination').value,true);lastMini=elapsed;}
- const dx=target.gate[0]-navVehicle.x,dz=target.gate[1]-navVehicle.z,relative=Math.atan2(-dx,-dz)-navVehicle.heading-(flight?0:state.yaw),angle=Math.atan2(Math.sin(relative),Math.cos(relative));$('#route-distance').textContent=(Math.abs(angle)<.35?'正面':angle>0?'左側':'右側')+' '+Math.round(Math.hypot(dx,dz))+' m';
- $('#yard-ui').hidden=!!flight||recovery.active||!(zone?.id==='lift'||zone?.id==='plate'||yard.hook);$('#hook-toggle').textContent=yard.hook?'玉掛けを外す':'玉掛け';$('#load-status').textContent=yard.hook?yard.hook.body.label+' / '+yard.hook.body.mass+' kg':yard.blocked?'接触・動作制限':'吊り点の上へフックを移動';
+ const dx=target.gate[0]-navVehicle.x,dz=target.gate[1]-navVehicle.z,relative=Math.atan2(-dx,-dz)-navVehicle.heading-(flight||skate?.active?0:state.yaw),angle=Math.atan2(Math.sin(relative),Math.cos(relative));$('#route-distance').textContent=(Math.abs(angle)<.35?'正面':angle>0?'左側':'右側')+' '+Math.round(Math.hypot(dx,dz))+' m';
+ $('#yard-ui').hidden=!!flight||skate?.active||recovery.active||!(zone?.id==='lift'||zone?.id==='plate'||yard.hook);$('#hook-toggle').textContent=yard.hook?'玉掛けを外す':'玉掛け';$('#load-status').textContent=yard.hook?yard.hook.body.label+' / '+yard.hook.body.mass+' kg':yard.blocked?'接触・動作制限':'吊り点の上へフックを移動';
  
  $('#heading').textContent='上部旋回 '+Math.abs(Math.round(state.yaw*180/Math.PI))+'° '+(state.yaw>.01?'左':state.yaw<-.01?'右':'');$$('.key').forEach(b=>b.classList.toggle('held',active.has(b.dataset.key)&&!paused&&(!flight||flight.controllable)&&!dialog));render.render(scene,camera);frameCount++;
 }
@@ -14294,7 +14503,7 @@ function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;co
 setInterval(()=>frame(performance.now()),1000/30);
 if(location.protocol==='https:'&&location.hostname==='daruiddddddd.github.io'&&location.pathname.startsWith('/backhoe-control-lab/')&&'serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});
 // Read-only diagnostics for prototype verification.
-window.backhoeDiagnostics=()=>({pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,view:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
+window.backhoeDiagnostics=()=>({pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,skate:skate?.active?{position:skate.position,mode:skate.mode,score:skate.state.score}:null,view:skate?.active?skate.mode:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
 })();
 
 </script>
