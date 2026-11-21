@@ -198,6 +198,9 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 @media(max-width:480px){#game .top-actions{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px!important}#game .switch{grid-column:1/-1;justify-self:start;margin:0}#game .top-actions>button{padding:0 3px!important;font-size:12px!important;gap:5px}#game .workbar{flex-wrap:wrap;row-gap:3px;padding-top:3px;padding-bottom:3px}#game .workbar #area-name{font-size:12px}#game .workbar select{width:120px;font-size:13px}#game #route-distance{font-size:13px;min-width:76px}}
 @media(prefers-reduced-motion:no-preference){#game .top-actions button{transition:background-color .12s,color .12s}}
 
+#game #sound-toggle{min-width:48px;white-space:nowrap}#sound-dialog{width:min(380px,92vw)}#sound-status{font-size:14px;line-height:1.5;min-height:21px}#sound-dialog h2{font-size:24px}.sound-level{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;margin:24px 0}.sound-level label{font-size:16px}.sound-level output{font-variant-numeric:tabular-nums;color:#d5f251}.sound-level input{grid-column:1/-1;width:100%;height:44px;margin:0;accent-color:#d5f251;touch-action:pan-y}.sound-buttons{display:flex;gap:10px}.sound-buttons button{flex:1;min-height:48px}.sound-buttons button[aria-pressed="true"]{background:#e7c971;color:#173b46}#sound-dialog .tiny{font-size:12px;line-height:1.7}
+@media(max-width:480px){#game .top-actions{grid-template-columns:repeat(5,minmax(0,1fr))}}
+
 #game.skating .workbar,#game.skating .top-actions .switch,#game.skating #settings-toggle,#game.skating .view-hud,#game.skating .view-bottom,#game.skating .soil-hud,#game.skating #travel-controls,#game.skating .reticle,#game.skating #flag-tooltip,#game.skating #minimap{display:none!important}
 #game.skating #viewport{flex:1;min-height:0}#game.skating .topbar{min-height:44px}#game.skating .brand .eyebrow{color:#d5f251}#game.skating .brand strong{font-size:12px}#game.skating .top-actions{margin-left:auto;width:auto}
 #skate-hud{position:absolute;inset:0;pointer-events:none;color:#f5f4ee;--skate-accent:#d5f251;--rush:0}
@@ -239,7 +242,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.12 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.13 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -250,7 +253,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.12</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.13</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -283,6 +286,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 
  </div>
 </main>
+<dialog id="sound-dialog"><button class="close" data-close>閉じる</button><h2>音の設定</h2><p id="sound-status" role="status"></p><div class="sound-level"><label for="sound-volume">効果音の音量</label><output id="sound-value" for="sound-volume">35%</output><input id="sound-volume" type="range" min="0" max="100" step="1" value="35"></div><div class="sound-buttons"><button id="sound-mute" aria-pressed="false">消音する</button><button id="sound-sample">音を試す</button></div><p class="tiny">重機のエンジン・油圧・走行、スケボーの踏切・キャッチ・着地、変身に合わせて鳴ります。BGMはありません。</p></dialog>
 <dialog id="settings-dialog"><button class="close" data-close>閉じる</button><h2>設定</h2><div class="settings"><label for="drive-speed">走行速度</label><select id="drive-speed"><option value=".7">ゆっくり</option><option value="1.4" selected>ふつう</option><option value="2.2">速い</option></select></div>
 <div class="settings input-setting"><label for="input-preference">入力方法</label><select id="input-preference"><option value="auto">自動で切り替え</option><option value="pc">PC操作に固定</option><option value="touch">指操作に固定</option></select></div>
 <div class="settings"><label for="speed">動作の速さ</label><select id="speed"><option value="0.25">とてもゆっくり</option><option value="0.45" selected>ゆっくり</option><option value="0.8">ふつう</option></select></div><div class="settings-actions"><button id="look-reset">視線を正面へ</button><button id="help">操作方法</button><button id="soil-reset">土と穴をリセット</button><button id="back-select">操作選択へ戻る</button></div><p class="tiny">操作・地盤・荷重は試作用のモデルです。実機の安全限界を示すものではありません。</p></dialog>
@@ -14511,7 +14515,7 @@ root.BackhoeSkateInput={Controls};if(typeof module!=='undefined')module.exports=
 </script>
 <script>
 (function(root){'use strict';
-function create(scene,soil,canPlay,onReturn,sticks,clearShared){
+function create(scene,soil,canPlay,onReturn,sticks,clearShared,onSound=()=>{}){
  const K=SkateCore,S=BackhoeSite.skate,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
  const ground=(x,z)=>(soil.sample(S.x+x*S.scale,S.z+z*S.scale)-S.base)/S.verticalScale;
  const view=SkateView.create(scene,{ground:false,height:ground,scale:S.scale,verticalScale:S.verticalScale,origin:{x:S.x,y:S.base,z:S.z}}),state=K.fresh();
@@ -14522,7 +14526,7 @@ function create(scene,soil,canPlay,onReturn,sticks,clearShared){
  const controls=new BackhoeSkateInput.Controls(action);
  function clear(){controls.clear();}
  function input(){return controls.movement(sticks[0]);}
- function action(a){if(active&&canPlay())K.action(state,a);}
+ function action(a){if(!active||!canPlay())return;const airborne=state.air,bails=state.bails;if(K.action(state,a)){if(a==='catch')onSound('catch');else if(!airborne)onSound('pop');}if(state.bails>bails)onSound('bail');}
  function stickChanged(i){if(active&&canPlay()&&i===1)controls.gesture(sticks[1]);}
  for(const b of $$('[data-skate-action]')){b.onpointerdown=e=>{e.preventDefault();e.stopPropagation();action(b.dataset.skateAction);ui();};b.onclick=e=>{e.stopPropagation();if(e.detail===0){action(b.dataset.skateAction);ui();}};}
  $('#skate-back').onclick=onReturn;$('#skate-reset').onclick=()=>{clearShared();K.reset(state);};
@@ -14537,7 +14541,7 @@ function create(scene,soil,canPlay,onReturn,sticks,clearShared){
   exit(){active=false;clear();view.setVisible(false);$('#skate-hud').hidden=true;$('#skate-catch-guide').hidden=true;$('#touch-right').classList.remove('catch-ready');},
   transform(progress){view.setVisible(true);view.animate(K.fresh(),{},time,false);view.rider.scale.setScalar(Math.max(.001,progress));},
   key(e,down){if(!active)return false;if(down&&!canPlay())return false;const used=controls.key(e.code,down,e.repeat);if(used)e.preventDefault();return used;},
-  update(dt,camera,look){if(dt>0){time+=dt;K.step(state,input(),Math.min(.1,dt),ground);}view.animate(state,input(),time,mode==='first');view.follow(camera,state,mode,dt,false,look);wind.draw(state,time,active,dt);ui();}
+  update(dt,camera,look){if(dt>0){time+=dt;const landed=state.landed,bails=state.bails;K.step(state,input(),Math.min(.1,dt),ground);if(state.bails>bails)onSound('bail');else if(state.landed>landed)onSound('land');}view.animate(state,input(),time,mode==='first');view.follow(camera,state,mode,dt,false,look);wind.draw(state,time,active,dt);ui();}
  };
 }
 root.BackhoeSkate={create};
@@ -14574,9 +14578,53 @@ root.BackhoeInset={create};
 
 </script>
 <script>
+(function(root){'use strict';
+const clamp=(n,a=0,b=1)=>Math.max(a,Math.min(b,Number(n)||0)),KEY='backhoe-audio-v1';
+function create(options={}){
+ let storage=options.storage,ctx=options.context||null,built=false,failed=false,enabled=true,volume=.35,playing=false,master,bus,compressor,loops={},previous='',suspended=false,unlocking=false;
+ const voices=new Set(),counts={},targets={};let noise,phase=-1;
+ try{if(storage===undefined)storage=root.localStorage;const saved=JSON.parse(storage?.getItem(KEY)||'null');if(saved){enabled=saved.enabled!==false;if(Number.isFinite(saved.volume))volume=clamp(saved.volume);}}catch{}
+ const Context=options.Context||root.AudioContext||root.webkitAudioContext,supported=!!ctx||!!Context;
+ function notify(){options.onChange?.(status());}
+ function save(){try{storage?.setItem(KEY,JSON.stringify({enabled,volume}));}catch{}notify();}
+ function smooth(param,value,time=.055){param.cancelScheduledValues(ctx.currentTime);param.setTargetAtTime(value,ctx.currentTime,time);}
+ function makeBuffer(kind){const rate=22050,b=ctx.createBuffer(1,rate,rate),data=b.getChannelData(0);let seed=37,low=0;
+  for(let i=0;i<rate;i++){seed=(1664525*seed+1013904223)>>>0;const white=seed/2147483648-1,t=i/rate;low=.87*low+.13*white;
+   data[i]=kind==='engine'?.32*Math.sin(2*Math.PI*48*t)+.12*Math.sin(2*Math.PI*96*t)+.055*Math.sin(2*Math.PI*144*t)+low*.25:kind==='track'?white*.32*(.2+.8*Math.pow(Math.max(0,Math.sin(2*Math.PI*14*t)),4)):white*.45;
+  }return b;
+ }
+ function loop(name,buffer,type,frequency){const source=ctx.createBufferSource(),filter=ctx.createBiquadFilter(),gain=ctx.createGain();source.buffer=buffer;source.loop=true;filter.type=type;filter.frequency.value=frequency;filter.Q.value=.55;gain.gain.value=0;source.connect(filter);filter.connect(gain);gain.connect(bus);source.start();loops[name]={source,filter,gain};}
+ function build(){if(built||failed)return;try{ctx=ctx||new Context();master=ctx.createGain();bus=ctx.createGain();compressor=ctx.createDynamicsCompressor();master.gain.value=enabled?volume:0;bus.gain.value=0;compressor.threshold.value=-12;compressor.knee.value=8;compressor.ratio.value=5;compressor.attack.value=.005;compressor.release.value=.12;bus.connect(master);master.connect(compressor);compressor.connect(ctx.destination);noise=makeBuffer('noise');loop('engine',makeBuffer('engine'),'lowpass',420);loop('hydraulic',noise,'bandpass',1050);loop('track',makeBuffer('track'),'lowpass',1000);loop('roll',noise,'bandpass',720);built=true;ctx.onstatechange=notify;notify();}catch{failed=true;notify();}}
+ function unlock(){if(!supported||failed)return Promise.resolve(false);build();if(!built)return Promise.resolve(false);suspended=false;if(!enabled||volume===0)return Promise.resolve(false);try{unlocking=true;return Promise.resolve(ctx.resume?ctx.resume():undefined).then(()=>{unlocking=false;notify();return true;},()=>{unlocking=false;notify();return false;});}catch{unlocking=false;return Promise.resolve(false);}}
+ function silence(){playing=false;if(!built)return;bus.gain.cancelScheduledValues(ctx.currentTime);bus.gain.setValueAtTime(0,ctx.currentTime);for(const name of Object.keys(loops)){smooth(loops[name].gain.gain,0,.015);targets[name]=0;}for(const item of [...voices])item.dispose();}
+ function sleep(){silence();suspended=true;if(built&&ctx.suspend)try{Promise.resolve(ctx.suspend()).catch(()=>{});}catch{}}
+ function settings(next={}){if('enabled' in next)enabled=!!next.enabled;if(Number.isFinite(next.volume))volume=clamp(next.volume);if(built)smooth(master.gain,enabled?volume:0,.02);if(!enabled||volume===0)for(const item of [...voices])item.dispose();save();}
+ function shot(type,frequency,end,duration,gain,delay=0,preview=false){if(voices.size>=12)return;const source=type==='noise'?ctx.createBufferSource():ctx.createOscillator(),filter=ctx.createBiquadFilter(),amp=ctx.createGain(),when=ctx.currentTime+delay;
+  if(type==='noise')source.buffer=noise;else{source.type=type;source.frequency.setValueAtTime(frequency,when);source.frequency.exponentialRampToValueAtTime(Math.max(20,end),when+duration);}
+  filter.type='lowpass';filter.frequency.value=type==='noise'?frequency:3200;filter.Q.value=.5;amp.gain.setValueAtTime(0,when);amp.gain.linearRampToValueAtTime(gain,when+.008);amp.gain.exponentialRampToValueAtTime(.0001,when+duration);
+  source.connect(filter);filter.connect(amp);amp.connect(preview?master:bus);let disposed=false;const item={dispose(){if(disposed)return;disposed=true;try{source.stop();}catch{}source.disconnect();filter.disconnect();amp.disconnect();voices.delete(item);}};voices.add(item);source.onended=item.dispose;source.start(when);source.stop(when+duration+.025);
+ }
+ function effect(name,preview=false){if(!built||failed||suspended||!enabled||volume<=0||(!preview&&!playing)||(ctx.state!=='running'&&!unlocking&&!ctx.startRendering))return false;
+  const recipes={pop:[['triangle',190,75,.09,.20],['noise',2100,0,.07,.11]],catch:[['sine',640,380,.07,.16],['noise',1800,0,.06,.10]],land:[['sine',125,42,.18,.24],['noise',1000,0,.16,.17]],bail:[['noise',1700,0,.36,.17],['triangle',110,36,.18,.17]],transform:[['sawtooth',100,510,.65,.055],['noise',1800,0,.5,.12],['triangle',240,70,.2,.15,.16]],clank:[['triangle',340,85,.16,.12],['noise',1900,0,.09,.10]],lock:[['sine',220,66,.2,.19],['noise',950,0,.12,.12]]};const recipe=recipes[name];if(!recipe)return false;counts[name]=(counts[name]||0)+1;for(const p of recipe)shot(...p.slice(0,5),p[5]||0,preview);return true;
+ }
+ function update(frame={}){const active=!!frame.playing&&!suspended;if(!active){if(playing)silence();return;}playing=true;if(!built)return;smooth(bus.gain,1,.025);const mode=frame.mode||'machine',work=clamp(frame.work),travel=clamp(frame.travel),speed=clamp(Math.abs(frame.speed||0)/16),flying=mode==='heli'||mode==='jet',transform=mode==='transform';
+  const gain={engine:mode==='machine'?.20+work*.035+travel*.03:flying?.18:transform?.12:0,hydraulic:mode==='machine'?work*.12:mode==='jet'?.12:0,track:mode==='machine'?travel*.13:mode==='heli'?.12:0,roll:mode==='skate'&&!frame.air&&!frame.bail?speed*(frame.grind?.19:.13):transform?.085:0};
+  for(const name of Object.keys(loops)){smooth(loops[name].gain.gain,gain[name]);targets[name]=gain[name];}
+  smooth(loops.engine.source.playbackRate,mode==='machine'?.72+work*.28+travel*.20:mode==='heli'?1.15:1.65);smooth(loops.hydraulic.filter.frequency,mode==='jet'?780:850+work*600);smooth(loops.track.source.playbackRate,mode==='heli'?1.8:.6+travel*.8);smooth(loops.roll.source.playbackRate,.6+speed*1.2);smooth(loops.roll.filter.frequency,frame.grind?2300:500+speed*850);
+  if(transform){const stage=Math.floor(clamp(frame.phase,0,8.5)/1.8);if(previous!=='transform'){effect('transform');phase=stage;}else if(stage!==phase){effect('clank');phase=stage;}}else if(previous==='transform')effect('lock');previous=mode;
+ }
+ function status(){return {enabled,volume,supported,failed,ready:built&&ctx.state==='running',state:ctx?.state||'locked',playing,suspended,loops:built?Object.keys(loops).length:0,voices:voices.size,counts:{...counts},levels:{...targets}};}
+ return {unlock,update,effect,settings,silence,sleep,status,sample:()=>effect('catch',true)};
+}
+root.BackhoeAudio={create};if(typeof module!=='undefined')module.exports=root.BackhoeAudio;
+})(globalThis);
+
+</script>
+<script>
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], C=BackhoeCore, F=BackhoeFlight, D=BackhoeDrive, P=BackhoeContact, T=THREE;
+const sound=BackhoeAudio.create({onChange:syncAudioUI});
 const keys=new Set(), pointerKeys=new Map(), blockedKeys=new Set();
 const sticks=[{x:0,y:0,id:null},{x:0,y:0,id:null}],stickElements=[];
 const soil=new BackhoeSoil.SoilField(),capacity=.32,falling=[];
@@ -14629,7 +14677,7 @@ function updateSoilHud(){
 }
 try{
  render=renderer($('#scene'));scene=new T.Scene();scene.background=new T.Color(0xa9c7cd);scene.fog=new T.Fog(0xa9c7cd,25,100);camera=new T.PerspectiveCamera(72,1,.025,450);machine=model();scene.add(machine.root);machine.upper.add(camera);camera.position.set(-.51,2.17,.28);camera.rotation.order='YXZ';
- backdrop=BackhoeVisuals.site(scene,soil);buildTerrain();siteView=BackhoeSiteView.create(scene,soil,T);yard=new BackhoeYard.Yard(soil);yard.createView(scene);skate=BackhoeSkate.create(scene,soil,()=>running&&!paused&&!document.querySelector('dialog[open]'),leaveSkate,sticks,clearInput);
+ backdrop=BackhoeVisuals.site(scene,soil);buildTerrain();siteView=BackhoeSiteView.create(scene,soil,T);yard=new BackhoeYard.Yard(soil);yard.createView(scene);skate=BackhoeSkate.create(scene,soil,()=>running&&!paused&&!document.querySelector('dialog[open]'),leaveSkate,sticks,clearInput,name=>sound.effect(name));
  contactMarker=new T.Mesh(new T.RingGeometry(.32,.36,36),new T.MeshBasicMaterial({color:0x55e9c8,side:T.DoubleSide,depthWrite:false}));contactMarker.rotation.x=-Math.PI/2;contactMarker.visible=false;scene.add(contactMarker);
  label(scene,'CONTACT FIELD',v(16,1.5,2.5),3.2,'#94f2e0');
  for(const x of [8.5,24.5])for(const z of [2.5,18.5]){box(scene,.09,.5,.09,x,.45,z,mats.white);box(scene,.11,.1,.11,x,.68,z,mats.yellow);}
@@ -14676,7 +14724,7 @@ function updateLabels(){
  stickElements.forEach((el,i)=>{el.querySelector('.stick-title').textContent=riding?(i?'右レバー / 技':'左レバー / 走行'):(i?'右レバー':'左レバー');el.setAttribute('aria-label',riding?(i?'右レバー。前でオーリー、左でフリップ、右でショービット、手前で180度':'左レバー。前で加速、手前でブレーキ、左右で曲がる'):(i?'右レバー。指で前後左右にドラッグ':'左レバー。指で前後左右にドラッグ'));if(riding)['up','down','left','right'].forEach((d,j)=>el.querySelector('.stick-label.'+d).textContent=skateLabels[i][j]);});
  if(riding)return;const inFlight=!!flight,map=inFlight?F.mapping:C.mapping(pattern),labels=inFlight?F.labels:C.labels;$$('.key').forEach(b=>{b.querySelector('span').textContent=labels[map[b.dataset.key]];b.setAttribute('aria-label',b.querySelector('kbd').textContent+' '+labels[map[b.dataset.key]]);});[['KeyW','KeyS','KeyA','KeyD'],['ArrowUp','ArrowDown','ArrowLeft','ArrowRight']].forEach((codes,i)=>codes.forEach((code,j)=>stickElements[i].querySelector('.stick-label.'+['up','down','left','right'][j]).textContent=labels[map[code]]));$$('[data-set-pattern]').forEach(b=>{const yes=b.dataset.setPattern===pattern;b.classList.toggle('active',yes);b.setAttribute('aria-pressed',yes);});$$('.choice').forEach(b=>{const yes=b.dataset.pattern===pattern;b.classList.toggle('selected',yes);b.setAttribute('aria-pressed',yes);});$('#start').textContent=C.patterns[pattern].name+'で現場へ入る';$('#pattern-badge').textContent=C.patterns[pattern].name+' / '+(pattern==='vertical'?'C':'ISO');}
 function setPattern(p){if(flight)return;clearInput();pattern=p;machine.paint.color.setHex(p==='vertical'?0xe66c22:0x258cb6);updateLabels();if(running)toast(C.patterns[p].name+'に切替。キーを離してから操作してください。');}
-function pause(on){clearInput();paused=on;document.body.dataset.paused=String(on);$('#pause-overlay').hidden=!on;$('#pause').textContent=on?'再開':'一時停止';}
+function pause(on){clearInput();paused=on;if(on)sound.silence();document.body.dataset.paused=String(on);$('#pause-overlay').hidden=!on;$('#pause').textContent=on?'再開':'一時停止';}
 function resetPose(){clearInput();state=C.fresh();if(homeZone==='dig')state.bucket=.8;vehicle.support=null;lookX=0;lookY=-.16;}
 function relocate(){if(flight||yard.hook)return;recovery.reset();$('#recovery-overlay').hidden=true;$('#game').classList.remove('recovery-needed');clearInput();homeZone='hub';vehicle=D.fresh(0,18,0);D.settle(vehicle,soil,1);resetPose();state.boom=.95;state.arm=-2.05;state.bucket=-.2;vehicle=P.equilibrium(vehicle,state,soil,cargo).vehicle;applyVehicle();effects.lastTrack=null;updateLabels();updateInputHint();$('#scene').focus();}
 for(const zone of BackhoeSite.zones){const option=document.createElement('option');option.value=zone.id;option.textContent=zone.short+'の旗';$('#destination').appendChild(option);}$('#destination').value='dig';
@@ -14685,7 +14733,16 @@ $('#minimap').onclick=()=>{BackhoeSiteView.drawMap($('#map-canvas'),soil,skate?.
 $('#hook-toggle').onclick=()=>{clearInput();toast(yard.toggle(vehicle,state));};
 $('#drive-speed').onchange=e=>{driveSpeed=Number(e.target.value);clearInput();};
 
-function openDialog(id){clearInput();$(id).showModal();}
+function openDialog(id){clearInput();sound.silence();$(id).showModal();}
+function syncAudioUI(){const s=sound.status(),silent=!s.enabled||s.volume===0;$('#sound-toggle').textContent=silent?'音OFF':'音';$('#sound-toggle').setAttribute('aria-label','音の設定'+(silent?'（消音中）':''));$('#sound-mute').textContent=s.enabled?'消音する':'音を出す';$('#sound-mute').setAttribute('aria-pressed',String(!s.enabled));$('#sound-volume').value=Math.round(s.volume*100);$('#sound-value').textContent=Math.round(s.volume*100)+'%';$('#sound-status').textContent=!s.supported||s.failed?'このブラウザーでは音を使えません。ゲームはそのまま遊べます。':silent?'消音中':s.ready?'効果音 ON · BGMなし':'最初の操作で効果音が有効になります。';}
+function unlockAudio(e){if(e.isTrusted&&!document.hidden)sound.unlock();}
+for(const type of ['pointerdown','touchend','keydown'])addEventListener(type,unlockAudio,{capture:true,passive:true});
+addEventListener('pagehide',()=>sound.sleep());document.addEventListener('visibilitychange',()=>{if(document.hidden)sound.sleep();});
+$('#sound-toggle').onclick=()=>{syncAudioUI();openDialog('#sound-dialog');};
+$('#sound-mute').onclick=()=>{sound.settings({enabled:!sound.status().enabled});sound.unlock();};
+$('#sound-volume').oninput=e=>sound.settings({volume:Number(e.target.value)/100});
+$('#sound-sample').onclick=()=>sound.unlock().then(()=>sound.sample());
+syncAudioUI();
 $$('.choice').forEach(b=>b.onclick=()=>setPattern(b.dataset.pattern));$$('[data-set-pattern]').forEach(b=>b.onclick=()=>setPattern(b.dataset.setPattern));
 $('#start-skate').onclick=()=>{ $('#start').click(); enterSkate(); };
 $('#start').onclick=()=>{running=true;$('#selection').hidden=true;$('#game').hidden=false;resetPose();pause(false);resize();relocate();$('#scene').focus();};
@@ -14696,7 +14753,7 @@ for(const el of [$('#scene'),...stickElements])el.addEventListener('contextmenu'
 
 $('#soil-reset').onclick=()=>{if(yard.hook){toast('先に荷を着地させてください');return;}clearInput();soil.reset();effects.reset();cargo=deposited=0;for(const p of falling)scene.remove(p.mesh);falling.length=0;relocate('dig');syncTerrain();updateSoilHud();toast('土と穴を最初の状態に戻しました');};
 $('#help').onclick=$('#intro-help').onclick=()=>{$('#settings-dialog').close();openDialog('#help-dialog');};$('#secret').onclick=()=>openDialog('#secret-dialog');$$('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
-$('#back-select').onclick=()=>{$('#settings-dialog').close();running=false;clearInput();pause(false);$('#game').hidden=true;$('#selection').hidden=false;updateLabels();resize();};
+$('#back-select').onclick=()=>{$('#settings-dialog').close();running=false;sound.silence();clearInput();pause(false);$('#game').hidden=true;$('#selection').hidden=false;updateLabels();resize();};
 const controlCodes=new Set([...Object.keys(C.mapping('vertical')),...Object.keys(D.mapping),'Space','KeyV']);
 addEventListener('keydown',e=>{if(skate?.active){if(e.code==='Escape'&&!e.repeat){e.preventDefault();pause(!paused);return;}if(skate.key(e,true))return;}if(!running||!controlCodes.has(e.code)||document.querySelector('dialog[open]')||/SELECT|INPUT|TEXTAREA/.test(e.target.tagName))return;e.preventDefault();if(e.code==='Space'){if(!e.repeat)pause(!paused);return;}if(e.code==='KeyV'){lookX=0;lookY=skate?.active?0:-.16;return;}if(paused||recovery.active||(flight&&!flight.controllable)||blockedKeys.has(e.code))return;keys.add(e.code);});
 addEventListener('keyup',e=>{skate?.key(e,false);keys.delete(e.code);blockedKeys.delete(e.code);});addEventListener('blur',()=>{clearInput();blockedKeys.clear();if(running)pause(true);});document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)pause(true);});
@@ -14723,7 +14780,7 @@ function animateFlight(dt,time){
  const cruising=f.controllable||f.returning;machine.root.position.set(cruising?f.air.x:savedVehicle.x,cruising?f.air.y:savedVehicle.y+lift,cruising?f.air.z:savedVehicle.z);machine.root.rotation.x=savedVehicle.pitch*(1-fold);machine.root.position.y+=Math.sin(time*1.5)*.025*(lift/3.5);machine.root.rotation.y=cruising?f.air.heading:savedVehicle.heading;machine.root.rotation.z=f.type==='jet'?((flightWeights.turnLeft||0)-(flightWeights.turnRight||0))*.12:0;
  machine.rotor.rotation.y+=dt*(1+stage(4,2)*38);machine.tailRotor.rotation.x+=dt*(2+stage(4,2)*50);machine.rotorDisk.material.opacity=.12*stage(5,2);machine.rotorBlades.forEach(b=>b.scale.x=.18+.82*stage(2.6,2.5));machine.tail.scale.z=.35+.65*deploy;machine.tailRotor.position.z=lerp(1.44,4.12,deploy);
  for(let i=0;i<2;i++){machine.wings[i].rotation.z=(i===0?-1:1)*(1-deploy)*Math.PI*.49;machine.exhausts[i].scale.y=(.15+stage(4.5,2)*1.1)*(1+Math.sin(time*29+i)*.12);machine.exhausts[i].material.opacity=stage(4.5,2)*.6;}
- const overview=stage(5.5,3),angle=(cruising?f.air.heading:savedVehicle.heading)+.65,dist=lerp(9.6,14,overview);const target=machine.root.position;camera.position.set(target.x+Math.sin(angle)*dist,target.y+lerp(4.9,10,overview),target.z+Math.cos(angle)*dist);camera.lookAt(target.x,target.y+lerp(.7,-1,overview),target.z);
+ const overview=stage(7,1.5),angle=(cruising?f.air.heading:savedVehicle.heading)+.65,close=4.8*(1-.6*deploy),dist=lerp(close,14,overview);const target=machine.root.position;camera.position.set(target.x+Math.sin(angle)*dist,target.y+lerp(2.8*(1-.6*deploy),10,overview),target.z+Math.cos(angle)*dist);camera.lookAt(target.x,target.y+lerp(.75*(1-.7*deploy),-1,overview),target.z);
  const stageName=f.t<1.5?'01 / アーム・バケット収納':f.t<3?'02 / キャビン・足回り収納':f.t<5.5?'03 / '+(f.type==='heli'?'ローター展開':'主翼・尾翼を展開'):f.t<8.5?'04 / 離陸シーケンス':f.type==='heli'?'HELICOPTER / 自由飛行':'FIGHTER / 自由飛行';
  const near=F.nearestLanding(f.air,BackhoeSite.zones);$('#flight-name').textContent=f.returning?'固定降り場へ / '+f.zone.short:f.reverse?(f.zone?.id==='skate'?'着地・スケボーへ変形':'着地・バックホーへ復帰'):stageName;const actions=Object.keys(flightWeights).filter(k=>flightWeights[k]>.025);$('#motion').textContent=f.returning?'降り場へ自動移動中':f.reverse?(f.zone?.id==='skate'?'固定乗り場でスケボーへ変形中':'固定位置でバックホーへ戻っています'):f.t<5.5?'移動形態へ変形中':f.controllable?(actions.length?actions.map(k=>F.labels[k]).join(' ＋ '):'左：移動・向き / 右：昇降・横移動'):'離陸中';$('#flight-progress-bar').style.width=(clamp(f.t/8.5,0,1)*100)+'%';$('#flight-altitude').textContent=Math.max(0,machine.root.position.y-soil.sample(machine.root.position.x,machine.root.position.z)).toFixed(1)+' m';$('#flight-position').textContent=near?'近くの降り場：'+near.name:'案内風船へ移動してください';$('#return-machine').disabled=!f.controllable||!near;$('#return-machine').textContent=f.returning||f.reverse?'着地中':f.controllable?(near?(near.id==='skate'?'スケボーに変形して降りる':near.short+'に降りる'):'風船に近づいて降りる'):'離陸準備中';
 
@@ -14745,7 +14802,7 @@ $('#speed').value=String(speed);updateLabels();applyInputMode();let last=perform
 function updateContactHud(){const s=vehicle.support;if(s?.foot&&s.contact){contactMarker.visible=!flight;contactMarker.position.set(s.foot.x,soil.sample(s.foot.x,s.foot.z)+.015,s.foot.z);contactMarker.material.color.setHex(s.slip>.0008?0xffb445:0x55e9c8);contactMarker.scale.setScalar(.7+s.bucketLoad);}else contactMarker.visible=false;}
 function trackLabel(value){return value>.01?'前':value<-.01?'後':'中立';}
 function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;const dialog=!!document.querySelector('dialog[open]');if(!paused&&!dialog)elapsed+=dt;
- if(!running){for(const p of preview){const selected=p.type===pattern;p.spot.intensity=lerp(p.spot.intensity,selected?220:0,.12);p.beam.material.opacity=lerp(p.beam.material.opacity,selected?.045:0,.12);p.r.render(p.s,p.cam);}return;}
+ if(!running){sound.update({playing:false});for(const p of preview){const selected=p.type===pattern;p.spot.intensity=lerp(p.spot.intensity,selected?220:0,.12);p.beam.material.opacity=lerp(p.beam.material.opacity,selected?.045:0,.12);p.r.render(p.s,p.cam);}return;}
  if(!flight&&!skate?.active&&!paused&&!dialog){const was=recovery.active;if(recovery.update(vehicle,dt)&&!was){clearInput();$('#recovery-overlay').hidden=false;$('#game').classList.add('recovery-needed');}}
  const active=activeKeys(),trackInput=paused||recovery.active||flight||skate?.active||dialog?{left:0,right:0}:D.inputs(active,travel.levers),weights=paused||recovery.active||flight||skate?.active||dialog?{}:C.inputs(pattern,active,sticks),acts=Object.keys(weights).filter(a=>weights[a]>.025);dugFrame=dumpedFrame=0;groundContact=false;
  if(flight){animateFlight(paused||dialog?0:dt,elapsed);}else if(skate?.active){skate.update(paused||dialog?0:dt,camera,{x:lookX,y:lookY});}else{
@@ -14762,6 +14819,7 @@ function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;co
  }
  const navVehicle=skate?.active?skate.position:flight?{...vehicle,x:flight.air.x,z:flight.air.z,heading:flight.air.heading}:vehicle;
  const skatePad=BackhoeSite.zones.find(z=>z.id==='skate').landing;$('#skate-board').hidden=!!flight||skate?.active||recovery.active||!!yard.hook||Math.hypot(vehicle.x-skatePad[0],vehicle.z-skatePad[1])>7;
+ sound.update({playing:!paused&&!dialog&&!recovery.active&&!document.hidden,mode:flight?((!flight.controllable&&!flight.returning)?'transform':flight.type):skate?.active?'skate':'machine',phase:flight?.t||0,work:Math.max(0,...Object.values(weights)),travel:Math.max(Math.abs(trackInput.left),Math.abs(trackInput.right)),speed:skate?.active?skate.state.speed:0,air:skate?.state.air,bail:skate?.state.bail,grind:!!skate?.state.grind});
  updateSafetyTip();paintTravel(trackInput);updateContactHud();if(skate?.active)contactMarker.visible=false;yard.updateView(flight||skate?.active?null:vehicle,state);siteView.update(elapsed,{airborne:!!flight,camera,viewportHeight:$('#viewport').clientHeight});backdrop.update(elapsed);backdrop.light.position.set(navVehicle.x-25,40,navVehicle.z-18);backdrop.light.target.position.set(navVehicle.x,0,navVehicle.z);
  if(!flight&&!skate?.active&&!recovery.active){camera.updateMatrixWorld(true);const gate=BackhoeSiteView.facingFlag(camera,soil,vehicle,T);const el=$('#flag-tooltip');el.hidden=!gate;if(gate){el.querySelector('strong').textContent=gate.zone.name;el.querySelector('span').textContent=Math.round(gate.distance)+' m / 旗が入口';const view=$('#viewport');el.style.left=clamp((gate.screen.x*.5+.5)*view.clientWidth-100,12,view.clientWidth-212)+'px';el.style.top=(innerHeight<=520&&innerWidth>innerHeight?8:clamp((-gate.screen.y*.5+.5)*view.clientHeight+18,75,view.clientHeight-240))+'px';el.style.borderColor=gate.zone.color;}if(elapsed-lastMini>.15||lastMini<0){BackhoeSiteView.drawMap($('#mini-canvas'),soil,vehicle,$('#destination').value,true);lastMini=elapsed;}}else $('#flag-tooltip').hidden=true;
  const zone=BackhoeSite.zoneAt(navVehicle.x,navVehicle.z),target=BackhoeSite.zones.find(z=>z.id===$('#destination').value);$('#area-name').textContent=zone?zone.name:'場内の連絡路';
@@ -14777,7 +14835,7 @@ setInterval(()=>frame(performance.now()),1000/30);
 if(location.protocol==='https:'&&location.hostname==='daruiddddddd.github.io'&&location.pathname.startsWith('/backhoe-control-lab/')&&'serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});
 // Read-only diagnostics for prototype verification.
 if(location.hash==='#skate')$('#start-skate').click();
-window.backhoeDiagnostics=()=>({pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,skate:skate?.active?{position:skate.position,mode:skate.mode,score:skate.state.score}:null,view:skate?.active?skate.mode:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
+window.backhoeDiagnostics=()=>({audio:sound.status(),pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,skate:skate?.active?{position:skate.position,mode:skate.mode,score:skate.state.score}:null,view:skate?.active?skate.mode:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
 })();
 
 </script>
