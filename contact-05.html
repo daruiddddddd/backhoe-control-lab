@@ -204,23 +204,28 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 #skate-rush{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 @media(max-height:500px){.skate-scoreboard{left:14px;top:10px;gap:16px}.skate-scoreboard>strong{font-size:26px}.skate-scoreboard b{font-size:22px}.skate-tools{top:57px;right:12px}.skate-tools button{padding:5px 10px}#skate-view{top:57px;left:14px}#skate-message{top:111px;font-size:12px;padding:6px 12px}}
 @media(max-width:480px) and (orientation:portrait){.skate-scoreboard{left:12px;top:12px}.skate-tools{top:80px;left:12px;right:auto}#skate-view{top:140px;left:12px}#skate-message{top:175px;width:90%;max-width:90%}.skate-speed{display:none}}
-/* One shared pair of controls for both vehicles. The hit areas stay put. */
+/* Shared levers stay in place; the central catch prompt is contextual. */
 #game.skating #touch-controls{display:block}#skate-hud{z-index:2}
-#skate-hud .skate-catch-control{position:absolute;bottom:76px;right:calc(24px + 170px);pointer-events:none}
-#skate-catch{width:100px;min-height:64px!important;pointer-events:auto;border-color:#d5f25199!important}
-#game.skating.controls-hidden .skate-catch-control{opacity:0}#game.skating.controls-hidden .skate-catch-control:active{opacity:.85}
 #game.skating .stick-title{letter-spacing:0}#game.skating .stick-visual{border-color:#d5f25188}#game.skating .stick-label{color:#fff}
-#game.skating .pc-mode .stick-title::after{display:none}
+#game.skating.pc-mode .stick-title::after{display:none}
 .start-buttons{display:flex;flex-direction:column;gap:12px;min-width:230px}#start-skate{background:#fff;color:#164e65;border:1px solid #78aabd;min-height:48px;font-weight:750}
-@media(max-height:520px) and (orientation:landscape){#skate-hud .skate-catch-control{bottom:53px;right:calc(max(18px,env(safe-area-inset-right)) + 118px)}#skate-catch{width:88px;min-height:52px!important;font-size:12px}}
-@media(max-width:650px) and (orientation:portrait){#skate-hud .skate-catch-control{right:50%;transform:translateX(50%);bottom:76px}#skate-catch{width:86px;font-size:12px}.start-row{flex-wrap:wrap}.start-buttons{width:100%}}
+#skate-inset{position:absolute;left:max(22px,env(safe-area-inset-left));top:112px;width:196px;border:1px solid #c6d3d3;border-radius:10px;overflow:hidden;box-shadow:0 3px 14px #12293230;pointer-events:none}
+#skate-hud #skate-inset-toggle{display:block;width:100%;min-height:44px;border:0;border-radius:0;background:#152d35eb;color:#f0faf8;padding:7px 12px;text-align:left;font-size:12px;pointer-events:auto}
+#skate-inset-view{height:148px;background:transparent}#skate-inset.collapsed{width:146px}
+#skate-catch-guide{left:50%;top:48%;transform:translate(-50%,-50%);min-width:0;padding:0;border:0;background:none;pointer-events:none}
+#skate-hud #skate-catch{display:flex;flex-direction:column;align-items:center;justify-content:center;width:126px;height:126px;min-height:126px;border:4px solid #fff;border-radius:50%;padding:8px;background:#e3ff51;color:#152816;box-shadow:0 0 0 8px #d9ff4655,0 4px 30px #0b222b66;pointer-events:auto;animation:catch-glow .6s ease-in-out infinite alternate}
+#skate-catch b{font-size:38px;line-height:1.2}#skate-hud #skate-catch small{opacity:1;font-size:12px;font-weight:800;letter-spacing:0;margin-top:6px}
+@keyframes catch-glow{to{box-shadow:0 0 0 14px #d9ff4633,0 4px 34px #0b222b66}}
+@media(prefers-reduced-motion:reduce){#skate-hud #skate-catch{animation:none}}
+@media(max-height:520px) and (orientation:landscape){#skate-inset{left:max(12px,env(safe-area-inset-left));top:80px;width:146px}#skate-inset-view{height:86px}#skate-hud #skate-inset-toggle{font-size:11px;padding:6px 9px}#skate-hud #skate-catch{width:100px;height:100px;min-height:100px}#skate-catch b{font-size:31px}#skate-hud #skate-catch small{font-size:10px}#skate-message{top:58px;max-width:40%;font-size:11px}#skate-view{display:none}}
+@media(max-width:650px) and (orientation:portrait){#skate-inset{top:174px;left:12px;width:146px}#skate-inset-view{height:104px}#skate-message{top:322px}.start-row{flex-wrap:wrap}.start-buttons{width:100%}}
 </style>
 </head>
 <body>
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.10 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.11 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -231,7 +236,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.10</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.11</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -252,8 +257,8 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  <div class="skate-scoreboard"><strong>DOG<span>/</span></strong><div><small>SESSION SCORE</small><b id="skate-score">0</b></div><div class="skate-speed"><b id="skate-speed">0</b><small>km/h</small></div></div>
  <div class="skate-tools"><button id="skate-reset">入口へ</button><button id="skate-help">技の操作</button><button id="skate-back">重機に戻る</button></div>
  <div id="skate-message" role="status"></div><div id="skate-view">三人称 · 後方追従</div>
- <div id="skate-catch-guide" hidden><b id="skate-catch-label">回転中…</b><div><i id="skate-catch-progress"></i></div></div>
- <div class="skate-catch-control"><button id="skate-catch" data-skate-action="catch">キャッチ<small>C</small></button></div>
+ <aside id="skate-inset" aria-label="犬とスケボーの正面ワイプ"><button id="skate-inset-toggle" aria-expanded="true" aria-controls="skate-inset-view">正面ワイプ −</button><div id="skate-inset-view" aria-label="正面から見た全身と板のライブ映像"></div></aside>
+ <div id="skate-catch-guide" hidden><button id="skate-catch" data-skate-action="catch" aria-label="ここ！ タップしてキャッチ"><b>ここ！</b><small>タップでキャッチ</small></button></div>
 </section>
 
    <div class="flight-ui" id="flight-ui" hidden><div class="flight-alt"><span>FLIGHT SYSTEM</span><b id="flight-altitude">0.0 m</b></div><span id="flight-name">変形中</span><div id="flight-position">X 0.0 / Z 0.0</div><div class="flight-progress"><i id="flight-progress-bar"></i></div><button id="return-machine">バックホーへ戻る</button></div>
@@ -267,7 +272,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <div class="settings"><label for="speed">動作の速さ</label><select id="speed"><option value="0.25">とてもゆっくり</option><option value="0.45" selected>ゆっくり</option><option value="0.8">ふつう</option></select></div><div class="settings-actions"><button id="look-reset">視線を正面へ</button><button id="help">操作方法</button><button id="soil-reset">土と穴をリセット</button><button id="back-select">操作選択へ戻る</button></div><p class="tiny">操作・地盤・荷重は試作用のモデルです。実機の安全限界を示すものではありません。</p></dialog>
 <dialog id="map-dialog"><button class="close" data-close>閉じる</button><h2>ひとつにつながる現場</h2><p>色の旗が区画の入口。図の濃い矢印が現在地です。</p><canvas id="map-canvas" width="500" height="500" aria-label="120メートル四方の場内図"></canvas><p>目印を選んで走行してください。土・穴・荷物はそのまま残ります。</p></dialog>
 <dialog id="help-dialog"><button class="close" data-close>閉じる</button><div class="eyebrow">VERIFIED CONTROL MAP</div><h2>縦旋回と横旋回の違い</h2><p>前＝運転者から奥へ倒す。手前＝運転者へ引く。<br>今回切り替わるのは左レバーです。</p><table><thead><tr><th>左レバー / キー</th><th>縦旋回 / C</th><th>横旋回 / ISO</th></tr></thead><tbody><tr><td>前 / W</td><td>右旋回</td><td>アーム伸ばし</td></tr><tr><td>手前 / S</td><td>左旋回</td><td>アームかき込み</td></tr><tr><td>左 / A</td><td>アーム伸ばし</td><td>左旋回</td></tr><tr><td>右 / D</td><td>アームかき込み</td><td>右旋回</td></tr></tbody></table><table><thead><tr><th>右レバー / キー</th><th>２方式で共通</th></tr></thead><tbody><tr><td>前 / ↑</td><td>ブーム下げ</td></tr><tr><td>手前 / ↓</td><td>ブーム上げ</td></tr><tr><td>左 / ←</td><td>バケットかき込み</td></tr><tr><td>右 / →</td><td>バケットダンプ</td></tr></tbody></table><h3>走行は２本の専用レバーで操作</h3><p>作業レバーとは独立し、同時に使えます。前後の倒し量で左右それぞれのクローラを動かし、手を離すと中立です。左右の割当は足回りに固定。上部を180度旋回すると、運転席から見た進行方向は逆になります。</p><p>PC用の代用キーは左走行 I／K、右走行 O／L。見回すときは画面の空いた所をドラッグします。</p><p class="tiny">走行の照合：<a class="source-link" href="https://media.kubota.io/uploads/Kubota-Excavators-U17-3-Manual.pdf" target="_blank" rel="noopener">クボタ U17-3 取扱説明書（誌面38〜40ページ：左右走行レバー・方向転換）</a><br>操作配置と方向を練習する試作です。接地点と重心から支持荷重を計算し、接地摩擦で動作が抵抗を受けます。数値は試作用で、RX-506の実測油圧・強度・転倒限界に合わせたものではありません。</p><h3>接地動作の参考と制約</h3><p>上記クボタ説明書の誌面38ページは、ブーム・アーム・バケットによる片側クローラの持ち上げを説明しています。誌面42ページはバケットの横振りで土山を動かす使い方を避けるよう記載しています。接地旋回を、実機での推奨作業手順として扱わないでください。</p><p>05では硬質地盤の支持、土の沈み込み、接地摩擦、浮いたクローラの空転を計算します。支持範囲を超える入力は試作の計算範囲として止めます。実機の安全限界を示すものではありません。</p><p class="tiny">照合日：2026-11-20<br>操作：<a class="source-link" href="https://kubotakenki.co.jp/manual/pdf/rx-series/rx-506/manual/rx-506_manual03.pdf" target="_blank" rel="noopener">クボタ建機ジャパン RX-506 操作パターン（PDF 6〜7ページ）</a><br>内観：<a class="source-link" href="https://www.kubota.co.jp/product/machinery/support/pdf/RX-506.pdf" target="_blank" rel="noopener">クボタ RX-506 公式カタログ（PDF 7ページ）</a><br>名称の補助照合：<a class="source-link" href="https://www.kobelco-ts.com/assets/pdf/rental/shovel/1-11.pdf" target="_blank" rel="noopener">コベルコ教習所・レンタル資料（ISO / H方式）</a><br>方式記号は資料・機種で異なります。この試作の縦旋回は上表のCパターンです。</p></dialog>
-<dialog id="skate-help-dialog"><button class="close" data-close>閉じる</button><h2>DOG / 自分のラインを走ろう。</h2><p>バックホーと同じ左右の丸いレバーをドラッグします。左は前で加速、手前でブレーキ、左右で曲がる。倒し量で調整できます。右は前でオーリー、左でフリップ、右でショービット、手前で180°。技の後は一度レバーを中央へ戻してください。両手で同時に操作できます。<br>技の回転が終わる頃、画面に「今！」が出たらキャッチ。早押しや押し忘れは転倒。転んでも入口へ戻れます。</p><p>PC：左レバーはWASD、右レバーは矢印。C キャッチ、Space / Esc 一時停止。マウスでも丸いレバーをドラッグできます。操作表示を隠しても同じ位置で操作できます。空いた画面をドラッグして見回し、Vで正面へ。主観は進行方向を見る視点です。「重機に戻る」でパークの固定降り場へ戻ります。</p></dialog>
+<dialog id="skate-help-dialog"><button class="close" data-close>閉じる</button><h2>DOG / 自分のラインを走ろう。</h2><p>バックホーと同じ左右の丸いレバーをドラッグします。左は前で加速、手前でブレーキ、左右で曲がる。倒し量で調整できます。右は前でオーリー、左でフリップ、右でショービット、手前で180°。技の後は一度レバーを中央へ戻してください。両手で同時に操作できます。<br>技の回転が終わる頃、画面中央の大きな丸「ここ！」をタップしてキャッチ。丸はキャッチできるときだけ出ます。押し忘れは転倒。転んでも入口へ戻れます。</p><p>PC：左レバーはWASD、右レバーは矢印。C キャッチ、Space / Esc 一時停止。マウスでも丸いレバーをドラッグできます。操作表示を隠しても同じ位置で操作できます。空いた画面をドラッグして見回し、Vで正面へ。主観は進行方向を見る視点です。「重機に戻る」でパークの固定降り場へ戻ります。</p></dialog>
 <dialog id="secret-dialog"><button class="close" data-close>閉じる</button><div class="eyebrow">AIR TRANSFER / TRANSFORM</div><h2>空から、次の区画へ。</h2><p>ヘリ・戦闘機に変形して敷地を移動します。<br>空中の案内風船へ近づき、区画の固定降り場へ着地できます。</p><div class="forms"><button data-form="heli"><div class="form-code">FORM 01 / ROTOR</div><svg viewBox="0 0 300 100" aria-hidden="true"><g fill="none" stroke="#8eacb7" stroke-width="2"><path d="M30 20h235M150 20v22M105 88h91M120 74v14M178 74v14"/></g><path fill="#eaa34e" d="M83 63q4-22 41-23h50l22 16 56-9 25-21 7 2-15 32-73 8q-10 12-56 12H106z"/><path fill="#234959" stroke="#b8dde2" d="M93 61q8-16 33-16h20v20H93z"/><path fill="#21343e" d="M154 46h18l16 14h-34z"/><circle cx="270" cy="48" r="13" fill="none" stroke="#b8dde2"/><path d="m263 41 14 14m0-14-14 14" stroke="#b8dde2"/></svg><strong>ヘリコプター</strong><span>ローター展開 → 自由飛行</span></button><button data-form="jet"><div class="form-code">FORM 02 / WING</div><svg viewBox="0 0 300 100" aria-hidden="true"><path fill="#eeae5a" d="m150 4 14 36 105 31-4 10-104-9 15 19h-52l15-19-104 9-4-10 105-31z"/><path fill="#253d4a" d="m150 10 11 50-11 20-11-20z"/><path fill="#89c7d6" d="m150 25 6 27-6 6-6-6z"/><path fill="#253d4a" d="m128 67-15 28 23-9 5-21m31 2 15 28-23-9-5-21"/><path stroke="#b9edf4" stroke-width="3" d="M144 82v15m12-15v15"/><path stroke="#fbe0ac" stroke-width="3" d="m51 73 48-6m150 6-48-6"/></svg><strong>戦闘機</strong><span>翼を展開 → 自由飛行</span></button></div><p class="tiny hangar-foot">左レバーで前後移動・向き、右で昇降・横移動。「ここに降りる」で近くの風船の固定位置へ着地し、バックホーに戻ります。スケボーの風船ではスケボーへ変形します。</p></dialog>
 <div id="toast" hidden></div>
 <script>
@@ -13403,9 +13408,9 @@ function height(x,z){
 }
 function fresh(){return {x:0,z:24,y:height(0,24)+.12,heading:0,speed:0,vy:0,air:false,grind:null,grindCooldown:0,trick:null,lastTrick:null,needsCatch:false,caught:false,flash:0,combo:0,names:[],score:0,best:0,landed:0,bails:0,streak:0,notice:'プッシュして走ろう',noticeTime:4,completed:{},bail:0,fakie:false,travel:0,lastSlope:0};}
 // Cameras follow the direction of travel; a 180 trick changes the stance, not the view.
-function cameraFrame(s,world,mode='third',scale=1){const angle=s.heading+(s.speed<-.3?Math.PI:0),fx=-Math.sin(angle),fz=-Math.cos(angle),first=mode==='first',rush=smooth(3,16,Math.abs(s.speed)),d=mode==='overview'?18:4.7+2.4*rush;
- const position=first?{x:world.x+fx*.13,y:world.y+(s.bail?.56:1.25),z:world.z+fz*.13}:{x:world.x-fx*d,y:world.y+(mode==='overview'?24:2.15+.45*rush),z:world.z-fz*d};
- const target=first?{x:position.x+fx*9,y:position.y-.6,z:position.z+fz*9}:{x:world.x+fx*1.3,y:world.y+.85,z:world.z+fz*1.3};return {position,target,first};}
+function cameraFrame(s,world,mode='third',scale=1){const angle=s.heading+(s.speed<-.3?Math.PI:0),fx=-Math.sin(angle),fz=-Math.cos(angle),first=mode==='first',rush=smooth(3,16,Math.abs(s.speed)),d=mode==='overview'?18:6.4+2.4*rush;
+ const position=first?{x:world.x+fx*.13,y:world.y+(s.bail?.56:1.25),z:world.z+fz*.13}:{x:world.x-fx*d,y:world.y+(mode==='overview'?24:2.8+.45*rush),z:world.z-fz*d};
+ const target=first?{x:position.x+fx*9,y:position.y-.6,z:position.z+fz*9}:{x:world.x+fx*2.8,y:world.y+1.25,z:world.z+fz*2.8};return {position,target,first};}
 function reset(s){const score=s.score,best=s.best,completed=s.completed,bails=s.bails;Object.assign(s,fresh(),{score,best,completed,bails});}
 function message(s,text,seconds=2){s.notice=text;s.noticeTime=seconds;}
 function bail(s){s.bail=1.25;s.air=false;s.grind=null;s.trick=null;s.lastTrick=null;s.needsCatch=false;s.caught=false;s.combo=0;s.names=[];s.streak=0;s.bails++;message(s,'着地ミス · もう一回',1.25);}
@@ -14379,7 +14384,8 @@ const deckShape=new T.Shape();deckShape.absellipse(0,0,.17,.55,0,Math.PI*2,false
 for(const z of [-.34,.34]){box(board,.36,.035,.04,0,-.045,z,steel);for(const x of [-.2,.2]){const wheel=mesh(new T.CylinderGeometry(.055,.055,.045,12),white,board,x,-.075,z);wheel.rotation.z=Math.PI/2;}}
 
 // Solid volumes, flat colors and back-face outlines: never a camera-facing sprite.
-pose.scale.setScalar(.86);
+pose.scale.setScalar(.78);board.scale.set(1.18,1,1.2);
+const dogScale=.76,dogOffset=.038-.035*dogScale;body.scale.setScalar(dogScale);body.name="skate-dog-body";
 const fur=new T.MeshBasicMaterial({color:'#fffdf2',toneMapped:false}),blue=new T.MeshBasicMaterial({color:'#0768ed',toneMapped:false}),ink=new T.MeshBasicMaterial({color:'#111924'}),outline=new T.MeshBasicMaterial({color:'#16202b',side:T.BackSide});
 function outlined(g,m,parent,x=0,y=0,z=0){const o=mesh(g,m,parent,x,y,z),edge=new T.Mesh(g,outline);edge.scale.setScalar(1.07);edge.castShadow=edge.receiveShadow=false;o.add(edge);return o;}
 function oval(parent,rx,ry,rz,m=fur){const o=outlined(new T.SphereGeometry(1,18,12),m,parent);o.scale.set(rx,ry,rz);return o;}
@@ -14412,14 +14418,14 @@ function animate(state,steer,time,first=false){
  rider.position.set(wp.x,wp.y,wp.z);rider.rotation.y=state.heading+(state.fakie?Math.PI:0)+p.riderYaw;body.visible=!first;
  const e=.35,dx=-Math.sin(state.heading),dz=-Math.cos(state.heading),slope=(height(state.x+dx*e,state.z+dz*e)-height(state.x-dx*e,state.z-dz*e))/(2*e);
  pose.rotation.x=T.MathUtils.lerp(pose.rotation.x,air?0:Math.atan(slope*sy/sx),blend);pose.rotation.z=T.MathUtils.lerp(pose.rotation.z,state.bail?0:-steer.turn*Math.min(.15,Math.abs(state.speed)*.015),blend);
- body.rotation.set(p.tilt,0,p.roll);body.position.set(0,0,0);
+ body.rotation.set(p.tilt,0,p.roll);body.position.set(0,dogOffset,0);
  const q=arr=>V(...arr),chest=q(p.chest),pelvis=q(p.pelvis),headPoint=q(p.head),spine=chest.clone().sub(pelvis);
  torso.position.copy(chest).add(pelvis).multiplyScalar(.5);torso.quaternion.setFromUnitVectors(V(0,1,0),spine.normalize());torso.rotateY(p.yaw);torso.scale.set(.245,(chest.distanceTo(pelvis)+.28)*.5,.16);
  hips.position.copy(pelvis);hips.rotation.y=p.yaw;head.position.copy(headPoint).add(V(0,.045,-.025));head.rotation.set(-.06,-.28,-steer.turn*.08);
  collar.position.copy(headPoint).add(V(0,-.18,.015));tail.position.copy(pelvis);tail.rotation.set(air?-.25:0,p.yaw+steer.turn*.18,air?.16:0);
  const earLift=air?.34:Math.min(.2,Math.abs(state.speed)*.012);ears.forEach((ear,i)=>{ear.rotation.x=-earLift;ear.rotation.z=(i?1:-1)*(air?.22:0);});
  for(let i=0;i<2;i++){const h=q(p.hips[i]),k=q(p.knees[i]),f=q(p.feet[i]),a=q(p.shoulders[i]),el=q(p.elbows[i]),hand=q(p.hands[i]);segment(limbs[i*2],h,k);segment(limbs[i*2+1],k,f);joints[i*2].position.copy(h);joints[i*2+1].position.copy(k);shoes[i].position.copy(f);shoes[i].rotation.y=i===0?-.15:.12;segment(limbs[4+i*2],a,el);segment(limbs[5+i*2],el,hand);joints[4+i*2].position.copy(a);joints[5+i*2].position.copy(el);hands[i].position.copy(hand);hands[i].rotation.z=i===0?-.25:.25;}
- if(state.bail){const points=[...p.feet,...p.hands,...p.knees,p.pelvis,p.chest,p.head],rotation=new T.Quaternion().setFromEuler(body.rotation);let minY=Infinity;for(const pt of points)minY=Math.min(minY,q(pt).applyQuaternion(rotation).y-.07);body.position.y=(-.14-minY)*Math.min(1,(1.25-state.bail)/.4);}
+ if(state.bail){const points=[...p.feet,...p.hands,...p.knees,p.pelvis,p.chest,p.head],rotation=new T.Quaternion().setFromEuler(body.rotation);let minY=Infinity;for(const pt of points)minY=Math.min(minY,q(pt).applyQuaternion(rotation).y-.07);body.position.y=dogOffset+(-.14-minY*dogScale-dogOffset)*Math.min(1,(1.25-state.bail)/.4);}
  board.rotation.set(p.boardPitch,p.boardYaw,p.boardRoll);board.position.set(0,p.boardLift,0);
  if(state.bail){const t=1.25-state.bail;board.position.set(t*1.25,Math.max(-.02,.18*Math.sin(Math.min(1,t/.45)*Math.PI)),t*.35);board.rotation.y=t*7;board.rotation.z=Math.sin(t*8)*.18;}
  shadow.position.set(wp.x,origin.y+sy*height(state.x,state.z)+.025,wp.z);shadow.material.opacity=1/(1+Math.max(0,state.y-height(state.x,state.z))*.5);rider.userData.pose=p.name;
@@ -14433,7 +14439,32 @@ function follow(camera,state,mode='third',dt=1/30,snap=false,look={}){
 }
 return {scene,rider,shadow,animate,follow,toWorld,toLocal,setVisible(on){rider.visible=shadow.visible=on;}};
 }
-root.SkateView={create};
+// Live rig-only inset: share geometry/materials without drawing the yard twice.
+function createInset(source){
+ const T=THREE,scene=new T.Scene(),copy=source.clone(true),camera=new T.PerspectiveCamera(34,1,.02,100),original=[],clones=[];
+ scene.background=new T.Color('#e8f1f2');scene.add(copy,new T.HemisphereLight('#ffffff','#8ba4ae',2.5));
+ source.traverse(o=>original.push(o));copy.traverse(o=>clones.push(o));copy.traverse(o=>{o.castShadow=false;o.receiveShadow=false;});
+ const bounds=new T.Box3(),center=new T.Vector3(),size=new T.Vector3(),direction=new T.Vector3(1.6,.9,-3.6).normalize();
+ const viewport=new T.Vector4(),scissor=new T.Vector4(),canvasSize=new T.Vector2(),clearColor=new T.Color();
+ function sync(heading,aspect){
+  for(let i=0;i<clones.length;i++){const a=original[i],b=clones[i];b.position.copy(a.position);b.quaternion.copy(a.quaternion);b.scale.copy(a.scale);b.visible=a.name==='skate-dog-body'?true:a.visible;}
+  copy.visible=true;copy.position.set(0,0,0);copy.rotation.y-=heading;copy.updateMatrixWorld(true);
+  bounds.setFromObject(copy);bounds.getCenter(center);bounds.getSize(size);
+  camera.aspect=aspect;const vFov=camera.fov*Math.PI/180,hFov=2*Math.atan(Math.tan(vFov/2)*aspect),distance=Math.max(.5,size.length()*.5)/Math.sin(Math.min(vFov,hFov)/2)*1.1;
+  camera.position.copy(center).addScaledVector(direction,distance);camera.lookAt(center);
+  const inverse=camera.quaternion.clone().invert();let fit=.4;for(const x of [bounds.min.x,bounds.max.x])for(const y of [bounds.min.y,bounds.max.y])for(const z of [bounds.min.z,bounds.max.z]){const p=new T.Vector3(x,y,z).sub(center).applyQuaternion(inverse);fit=Math.max(fit,p.z+Math.abs(p.x)/Math.tan(hFov/2),p.z+Math.abs(p.y)/Math.tan(vFov/2));}
+  camera.position.copy(center).addScaledVector(direction,fit*1.1);camera.updateProjectionMatrix();camera.updateMatrixWorld(true);
+ }
+ function draw(renderer,element,heading){
+  const r=element.getBoundingClientRect(),c=renderer.domElement.getBoundingClientRect();if(r.width<1||r.height<1||c.width<1||c.height<1)return;
+  renderer.getSize(canvasSize);const x=(r.left-c.left)/c.width*canvasSize.x,y=(c.bottom-r.bottom)/c.height*canvasSize.y,w=r.width/c.width*canvasSize.x,h=r.height/c.height*canvasSize.y;
+  sync(heading,w/h);renderer.getViewport(viewport);renderer.getScissor(scissor);renderer.getClearColor(clearColor);const test=renderer.getScissorTest(),auto=renderer.autoClear,alpha=renderer.getClearAlpha();
+  try{renderer.setViewport(x,y,w,h);renderer.setScissor(x,y,w,h);renderer.setScissorTest(true);renderer.autoClear=true;renderer.render(scene,camera);}
+  finally{renderer.setViewport(viewport);renderer.setScissor(scissor);renderer.setScissorTest(test);renderer.autoClear=auto;renderer.setClearColor(clearColor,alpha);}
+ }
+ return {draw,sync,scene,camera,copy,bounds};
+}
+root.SkateView={create,createInset};
 })(globalThis);
 
 </script>
@@ -14468,20 +14499,23 @@ function create(scene,soil,canPlay,onReturn,sticks,clearShared){
  const K=SkateCore,S=BackhoeSite.skate,$=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
  const ground=(x,z)=>(soil.sample(S.x+x*S.scale,S.z+z*S.scale)-S.base)/S.verticalScale;
  const view=SkateView.create(scene,{ground:false,height:ground,scale:S.scale,verticalScale:S.verticalScale,origin:{x:S.x,y:S.base,z:S.z}}),state=K.fresh();
- const wind=SkateWind.create($('#skate-rush'));
+ const wind=SkateWind.create($('#skate-rush')),inset=SkateView.createInset(view.rider);
+ let insetVisible=true;
+ $('#skate-inset-toggle').onclick=()=>{insetVisible=!insetVisible;$('#skate-inset-view').hidden=!insetVisible;$('#skate-inset').classList.toggle('collapsed',!insetVisible);$('#skate-inset-toggle').setAttribute('aria-expanded',String(insetVisible));$('#skate-inset-toggle').textContent=insetVisible?'正面ワイプ −':'正面ワイプ ＋';};
  let active=false,mode='third',time=0,lastScore=0;view.setVisible(false);
  const controls=new BackhoeSkateInput.Controls(action);
  function clear(){controls.clear();}
  function input(){return controls.movement(sticks[0]);}
  function action(a){if(active&&canPlay())K.action(state,a);}
  function stickChanged(i){if(active&&canPlay()&&i===1)controls.gesture(sticks[1]);}
- for(const b of $$('[data-skate-action]'))b.onclick=()=>action(b.dataset.skateAction);
+ for(const b of $$('[data-skate-action]')){b.onpointerdown=e=>{e.preventDefault();action(b.dataset.skateAction);};b.onclick=e=>{if(e.detail===0)action(b.dataset.skateAction);};}
  $('#skate-back').onclick=onReturn;$('#skate-reset').onclick=()=>{clearShared();K.reset(state);};
  $('#skate-help').onclick=()=>{clearShared();$('#skate-help-dialog').showModal();};
  function toggle(camera){clear();mode=mode==='third'?'first':'third';view.follow(camera,state,mode,0,true);labels();}
  function labels(){const first=mode==='first';$('#view-toggle').textContent=first?'三人称':'主観';$('#view-toggle').setAttribute('aria-label',first?'三人称へ切り替える':'主観へ切り替える');$('#skate-view').textContent=first?'主観 · 進行方向':'三人称 · 後方追従';}
- function ui(){const needed=state.air&&state.needsCatch&&!state.bail,ready=needed&&(!state.trick||state.trick.time>=state.trick.duration*.82);$('#skate-catch-guide').hidden=!needed;$('#skate-catch-label').textContent=state.caught?'CATCH!':ready?'今！ キャッチ':'回転中…';$('#skate-catch-progress').style.width=(state.trick?Math.min(100,state.trick.time/state.trick.duration*100):100)+'%';$('#skate-catch').classList.toggle('ready',ready&&!state.caught);$('#skate-score').textContent=Math.floor(state.score).toLocaleString();$('#skate-speed').textContent=Math.round(Math.abs(state.speed)*S.scale*3.6);$('#skate-message').textContent=state.noticeTime?state.notice:'';$('#skate-hud').classList.toggle('landed',state.score>lastScore&&state.flash>0);if(!state.flash)lastScore=state.score;$('#skate-hud').classList.toggle('fallen',!!state.bail);$('#skate-hud').style.setProperty('--rush',Math.max(0,(Math.abs(state.speed)-7)/12));$('#scene').setAttribute('aria-label','スケボーパーク / '+(mode==='first'?'主観・進行方向':'三人称・後方追従')+' / 得点 '+Math.floor(state.score)+' / '+(state.bail?'転倒':state.air?'空中':'走行'));}
+ function ui(){const needed=state.air&&state.needsCatch&&!state.bail,ready=needed&&(!state.trick||state.trick.time>=state.trick.duration*.82);$('#skate-catch-guide').hidden=!ready||state.caught;$('#skate-catch').disabled=!ready||state.caught;$('#skate-score').textContent=Math.floor(state.score).toLocaleString();$('#skate-speed').textContent=Math.round(Math.abs(state.speed)*S.scale*3.6);$('#skate-message').textContent=state.noticeTime?state.notice:'';$('#skate-hud').classList.toggle('landed',state.score>lastScore&&state.flash>0);if(!state.flash)lastScore=state.score;$('#skate-hud').classList.toggle('fallen',!!state.bail);$('#skate-hud').style.setProperty('--rush',Math.max(0,(Math.abs(state.speed)-7)/12));$('#scene').setAttribute('aria-label','スケボーパーク / '+(mode==='first'?'主観・進行方向':'三人称・後方追従')+' / 得点 '+Math.floor(state.score)+' / '+(state.bail?'転倒':state.air?'空中':'走行'));}
  return {view,state,get active(){return active;},get mode(){return mode;},clear,toggle,stickChanged,
+  renderInset(renderer){if(active&&insetVisible)inset.draw(renderer,$('#skate-inset-view'),state.heading);},
   get position(){return view.toWorld(state);},
   enter(camera){active=true;clear();K.reset(state);view.rider.scale.setScalar(1);view.setVisible(true);$('#skate-hud').hidden=false;scene.attach(camera);view.animate(state,input(),time,mode==='first');view.follow(camera,state,mode,0,true);labels();ui();},
   exit(){active=false;clear();view.setVisible(false);$('#skate-hud').hidden=true;},
@@ -14682,7 +14716,7 @@ function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;co
  const dx=target.gate[0]-navVehicle.x,dz=target.gate[1]-navVehicle.z,relative=Math.atan2(-dx,-dz)-navVehicle.heading-(flight||skate?.active?0:state.yaw),angle=Math.atan2(Math.sin(relative),Math.cos(relative));$('#route-distance').textContent=(Math.abs(angle)<.35?'正面':angle>0?'左側':'右側')+' '+Math.round(Math.hypot(dx,dz))+' m';
  $('#yard-ui').hidden=!!flight||skate?.active||recovery.active||!(zone?.id==='lift'||zone?.id==='plate'||yard.hook);$('#hook-toggle').textContent=yard.hook?'玉掛けを外す':'玉掛け';$('#load-status').textContent=yard.hook?yard.hook.body.label+' / '+yard.hook.body.mass+' kg':yard.blocked?'接触・動作制限':'吊り点の上へフックを移動';
  
- $('#heading').textContent='上部旋回 '+Math.abs(Math.round(state.yaw*180/Math.PI))+'° '+(state.yaw>.01?'左':state.yaw<-.01?'右':'');$$('.key').forEach(b=>b.classList.toggle('held',active.has(b.dataset.key)&&!paused&&(!flight||flight.controllable)&&!dialog));render.render(scene,camera);frameCount++;
+ $('#heading').textContent='上部旋回 '+Math.abs(Math.round(state.yaw*180/Math.PI))+'° '+(state.yaw>.01?'左':state.yaw<-.01?'右':'');$$('.key').forEach(b=>b.classList.toggle('held',active.has(b.dataset.key)&&!paused&&(!flight||flight.controllable)&&!dialog));render.render(scene,camera);skate?.renderInset(render);frameCount++;
 }
 // A 30 Hz timer keeps the training clock moving in embedded WebViews that
 // suspend requestAnimationFrame while the preview is temporarily occluded.
