@@ -258,7 +258,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.17 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.18 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -269,7 +269,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.17</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.18</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -288,10 +288,10 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
    <div class="view-bottom"><div><div class="heading" id="heading">旋回 0°</div><div class="view-tip" id="view-tip">左右の丸をドラッグ：レバー　中央をドラッグ：見回す</div></div><button class="secret" id="secret" aria-label="空から移動：ヘリコプター・戦闘機" title="空から移動する"><span class="secret-icon" aria-hidden="true">⬡</span><span><strong>空から移動</strong><small>AIR TRANSFER</small></span></button></div>
 <button id="skate-board" hidden><b>スケボーに変形</b><small>MONO / SKATE YARD</small></button>
 <section id="skate-hud" hidden aria-label="スケート操作"><canvas id="skate-rush" aria-hidden="true"></canvas>
- <div class="skate-scoreboard"><strong>ROKU<span>/</span></strong><div><small>SESSION SCORE</small><b id="skate-score">0</b></div><div class="skate-speed"><b id="skate-speed">0</b><small>km/h</small></div></div>
+ <div class="skate-scoreboard"><strong>DOG<span>/</span></strong><div><small>SESSION SCORE</small><b id="skate-score">0</b></div><div class="skate-speed"><b id="skate-speed">0</b><small>km/h</small></div></div>
  <div class="skate-tools"><button id="skate-wave-enter" data-skate-action="wave-enter">空中外周へ</button><button id="skate-wave-exit" data-skate-action="wave-exit" hidden>地上へ戻る</button><button id="skate-reset">入口へ</button><button id="skate-help">技の操作</button><button id="skate-back">重機に戻る</button></div>
  <div id="skate-message" role="status"></div><div id="skate-view">三人称 · 後方追従</div><button id="skate-front" aria-label="視点を進行方向へ戻す">進行方向へ</button>
- <aside id="skate-inset" aria-label="スケーターと板の正面ワイプ"><button id="skate-inset-toggle" aria-expanded="true" aria-controls="skate-inset-view">正面ワイプ −</button><div id="skate-inset-view" aria-label="正面から見た全身と板のライブ映像"></div></aside>
+ <aside id="skate-inset" aria-label="犬と板の正面ワイプ"><button id="skate-inset-toggle" aria-expanded="true" aria-controls="skate-inset-view">正面ワイプ −</button><div id="skate-inset-view" aria-label="正面から見た全身と板のライブ映像"></div></aside>
 
 </section>
 
@@ -308,7 +308,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <div class="settings"><label for="speed">動作の速さ</label><select id="speed"><option value="0.25">とてもゆっくり</option><option value="0.45" selected>ゆっくり</option><option value="0.8">ふつう</option></select></div><div class="settings-actions"><button id="look-reset">視線を正面へ</button><button id="help">操作方法</button><button id="soil-reset">土と穴をリセット</button><button id="back-select">操作選択へ戻る</button></div><p class="tiny">操作・地盤・荷重は試作用のモデルです。実機の安全限界を示すものではありません。</p></dialog>
 <dialog id="map-dialog"><button class="close" data-close>閉じる</button><h2>ひとつにつながる現場</h2><p>色の旗が区画の入口。図の濃い矢印が現在地です。</p><canvas id="map-canvas" width="500" height="500" aria-label="120メートル四方の場内図"></canvas><p>目印を選んで走行してください。土・穴・荷物はそのまま残ります。</p></dialog>
 <dialog id="help-dialog"><button class="close" data-close>閉じる</button><div class="eyebrow">VERIFIED CONTROL MAP</div><h2>縦旋回と横旋回の違い</h2><p>前＝運転者から奥へ倒す。手前＝運転者へ引く。<br>今回切り替わるのは左レバーです。</p><table><thead><tr><th>左レバー / キー</th><th>縦旋回 / C</th><th>横旋回 / ISO</th></tr></thead><tbody><tr><td>前 / W</td><td>右旋回</td><td>アーム伸ばし</td></tr><tr><td>手前 / S</td><td>左旋回</td><td>アームかき込み</td></tr><tr><td>左 / A</td><td>アーム伸ばし</td><td>左旋回</td></tr><tr><td>右 / D</td><td>アームかき込み</td><td>右旋回</td></tr></tbody></table><table><thead><tr><th>右レバー / キー</th><th>２方式で共通</th></tr></thead><tbody><tr><td>前 / ↑</td><td>ブーム下げ</td></tr><tr><td>手前 / ↓</td><td>ブーム上げ</td></tr><tr><td>左 / ←</td><td>バケットかき込み</td></tr><tr><td>右 / →</td><td>バケットダンプ</td></tr></tbody></table><h3>走行は２本の専用レバーで操作</h3><p>作業レバーとは独立し、同時に使えます。前後の倒し量で左右それぞれのクローラを動かし、手を離すと中立です。左右の割当は足回りに固定。上部を180度旋回すると、運転席から見た進行方向は逆になります。</p><p>PC用の代用キーは左走行 I／K、右走行 O／L。見回すときは画面の空いた所をドラッグします。</p><p class="tiny">走行の照合：<a class="source-link" href="https://media.kubota.io/uploads/Kubota-Excavators-U17-3-Manual.pdf" target="_blank" rel="noopener">クボタ U17-3 取扱説明書（誌面38〜40ページ：左右走行レバー・方向転換）</a><br>操作配置と方向を練習する試作です。接地点と重心から支持荷重を計算し、接地摩擦で動作が抵抗を受けます。数値は試作用で、RX-506の実測油圧・強度・転倒限界に合わせたものではありません。</p><h3>接地動作の参考と制約</h3><p>上記クボタ説明書の誌面38ページは、ブーム・アーム・バケットによる片側クローラの持ち上げを説明しています。誌面42ページはバケットの横振りで土山を動かす使い方を避けるよう記載しています。接地旋回を、実機での推奨作業手順として扱わないでください。</p><p>05では硬質地盤の支持、土の沈み込み、接地摩擦、浮いたクローラの空転を計算します。支持範囲を超える入力は試作の計算範囲として止めます。実機の安全限界を示すものではありません。</p><p class="tiny">照合日：2026-11-20<br>操作：<a class="source-link" href="https://kubotakenki.co.jp/manual/pdf/rx-series/rx-506/manual/rx-506_manual03.pdf" target="_blank" rel="noopener">クボタ建機ジャパン RX-506 操作パターン（PDF 6〜7ページ）</a><br>内観：<a class="source-link" href="https://www.kubota.co.jp/product/machinery/support/pdf/RX-506.pdf" target="_blank" rel="noopener">クボタ RX-506 公式カタログ（PDF 7ページ）</a><br>名称の補助照合：<a class="source-link" href="https://www.kobelco-ts.com/assets/pdf/rental/shovel/1-11.pdf" target="_blank" rel="noopener">コベルコ教習所・レンタル資料（ISO / H方式）</a><br>方式記号は資料・機種で異なります。この試作の縦旋回は上表のCパターンです。</p></dialog>
-<dialog id="skate-help-dialog"><button class="close" data-close>閉じる</button><h2>ROKU / 自分のラインを走ろう。</h2><p>バックホーと同じ左右の丸いレバーをドラッグします。左は前で加速、手前でブレーキ、左右で曲がる。倒し量で調整できます。右は前でオーリー、左でフリップ、右でショービット、手前で180°。技の後は一度レバーを中央へ戻してください。両手で同時に操作できます。左レバーの下の「␣ ジャンプ」は回転しないジャンプで、キャッチ不要。押し続けても連続ジャンプしません。レールと同じ向きに飛び乗ると自動でグラインドし、もう一度ジャンプで降りられます。<br>技の回転が終わる頃、右レバーの丸が光って「ここ！」が出ます。一度指を離して、その右の丸をタップしてキャッチ。中央まで指を伸ばす必要はありません。押し忘れは転倒。転んでも入口へ戻れます。</p><p><b>AIR LOOP / 空中外周コース</b>：「空中外周へ」で上空の乗り場へ移動します。半透明の巻いた波の水路が、パークの南・東・北・西を一周します。前へ進むとコースに沿ってパーク全体を周回し、道の途中で床がゆっくりねじれます。重力を無視して床に接地するので、傾いた場所でも落ちずに止まれます。左レバー前で加速、手前でブレーキ、左右でコース幅の中を移動。ジャンプ・技・キャッチも使えます。「地上へ戻る」でパークの固定乗り場に降ります。主観はコースの先を見て床に追従、三人称は後ろからついてきます。</p><p>PC：左レバーはWASD、右レバーは矢印。Space 単純ジャンプ、C キャッチ、Esc 一時停止。マウスでも丸いレバーをドラッグできます。操作表示を隠しても同じ位置で操作できます。空いた画面をドラッグして見回し。指を離して滑走すると、視点が進行方向へ戻ります。左上の「進行方向へ」かVでも戻せます。主観は進行方向を見る視点です。「重機に戻る」でパークの固定降り場へ戻ります。</p></dialog>
+<dialog id="skate-help-dialog"><button class="close" data-close>閉じる</button><h2>DOG / 自分のラインを走ろう。</h2><p>バックホーと同じ左右の丸いレバーをドラッグします。左は前で加速、手前でブレーキ、左右で曲がる。倒し量で調整できます。右は前でオーリー、左でフリップ、右でショービット、手前で180°。技の後は一度レバーを中央へ戻してください。両手で同時に操作できます。左レバーの下の「␣ ジャンプ」は回転しないジャンプで、キャッチ不要。押し続けても連続ジャンプしません。レールと同じ向きに飛び乗ると自動でグラインドし、もう一度ジャンプで降りられます。<br>技の回転が終わる頃、右レバーの丸が光って「ここ！」が出ます。一度指を離して、その右の丸をタップしてキャッチ。中央まで指を伸ばす必要はありません。押し忘れは転倒。転んでも入口へ戻れます。</p><p><b>AIR LOOP / 空中外周コース</b>：「空中外周へ」で上空の乗り場へ移動します。半透明の巻いた波の水路が、パークの南・東・北・西を一周します。前へ進むとコースに沿ってパーク全体を周回し、道の途中で床がゆっくりねじれます。重力を無視して床に接地するので、傾いた場所でも落ちずに止まれます。左レバー前で加速、手前でブレーキ、左右でコース幅の中を移動。ジャンプ・技・キャッチも使えます。「地上へ戻る」でパークの固定乗り場に降ります。主観はコースの先を見て床に追従、三人称は後ろからついてきます。</p><p>PC：左レバーはWASD、右レバーは矢印。Space 単純ジャンプ、C キャッチ、Esc 一時停止。マウスでも丸いレバーをドラッグできます。操作表示を隠しても同じ位置で操作できます。空いた画面をドラッグして見回し。指を離して滑走すると、視点が進行方向へ戻ります。左上の「進行方向へ」かVでも戻せます。主観は進行方向を見る視点です。「重機に戻る」でパークの固定降り場へ戻ります。</p></dialog>
 <dialog id="secret-dialog"><button class="close" data-close>閉じる</button><div class="eyebrow">AIR TRANSFER / TRANSFORM</div><h2>空から、次の区画へ。</h2><p>ヘリ・戦闘機に変形して敷地を移動します。<br>空中の案内風船へ近づき、区画の固定降り場へ着地できます。</p><div class="forms"><button data-form="heli"><div class="form-code">FORM 01 / ROTOR</div><svg viewBox="0 0 300 100" aria-hidden="true"><g fill="none" stroke="#8eacb7" stroke-width="2"><path d="M30 20h235M150 20v22M105 88h91M120 74v14M178 74v14"/></g><path fill="#eaa34e" d="M83 63q4-22 41-23h50l22 16 56-9 25-21 7 2-15 32-73 8q-10 12-56 12H106z"/><path fill="#234959" stroke="#b8dde2" d="M93 61q8-16 33-16h20v20H93z"/><path fill="#21343e" d="M154 46h18l16 14h-34z"/><circle cx="270" cy="48" r="13" fill="none" stroke="#b8dde2"/><path d="m263 41 14 14m0-14-14 14" stroke="#b8dde2"/></svg><strong>ヘリコプター</strong><span>ローター展開 → 自由飛行</span></button><button data-form="jet"><div class="form-code">FORM 02 / WING</div><svg viewBox="0 0 300 100" aria-hidden="true"><path fill="#eeae5a" d="m150 4 14 36 105 31-4 10-104-9 15 19h-52l15-19-104 9-4-10 105-31z"/><path fill="#253d4a" d="m150 10 11 50-11 20-11-20z"/><path fill="#89c7d6" d="m150 25 6 27-6 6-6-6z"/><path fill="#253d4a" d="m128 67-15 28 23-9 5-21m31 2 15 28-23-9-5-21"/><path stroke="#b9edf4" stroke-width="3" d="M144 82v15m12-15v15"/><path stroke="#fbe0ac" stroke-width="3" d="m51 73 48-6m150 6-48-6"/></svg><strong>戦闘機</strong><span>翼を展開 → 自由飛行</span></button></div><p class="tiny hangar-foot">左レバーで前後移動・向き、右で昇降・横移動。「ここに降りる」で近くの風船の固定位置へ着地し、バックホーに戻ります。スケボーの風船ではスケボーへ変形します。</p></dialog>
 <div id="toast" hidden></div>
 <script>
@@ -14319,24 +14319,24 @@ const interpolate=(a,b,t)=>Array.isArray(a)?a.map((v,i)=>interpolate(v,b[i],t)):
 function trickPose(type,t){
  const pop={hipY:.49,chestY:.81,lean:-.22,hipX:.03,chestX:-.18,yaw:1.15,
   feet:[[-.06,.10,-.32],[.06,.10,.32]],knees:[[-.30,.29,-.29],[-.23,.30,.27]],
-  elbows:[[-.37,.76,-.35],[.23,.84,.30]],hands:[[-.45,.60,-.46],[.36,.72,.41]]};
+  elbows:[[-.28,.74,-.25],[.24,.79,.24]],hands:[[-.30,.56,-.38],[.29,.61,.31]]};
  const rise={hipY:.72,chestY:1.03,lean:-.16,hipX:.02,chestX:-.10,yaw:1.15,
   feet:[[-.08,.20,-.35],[.07,.21,.32]],knees:[[-.33,.50,-.33],[-.27,.51,.29]],
-  elbows:[[-.39,1.02,-.37],[.34,1.16,.28]],hands:[[-.58,.98,-.48],[.53,1.28,.42]]};
+  elbows:[[-.31,.96,-.28],[.27,1.04,.24]],hands:[[-.42,.86,-.41],[.23,1.13,.10]]};
  const catchPose={hipY:.60,chestY:.93,lean:-.18,hipX:.02,chestX:-.12,yaw:1.15,
   feet:[[-.06,.10,-.32],[.06,.10,.32]],knees:[[-.30,.35,-.30],[-.25,.36,.27]],
-  elbows:[[-.40,.91,-.35],[.34,1.01,.29]],hands:[[-.60,.80,-.48],[.54,.96,.42]]};
+  elbows:[[-.30,.85,-.26],[.28,.90,.25]],hands:[[-.35,.65,-.36],[.35,.71,.33]]};
  let peak;
  if(type==='flip')peak={hipY:.76,chestY:1.04,lean:-.18,hipX:.04,chestX:-.16,yaw:1.04,
   feet:[[-.48,.38,-.46],[.10,.41,.30]],knees:[[-.38,.63,-.31],[-.22,.65,.24]],
-  elbows:[[-.46,1.02,-.36],[.29,1.20,.22]],hands:[[-.69,.94,-.49],[.48,1.43,.29]]};
+  elbows:[[-.32,.98,-.32],[.29,1.10,.22]],hands:[[-.44,.84,-.40],[.15,1.20,.09]]};
  else if(type==='shuv')peak={hipY:.75,chestY:1.06,lean:-.08,hipX:.02,chestX:-.06,yaw:1.40,
   feet:[[-.12,.36,-.52],[.26,.38,.55]],knees:[[-.32,.60,-.40],[-.13,.63,.40]],
-  elbows:[[-.47,1.10,-.22],[.46,1.09,.21]],hands:[[-.75,1.15,-.23],[.76,1.12,.24]]};
- else {rise.yaw=1.75;rise.elbows=[[-.31,1.13,-.39],[.36,.98,-.08]];rise.hands=[[-.27,1.36,-.45],[.60,.92,-.25]];
+  elbows:[[-.33,1.01,-.25],[.32,1.01,.24]],hands:[[-.42,.89,-.37],[.43,.89,.36]]};
+ else {rise.yaw=1.75;rise.elbows=[[-.24,1.05,-.29],[.28,.96,.11]];rise.hands=[[-.04,1.15,-.34],[.39,.84,-.08]];
   peak={hipY:.69,chestY:.99,lean:-.17,hipX:.03,chestX:-.10,yaw:1.60,
    feet:[[-.06,.31,-.32],[.06,.31,.32]],knees:[[-.34,.52,-.29],[-.29,.54,.27]],
-   elbows:[[-.34,1.14,-.41],[.35,.95,-.02]],hands:[[-.27,1.36,-.48],[.60,.88,-.24]]};}
+   elbows:[[-.24,1.03,-.29],[.28,.95,.10]],hands:[[-.03,1.10,-.34],[.41,.85,-.12]]};}
  const frames=[[0,pop],[.20,rise],[.48,peak],[.84,catchPose],[1,catchPose]];
  let i=1;while(i<frames.length-1&&t>frames[i][0])i++;const [a,A]=frames[i-1],[b,B]=frames[i],f=ease(a,b,t),p={};for(const key of Object.keys(A))p[key]=interpolate(A[key],B[key],f);
  const rotation=ease(.12,.82,t);p.boardRoll=type==='flip'?rotation*Math.PI*2:0;p.boardYaw=type==='shuv'?rotation*Math.PI:0;p.riderYaw=type==='spin'?rotation*Math.PI:0;
@@ -14366,14 +14366,14 @@ function sample(s,input={},time=0,landing=0){
   hipY=.60+extend*.10;chestY=.98+extend*.06;lean=-.13;
   feet=[[-.06,.10+tuck*.16*(1-extend),-.32],[.06,.10+tuck*.12*(1-extend),.32]];
   knees=[[-.32,.42+tuck*.06,-.28],[-.25,.43+tuck*.06,.27]];
-  elbows=[[-.40,1.12,-.32],[.42,1.19,.22]];hands=[[-.63,1.17,-.44],[.65,1.31,.34]];
+  elbows=[[-.30,1.01,-.28],[.31,1.06,.24]];hands=[[-.40,.89,-.39],[.40,.94,.35]];
   const activeType=s.trick?.type||s.lastTrick;
   if(activeType){const t=s.trick?clamp(s.trick.time/s.trick.duration,0,1):1,p=trickPose(activeType,t);name=(s.caught?'catch-':'')+activeType;
    ({hipY,chestY,lean,hipX,chestX,yaw,feet,knees,elbows,hands,boardRoll,boardYaw,riderYaw,boardLift,boardPitch}=p);
    if(!s.trick)riderYaw=0; // The completed 180 is already carried by the fakie stance.
   }else if(s.caught){name='catch';feet=[[-.06,.10,-.32],[.06,.10,.32]];hipY=.61;chestY=.97;hands=[[-.51,1.03,-.44],[.55,1.12,.30]];}
  }
- if(s.grind){name='grind';hipY=.60;chestY=.96;lean=-.10;const balance=Math.sin(time*4)*.06;chestX=balance;elbows=[[-.43,1.05,-.30],[.44,1.06,.28]];hands=[[-.77,1.11+balance,-.42],[.79,1.12-balance,.39]];}
+ if(s.grind){name='grind';hipY=.60;chestY=.96;lean=-.10;const balance=Math.sin(time*4)*.06;chestX=balance;elbows=[[-.33,1.01,-.28],[.34,1.02,.25]];hands=[[-.52,.94+balance,-.39],[.53,.95-balance,.36]];}
  if(!air&&!s.grind&&landing>0){name='landing';const compression=Math.sin(clamp(landing,0,1)*Math.PI/2);hipY-=.22*compression;chestY-=.25*compression;lean-=.13*compression;knees.forEach(k=>k[1]-=.11*compression);elbows=[[-.41,.84,-.32],[.40,.92,.26]];hands=[[-.57,.57,-.47],[.56,.69,.42]];}
  if(s.bail){
   const p=clamp((1.25-s.bail)/.7,0,1),type=(s.bails||1)%3;
@@ -14387,6 +14387,8 @@ function sample(s,input={},time=0,landing=0){
  const pelvis=[hipX,hipY,.03],chest=[chestX,chestY,lean],head=[chestX*.8,chestY+.21,lean-.04];
  const span=[Math.cos(yaw)*.19,0,-Math.sin(yaw)*.19];
  const shoulders=[[span[0]+chestX,chestY+.12,lean+span[2]],[-span[0]+chestX,chestY+.12,lean-span[2]]];
+ // Compact canine reach: keep the joint angles, shorten upper and lower arms 27%.
+ for(let i=0;i<2;i++){const oldElbow=[...elbows[i]],oldHand=[...hands[i]];elbows[i]=shoulders[i].map((v,j)=>v+(oldElbow[j]-v)*.73);hands[i]=elbows[i].map((v,j)=>v+(oldHand[j]-oldElbow[j])*.73);}
  const hips=[[hipX-.065,hipY,-.105],[hipX+.065,hipY,.105]];
  return {name,pelvis,chest,head,shoulders,hips,knees,feet,elbows,hands,yaw,roll,tilt,boardRoll,boardYaw,riderYaw,boardLift,boardPitch};
 }
@@ -14470,31 +14472,38 @@ for(const z of [-35,35])line([V(-35,.04,z),V(35,.04,z)],'#14171a',.15);for(const
 for(const x of [-31,31])for(const z of [-28,0,28]){box(scene,.12,6,.12,x,3,z,dark);box(scene,1.8,.14,.45,x+.6,6,z,white);}
 for(const x of [-32,32])for(const z of [9,15]){box(scene,1.7,.12,.6,x,.5,z,orange);for(const dx of [-.6,.6])box(scene,.06,.5,.45,x+dx,.25,z,dark);}
 if(options.ground!==false){const distant=new T.InstancedMesh(new T.BoxGeometry(1,1,1),mat('#acbbb7'),30),dummy=new T.Object3D();for(let i=0;i<30;i++){const a=i/30*Math.PI*2,r=85+(i%5)*5,h=4+(i*7%9);dummy.position.set(Math.sin(a)*r,h/2-2,Math.cos(a)*r);dummy.scale.set(9+(i%3)*7,h,8);dummy.rotation.y=a;dummy.updateMatrix();distant.setMatrixAt(i,dummy.matrix);}scene.add(distant);}
-// Original street skater: rigid low-poly clothing, shared toon palette, no loaded assets.
+// White skater dog with compact limbs; references inform posing, not an anime rendering style.
 const rider=new T.Group(),pose=new T.Group(),stance=new T.Group(),board=new T.Group(),body=new T.Group();world.add(rider);rider.add(pose);pose.add(stance);stance.add(board,body);
 rider.name='skate-travel-frame';stance.name='skate-stance';body.name='skate-rider-body';pose.scale.setScalar(.78);
 const riderScale=.76,riderOffset=.018-(.10-.0625)*riderScale;body.scale.setScalar(riderScale);
-const palette={ink:'#17212d',skin:'#edbd91',hair:'#202c3b',mint:'#59ebc5',red:'#f25545',shade:'#bd383a',pants:'#293847',white:'#f5f1de',sole:'#16222e',gold:'#ffd45c'};
-const ramp=new T.DataTexture(new Uint8Array([105,105,105,255,184,184,184,255,255,255,255,255]),3,1,T.RGBAFormat);ramp.minFilter=ramp.magFilter=T.NearestFilter;ramp.generateMipmaps=false;ramp.needsUpdate=true;
-const toon=new T.MeshToonMaterial({color:'#fff',vertexColors:true,gradientMap:ramp}),outline=new T.MeshBasicMaterial({color:palette.ink,side:T.BackSide});
+const palette={ink:'#18252e',fur:'#fffdf5',blue:'#116ade',mint:'#59d5ce',shade:'#0954ac',pants:'#116ade',white:'#fffdf5',sole:'#20313d',gold:'#f5da8a',red:'#116ade'};
+const toon=new T.MeshStandardMaterial({color:'#fff',vertexColors:true,roughness:.84,metalness:0}),outline=new T.MeshBasicMaterial({color:palette.ink,side:T.BackSide});
 function profile(rings,n=8){const xyz=[],idx=[];for(const [y,rx,rz] of rings)for(let i=0;i<n;i++){const a=2*Math.PI*i/n;xyz.push(Math.sin(a)*rx,y,Math.cos(a)*rz);}for(let j=0;j<rings.length-1;j++)for(let i=0;i<n;i++){const a=j*n+i,b=j*n+(i+1)%n,c=a+n,d=b+n;idx.push(a,b,c,b,d,c);}const lo=xyz.length/3;xyz.push(0,rings[0][0],0,0,rings.at(-1)[0],0);for(let i=0;i<n;i++){const a=i,b=(i+1)%n,c=(rings.length-1)*n+i,d=(rings.length-1)*n+(i+1)%n;idx.push(lo,b,a,lo+1,c,d);}const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(xyz,3));g.setIndex(idx);g.computeVertexNormals();return g;}
 function part(g,color,pos=[0,0,0],scale=[1,1,1],rot=[0,0,0]){g=g.index?g.toNonIndexed():g.clone();g.scale(...scale);g.applyMatrix4(new T.Matrix4().makeRotationFromEuler(new T.Euler(...rot)));g.translate(...pos);const c=new T.Color(color),a=[];for(let i=0;i<g.attributes.position.count;i++)a.push(c.r,c.g,c.b);g.setAttribute('color',new T.Float32BufferAttribute(a,3));return g;}
 const block=(c,p,s,r)=>part(new T.BoxGeometry(1,1,1),c,p,s,r),ell=(c,p,s,r)=>part(new T.SphereGeometry(1,8,5),c,p,s,r);
-function rig(parts,parent,name,edge=true){const g=new T.BufferGeometry();for(const key of ['position','normal','color']){const values=[];for(const p of parts)values.push(...p.attributes[key].array);g.setAttribute(key,new T.Float32BufferAttribute(values,3));}g.computeBoundingSphere();const m=mesh(g,toon,parent);m.name=name;if(edge){const line=new T.Mesh(g,outline);line.name=name+'-outline';line.scale.setScalar(1.035);line.castShadow=line.receiveShadow=false;m.add(line);}return m;}
+function rig(parts,parent,name,edge=true){const g=new T.BufferGeometry();for(const key of ['position','normal','color']){const values=[];for(const p of parts)values.push(...p.attributes[key].array);g.setAttribute(key,new T.Float32BufferAttribute(values,3));}g.computeBoundingSphere();const m=mesh(g,toon,parent);m.name=name;if(edge){const line=new T.Mesh(g,outline);line.name=name+'-outline';line.scale.setScalar(1.018);line.castShadow=line.receiveShadow=false;m.add(line);}return m;}
 // Two upturned ends; mint nose and warm tail remain readable when the deck flips.
 const deckShape=new T.Shape();deckShape.moveTo(-.13,-.53);deckShape.quadraticCurveTo(0,-.66,.13,-.53);deckShape.lineTo(.17,.40);deckShape.quadraticCurveTo(.15,.56,0,.56);deckShape.quadraticCurveTo(-.15,.56,-.17,.40);deckShape.closePath();const deck=new T.ExtrudeGeometry(deckShape,{depth:.035,bevelEnabled:false,curveSegments:6});deck.rotateX(Math.PI/2);const dp=deck.attributes.position;for(let i=0;i<dp.count;i++)dp.setY(i,dp.getY(i)+Math.max(0,Math.abs(dp.getZ(i))-.36)**2*.95);deck.computeVertexNormals();
 const deckParts=[part(deck,palette.mint),block(palette.ink,[0,.009,0],[.29,.018,.77]),block(palette.white,[0,.025,-.33],[.19,.012,.045]),block(palette.red,[0,.03,.46],[.24,.012,.07])];
 for(const z of [-.34,.34]){deckParts.push(block(palette.pants,[0,-.045,z],[.36,.035,.04]));for(const x of [-.2,.2])deckParts.push(part(new T.CylinderGeometry(.057,.057,.048,10),palette.gold,[x,-.075,z],[1,1,1],[0,0,Math.PI/2]));}rig(deckParts,board,'skate-deck');board.scale.set(1.18,1,1.2);
-const torso=rig([part(profile([[-.5,.21,.135],[-.43,.235,.15],[.20,.25,.15],[.40,.28,.145],[.5,.18,.11]]),palette.red),block(palette.ink,[0,-.43,0],[.43,.10,.29]),block(palette.ink,[0,0,-.153],[.025,.83,.008]),block(palette.white,[-.11,.23,-.158],[.065,.12,.012]),ell(palette.shade,[0,.38,.16],[.15,.18,.13]),block(palette.mint,[-.065,.02,.158],[.05,.35,.012],[0,0,-.38]),block(palette.white,[.065,.02,.158],[.05,.35,.012],[0,0,-.38])],body,'skate-jacket');
-const hips=rig([part(profile([[-.12,.19,.13],[.06,.21,.14],[.14,.18,.13]]),palette.pants),block(palette.ink,[0,.10,0],[.37,.055,.26])],body,'skate-hips');
+// A cropped sleeveless vest gives the chest/waist a deliberate silhouette.
+const vestColor='#203b63';
+const torso=rig([part(profile([[-.5,.16,.125],[-.38,.19,.14],[.30,.245,.15],[.48,.21,.12],[.5,.15,.10]],12),vestColor),block('#9cc8ff',[0,0,-.148],[.018,.87,.009]),block(palette.white,[-.10,.21,-.152],[.055,.055,.010]),part(new T.RingGeometry(.055,.082,16),palette.white,[0,.06,.152])],body,'skate-dog-vest');
+const hips=rig([ell(palette.blue,[0,0,0],[.20,.145,.14])],body,'skate-hips');
 const head=new T.Group();head.name='skate-head';body.add(head);
-const headParts=[part(profile([[-.16,.07,.074],[-.10,.115,.105],[.01,.14,.118],[.10,.13,.112],[.16,.08,.073]],10),palette.skin),ell(palette.skin,[-.139,-.01,.005],[.027,.05,.035]),ell(palette.skin,[.139,-.01,.005],[.027,.05,.035]),part(new T.ConeGeometry(.027,.065,4),palette.skin,[0,-.025,-.136],[1,1,1],[-Math.PI/2,0,0]),part(profile([[.05,.142,.13],[.12,.143,.13],[.20,.10,.09],[.23,.035,.035]],9),palette.hair),block(palette.ink,[0,-.102,-.096],[.043,.009,.009])];
-for(const side of [-1,1]){headParts.push(block(palette.white,[side*.058,.008,-.119],[.059,.035,.013]),block(palette.ink,[side*.058,.008,-.129],[.023,.032,.009]),block(palette.ink,[side*.058,.048,-.121],[.065,.013,.012],[0,0,side*.10]));}
-for(let i=0;i<5;i++){const x=-.12+i*.052;headParts.push(part(new T.ConeGeometry(.063,.17,3),i===3?palette.mint:palette.hair,[x,.09+(i%2)*.025,-.112],[.78,1,.5],[0,0,Math.PI+.18]));}rig(headParts,head,'skate-face');
-const neck=rig([part(profile([[-.08,.052,.052],[.08,.06,.06]],6),palette.skin)],body,'skate-neck',false);
-const limbs=[];for(let i=0;i<8;i++){const leg=i<4,upper=i%2===0;let parts;if(leg){parts=[part(profile([[-.5,upper?.115:.092,upper?.10:.085],[-.40,upper?.13:.10,upper?.12:.095],[.40,upper?.14:.125,upper?.12:.11],[.5,upper?.10:.105,upper?.085:.09]],7),palette.pants)];if(upper)parts.push(block(i===2?palette.gold:palette.shade,[.119,-.05,.015],[.023,.26,.15]));else parts.push(block(palette.ink,[0,-.44,0],[.18,.12,.16]));}else if(upper){parts=[part(profile([[-.5,.085,.08],[-.36,.105,.095],[.38,.12,.105],[.5,.09,.08]],7),palette.red),block(palette.ink,[0,-.43,0],[.17,.12,.16])];}else parts=[part(profile([[-.5,.044,.045],[.38,.063,.06],[.5,.062,.06]],6),palette.skin),block(palette.ink,[0,-.37,0],[.095,.18,.092])];limbs.push(rig(parts,body,'skate-limb-'+i));}
-const hands=[],shoes=[];for(let i=0;i<2;i++){hands.push(rig([ell(palette.skin,[0,0,0],[.061,.074,.042]),ell(palette.skin,[.048,-.012,-.015],[.025,.04,.022])],body,'skate-hand-'+i));shoes.push(rig([ell(palette.white,[0,.005,0],[.158,.060,.086]),block(palette.sole,[0,-.045,0],[.29,.035,.165]),block(palette.red,[-.015,.025,-.082],[.14,.025,.012]),block(palette.ink,[.01,.062,0],[.09,.014,.07])],body,'skate-shoe-'+i));}
-rider.userData.character='roku-toon-street-skater';
+const soft=(c,p,s,r)=>part(new T.SphereGeometry(1,10,6),c,p,s,r);
+const headParts=[soft(palette.fur,[0,0,0],[.20,.18,.17]),soft(palette.fur,[0,-.06,-.155],[.143,.087,.151]),ell(palette.ink,[0,-.035,-.294],[.050,.035,.036])];
+for(const side of [-1,1]){headParts.push(ell(palette.ink,[side*.071,.036,-.151],[.021,.029,.012]),part(new T.OctahedronGeometry(1),palette.fur,[side*.068,.043,-.162],[.005,.006,.004]),ell(palette.fur,[side*.194,-.034,.014],[.066,.145,.050],[.12,0,side*.18]));}
+const smileCurve=new T.CatmullRomCurve3([V(-.065,-.104,-.260),V(0,-.116,-.281),V(.065,-.104,-.260)]);headParts.push(part(new T.TubeGeometry(smileCurve,8,.005,4,false),palette.ink));
+headParts.push(part(new T.SphereGeometry(1,12,6,0,Math.PI*2,0,Math.PI/2),palette.blue,[0,.105,.008],[.216,.13,.182]),ell(palette.blue,[0,.108,-.165],[.235,.020,.166],[.06,0,-.06]),ell(palette.blue,[0,.239,.008],[.018,.012,.018]),block(palette.white,[-.034,.179,-.14],[.026,.055,.009],[0,0,-.3]),block(palette.white,[.012,.179,-.14],[.026,.055,.009],[0,0,-.3]));
+headParts.push(block('#90bdef',[0,.13,.188],[.105,.035,.010]),block(palette.white,[0,.13,.196],[.034,.028,.008]));
+for(const side of [-1,1])headParts.push(block(palette.ink,[side*.073,.071,-.147],[.043,.009,.010],[0,0,side*.18]));
+rig(headParts,head,'skate-dog-face');
+const neck=rig([ell(palette.fur,[0,0,0],[.084,.09,.075]),ell(palette.blue,[0,-.015,0],[.095,.024,.085])],body,'skate-neck',false);
+const tail=rig([part(new T.TubeGeometry(new T.CatmullRomCurve3([V(0,0,.10),V(.02,.07,.23),V(.05,.16,.35),V(.07,.24,.36)]),8,.035,6,false),palette.fur),ell(palette.fur,[.07,.24,.36],[.035,.035,.035])],body,'skate-dog-tail',false);
+const limbs=[];for(let i=0;i<8;i++){const leg=i<4,upper=i%2===0;let parts;if(leg&&upper){parts=[part(profile([[-.5,.11,.10],[-.40,.125,.11],[.38,.13,.11],[.5,.095,.08]],8),palette.blue),block(palette.shade,[.115,-.08,.005],[.015,.22,.12])];}else if(leg){parts=[part(profile([[-.5,.06,.065],[-.35,.075,.075],[.30,.085,.08],[.5,.078,.072]],8),palette.fur)];}else{parts=[part(profile([[-.5,upper?.055:.047,upper?.055:.046],[-.32,upper?.064:.055,upper?.063:.053],[.32,upper?.076:.062,upper?.07:.059],[.5,upper?.065:.06,upper?.06:.056]],8),palette.fur)];}limbs.push(rig(parts,body,'skate-limb-'+i,false));}
+const hands=[],shoes=[];for(let i=0;i<2;i++){hands.push(rig([ell(palette.fur,[0,0,0],[.068,.065,.051]),ell(palette.fur,[.046,-.008,-.012],[.025,.034,.026])],body,'skate-hand-'+i));shoes.push(rig([ell(palette.white,[0,.005,0],[.158,.060,.086]),block(palette.sole,[0,-.045,0],[.29,.035,.165]),block(palette.blue,[-.015,.025,-.082],[.14,.025,.012]),block(palette.shade,[.01,.062,0],[.09,.014,.07])],body,'skate-shoe-'+i));}
+rider.userData.character='white-skater-dog';
 function segment(m,a,b){const d=b.clone().sub(a);m.position.copy(a).add(b).multiplyScalar(.5);m.scale.y=Math.max(.001,d.length());m.quaternion.setFromUnitVectors(V(0,1,0),d.normalize());}
 let previousTime=null,wasAir=false,landAt=-100,previousPose=null;
 const shadowCanvas=document.createElement('canvas');shadowCanvas.width=shadowCanvas.height=64;const sc=shadowCanvas.getContext('2d'),sg=sc.createRadialGradient(32,32,3,32,32,31);sg.addColorStop(0,'rgba(20,32,39,.32)');sg.addColorStop(1,'rgba(20,32,39,0)');sc.fillStyle=sg;sc.fillRect(0,0,64,64);const shadow=mesh(new T.PlaneGeometry(1.5,2.2),new T.MeshBasicMaterial({map:new T.CanvasTexture(shadowCanvas),transparent:true,depthWrite:false}),world);shadow.rotation.x=-Math.PI/2;shadow.castShadow=shadow.receiveShadow=false;
@@ -14509,12 +14518,12 @@ function animate(state,steer,time,first=false){
  if(wavePose){pose.rotation.x=0;pose.rotation.z=0;}else{pose.rotation.x=T.MathUtils.lerp(pose.rotation.x,air?0:Math.atan(slope*sy/sx),blend);pose.rotation.z=T.MathUtils.lerp(pose.rotation.z,state.bail?0:-steer.turn*Math.min(.15,Math.abs(state.speed)*.015),blend);}
  body.rotation.set(p.tilt,0,p.roll);body.position.set(0,riderOffset,0);
  const q=arr=>V(...arr),chest=q(p.chest),pelvis=q(p.pelvis),headPoint=q(p.head),spine=chest.clone().sub(pelvis);
- torso.position.copy(chest).add(pelvis).multiplyScalar(.5);torso.quaternion.setFromUnitVectors(V(0,1,0),spine.normalize());torso.rotateY(p.yaw);torso.scale.set(1,chest.distanceTo(pelvis)+.23,1);
+ torso.position.copy(chest).add(pelvis).multiplyScalar(.5);torso.quaternion.setFromUnitVectors(V(0,1,0),spine.normalize());torso.rotateY(p.yaw);torso.scale.set(1,chest.distanceTo(pelvis)+.18,1);
  hips.position.copy(pelvis);hips.rotation.y=p.yaw;
  // Gaze follows travel independently of a landed switch stance and a trick's yaw.
  const facing=state.speed<-.3?Math.PI:0,lookYaw=facing-steer.turn*.18;
  head.position.copy(headPoint).add(V(0,.025,-.015));head.quaternion.copy(body.quaternion).invert().multiply(new T.Quaternion().setFromEuler(new T.Euler(-.04,lookYaw-stanceYaw,0,'YXZ')));
- neck.position.copy(headPoint).add(V(0,-.125,0));
+ neck.position.copy(headPoint).add(V(0,-.125,0));tail.position.copy(pelvis);tail.rotation.set(air?-.15:0,p.yaw,0);
  for(let i=0;i<2;i++){const h=q(p.hips[i]),k=q(p.knees[i]),f=q(p.feet[i]),a=q(p.shoulders[i]),el=q(p.elbows[i]),hand=q(p.hands[i]);segment(limbs[i*2],h,k);segment(limbs[i*2+1],k,f);shoes[i].position.copy(f);shoes[i].rotation.y=i===0?-.15:.12;segment(limbs[4+i*2],a,el);segment(limbs[5+i*2],el,hand);hands[i].position.copy(hand);hands[i].rotation.z=i===0?-.25:.25;}
  if(state.bail){const points=[...p.feet,...p.hands,...p.knees,p.pelvis,p.chest,p.head],rotation=new T.Quaternion().setFromEuler(body.rotation);let minY=Infinity;for(const pt of points)minY=Math.min(minY,q(pt).applyQuaternion(rotation).y-.07);body.position.y=riderOffset+(-.14-minY*riderScale-riderOffset)*Math.min(1,(1.25-state.bail)/.4);}
  board.rotation.set(p.boardPitch,(state.deckFakie?Math.PI:0)+(state.trick?.type==='shuv'?p.boardYaw:0),p.boardRoll);board.position.set(0,p.boardLift,0);
