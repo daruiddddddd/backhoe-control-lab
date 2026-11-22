@@ -157,10 +157,12 @@ body{overscroll-behavior:none}button{touch-action:manipulation}#game{height:100d
 @media(max-height:520px) and (orientation:landscape){#machine-inset{top:8px;right:140px;width:160px}#machine-inset-view{height:92px}#machine-inset-toggle{font-size:11px;padding:6px 9px}}
 @media(max-width:650px) and (orientation:portrait){#machine-inset{left:12px;right:auto;top:154px;width:160px}#machine-inset-view{height:112px}#yard-ui{left:184px;top:154px;max-width:calc(100% - 194px)}}
 
-#transform-tip{position:absolute;top:16px;left:16px;width:310px;max-width:calc(100% - 180px);padding:16px 18px;border:1px solid #dae7b199;border-top:3px solid #d5f251;border-radius:10px;background:#142b32ed;box-shadow:0 4px 24px #08222b44;z-index:5;pointer-events:none}
+#transform-tip{position:absolute;top:50%;left:60%;width:clamp(250px,27vw,330px);max-width:40%;padding:16px 18px;border:1px solid #dae7b199;border-top:3px solid #d5f251;border-radius:10px;background:#142b32ed;box-shadow:0 4px 24px #08222b44;z-index:5;pointer-events:none}
 #transform-tip>small{display:block;font-size:12px;color:#d5f251;margin-bottom:9px}#transform-tip>strong{display:block;font-size:18px;color:#fff;line-height:1.4}#transform-tip p{font-size:14px;line-height:1.6;margin:9px 0;color:#e1ebea}#transform-tip a{font-size:11px;color:#bed6dc;pointer-events:auto;text-underline-offset:3px}
-@media(max-height:520px) and (orientation:landscape){#transform-tip{top:8px;left:12px;width:clamp(210px,30vw,280px);padding:10px 12px}#transform-tip>small{font-size:10px;margin-bottom:6px}#transform-tip>strong{font-size:16px}#transform-tip p{font-size:12px;line-height:1.5;margin:7px 0}#transform-tip a{font-size:10px}}
-@media(max-width:650px) and (orientation:portrait){#transform-tip{top:245px;left:12px;width:calc(100% - 24px);max-width:none}}
+@media(max-height:520px) and (orientation:landscape){#transform-tip{width:clamp(210px,30vw,280px);padding:10px 12px}#transform-tip>small{font-size:10px;margin-bottom:6px}#transform-tip>strong{font-size:16px}#transform-tip p{font-size:12px;line-height:1.5;margin:7px 0}#transform-tip a{font-size:10px}}
+@media(max-width:650px) and (orientation:portrait){#transform-tip{width:calc(100% - 24px);max-width:360px}}
+
+#game.transforming #minimap,#game.transforming .flight-ui,#game.transforming .view-hud,#game.transforming .view-bottom{visibility:hidden}
 
 /* Claude's 2026-11-20 cab-panel proposal, adapted to the existing offline game. */
 #game{--console-bg:#181f24;--console-low:#10161a;--console-ink:#edf2f4;--console-muted:#a7b3ba;--console-line:#ffffff24;--console-amber:#f2b632;--console-key:#ffffff0d}
@@ -258,7 +260,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.18 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.19 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -269,7 +271,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.18</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.19</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -13938,7 +13940,13 @@ function fresh(x=0,z=0,heading=0,y=8){return {x,y,z,heading};}
 function step(previous,w,dt){const s={...previous},d=clamp(dt,0,.05),forward=(w.forward||0)-(w.back||0),side=(w.slideRight||0)-(w.slideLeft||0),turn=(w.turnLeft||0)-(w.turnRight||0);s.heading+=turn*d*1.1;const length=Math.max(1,Math.hypot(forward,side)),f=forward/length*6*d,r=side/length*6*d;s.x=clamp(s.x-Math.sin(s.heading)*f+Math.cos(s.heading)*r,-53,53);s.z=clamp(s.z-Math.cos(s.heading)*f-Math.sin(s.heading)*r,-53,53);s.y=clamp(s.y+((w.up||0)-(w.down||0))*d*3.5,4.5,22);return s;}
 function approach(previous,target,dt){const s={...previous},d=clamp(dt,0,.05),dx=target.x-s.x,dz=target.z-s.z,length=Math.hypot(dx,dz),travel=Math.min(length,8*d);if(length>0){s.x+=dx/length*travel;s.z+=dz/length*travel;}s.y+=clamp(target.y-s.y,-4*d,4*d);const angle=Math.atan2(Math.sin(target.heading-s.heading),Math.cos(target.heading-s.heading));s.heading+=clamp(angle,-2*d,2*d);const done=Math.hypot(s.x-target.x,s.z-target.z)<.005&&Math.abs(s.y-target.y)<.005&&Math.abs(angle)<.005;return {state:done?{...target}:s,done};}
 function nearestLanding(s,zones){return zones.map(zone=>({zone,distance:Math.hypot(s.x-zone.landing[0],s.z-zone.landing[1])})).filter(q=>q.distance<18).sort((a,b)=>a.distance-b.distance)[0]?.zone||null;}
-return {mapping,labels,inputs,fresh,step,approach,nearestLanding};
+// A separate, adjacent reading area keeps the transforming model unobscured.
+function presentationLayout(w,h,cardWidth,cardHeight){
+ const pad=w<700?12:20,gap=w<700?14:24,landscape=w>=h;
+ if(landscape){const cw=Math.min(cardWidth,w*.4),frameW=w-cw-gap-2*pad;return {frame:{x:pad,y:pad,w:frameW,h:h-2*pad},card:{x:pad+frameW+gap,y:Math.max(pad,(h-cardHeight)/2),w:cw,h:cardHeight}};}
+ const ch=Math.min(cardHeight,h*.42),frameH=h-ch-gap-2*pad,cw=Math.min(cardWidth,w-2*pad);return {frame:{x:pad,y:pad,w:w-2*pad,h:frameH},card:{x:(w-cw)/2,y:pad+frameH+gap,w:cw,h:ch}};
+}
+return {mapping,labels,inputs,fresh,step,approach,nearestLanding,presentationLayout};
 });
 
 </script>
@@ -14852,7 +14860,24 @@ const safetyTips=[
  ['通り道の地盤も準備する','路肩の崩れや地盤の沈下を防ぎ、機械が通れる十分な幅を確保しよう。','157'],
  ['人が乗るのは、乗車席だけ','バケットや車体の外側に人を乗せない。移動も作業も、決められた乗車席で。','162']
 ];let safetyNext=0,safetyShown=-1;
-function updateSafetyTip(){const show=flight&&!flight.controllable&&!flight.returning;$('#transform-tip').hidden=!show;if(!show)return;const i=flight.safetyTip;if(i===safetyShown)return;safetyShown=i;const tip=safetyTips[i];$('#transform-tip-title').textContent=tip[0];$('#transform-tip-text').textContent=tip[1];$('#transform-tip-source').textContent='厚生労働省 · 安衛則 第'+tip[2]+'条';}
+const transformBounds=new T.Box3(),transformPoint=v(),transformCenter=v(),transformCameraCenter=v(),transformBack=v(),transformRight=v(),transformUp=v();
+function updateSafetyTip(){
+ const show=flight&&!flight.controllable&&!flight.returning,el=$('#transform-tip');el.hidden=!show;$('#game').classList.toggle('transforming',!!show);
+ if(!show){if(camera.view?.enabled)camera.clearViewOffset();return;}
+ const i=flight.safetyTip;if(i!==safetyShown){safetyShown=i;const tip=safetyTips[i];$('#transform-tip-title').textContent=tip[0];$('#transform-tip-text').textContent=tip[1];$('#transform-tip-source').textContent='厚生労働省 · 安衛則 第'+tip[2]+'条';}
+ const viewport=$('#viewport'),w=viewport.clientWidth,h=viewport.clientHeight;if(w<1||h<1)return;
+ const layout=F.presentationLayout(w,h,el.offsetWidth,el.offsetHeight),frame=layout.frame;el.style.left=layout.card.x+'px';el.style.top=layout.card.y+'px';
+ camera.getWorldDirection(transformBack).negate();transformRight.crossVectors(v(0,1,0),transformBack).normalize();transformUp.crossVectors(transformBack,transformRight).normalize();transformBounds.makeEmpty();
+ function include(root){root.updateMatrixWorld(true);root.traverseVisible(o=>{if(!o.isMesh||!o.geometry||o.material?.opacity===0)return;const g=o.geometry;if(!g.boundingBox)g.computeBoundingBox();const b=g.boundingBox;for(let i=0;i<8;i++){transformPoint.set(i&1?b.max.x:b.min.x,i&2?b.max.y:b.min.y,i&4?b.max.z:b.min.z).applyMatrix4(o.matrixWorld);const x=transformPoint.dot(transformRight),y=transformPoint.dot(transformUp),z=transformPoint.dot(transformBack);transformBounds.expandByPoint(transformPoint.set(x,y,z));}});}
+ include(machine.root);if(flight.reverse&&flight.zone?.id==='skate'&&skate.view.rider.visible)include(skate.view.rider);if(transformBounds.isEmpty())return;
+ transformBounds.getCenter(transformCameraCenter);transformCenter.copy(transformRight).multiplyScalar(transformCameraCenter.x).addScaledVector(transformUp,transformCameraCenter.y).addScaledVector(transformBack,transformCameraCenter.z);
+ const tan=Math.tan(T.MathUtils.degToRad(camera.fov)*.5),tx=tan*(w/h)*(frame.w/w)*.90,ty=tan*(frame.h/h)*.90;let distance=.5;
+ for(let i=0;i<8;i++){transformPoint.set(i&1?transformBounds.max.x:transformBounds.min.x,i&2?transformBounds.max.y:transformBounds.min.y,i&4?transformBounds.max.z:transformBounds.min.z).sub(transformCameraCenter);const depth=transformPoint.z;distance=Math.max(distance,depth+Math.abs(transformPoint.x)/tx,depth+Math.abs(transformPoint.y)/ty);}
+ // Expand immediately when a wing unfolds; ease inward to avoid rotor-induced zoom jitter.
+ flight.presentationDistance=Math.max(distance,(flight.presentationDistance||distance)*.94+distance*.06);camera.position.copy(transformCenter).addScaledVector(transformBack,flight.presentationDistance);camera.lookAt(transformCenter);camera.setViewOffset(w,h,w/2-(frame.x+frame.w/2),h/2-(frame.y+frame.h/2),w,h);camera.updateMatrixWorld(true);
+ const projected={left:Infinity,top:Infinity,right:-Infinity,bottom:-Infinity};for(let i=0;i<8;i++){transformPoint.set(i&1?transformBounds.max.x:transformBounds.min.x,i&2?transformBounds.max.y:transformBounds.min.y,i&4?transformBounds.max.z:transformBounds.min.z);const cx=transformPoint.x,cy=transformPoint.y,cz=transformPoint.z;transformPoint.copy(transformRight).multiplyScalar(cx).addScaledVector(transformUp,cy).addScaledVector(transformBack,cz).project(camera);const x=(transformPoint.x*.5+.5)*w,y=(-transformPoint.y*.5+.5)*h;projected.left=Math.min(projected.left,x);projected.right=Math.max(projected.right,x);projected.top=Math.min(projected.top,y);projected.bottom=Math.max(projected.bottom,y);}
+ flight.presentation={frame,card:layout.card,model:projected};
+}
 function startFlight(type){if(flight||skate?.active||recovery.active)return;if(yard.hook){toast('荷を着地させ、玉掛けを外してから変形してください');return;}$('#secret-dialog').close();pause(false);clearInput();savedState={...state};savedVehicle={...vehicle};flight={type,safetyTip:safetyNext++%safetyTips.length,t:0,clock:0,reverse:false,returning:false,controllable:false,air:F.fresh(vehicle.x,vehicle.z,vehicle.heading,vehicle.y+8)};scene.attach(camera);$('#flight-ui').hidden=false;$('#game').classList.add('aircraft');$('#secret').disabled=true;$('#view-label').textContent='空から移動 / 外観視点';$('#scene').setAttribute('aria-label','飛行中の敷地の俯瞰画面');$('.reticle').hidden=true;$$('[data-set-pattern]').forEach(b=>b.disabled=true);$('#view-toggle').disabled=true;$('#return-machine').disabled=true;$('#return-machine').textContent='離陸準備中';updateLabels();updateInputHint();}
 $$('[data-form]').forEach(b=>b.onclick=()=>startFlight(b.dataset.form));$('#return-machine').onclick=()=>{if(!flight?.controllable)return;const zone=F.nearestLanding(flight.air,BackhoeSite.zones);if(!zone){toast('案内風船へ近づいてください');return;}const target=BackhoeRecovery.placement(soil,yard,...zone.landing,0,cargo);if(!target){toast('降り場に荷物があるか、地面が崩れています。別の降り場を選んでください。');return;}clearInput();flight.target=target;flight.zone=zone;flight.safetyTip=safetyNext++%safetyTips.length;$('#destination').value=zone.id;flight.controllable=false;flight.returning=true;flight.t=8.5;$('#game').classList.remove('flying');};
 function animateFlight(dt,time){
