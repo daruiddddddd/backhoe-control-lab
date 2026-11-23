@@ -166,6 +166,26 @@ body{overscroll-behavior:none}button{touch-action:manipulation}#game{height:100d
 
 #game.transforming .workbar{display:none}
 
+/* Keep the digging sightline clear, with the same broad finger targets. */
+@media(orientation:landscape){
+ #game .travel-controls{bottom:max(24px,calc(env(safe-area-inset-bottom) + 20px));width:224px}
+ #game .travel-pair{gap:16px}
+ #game .travel-lever{width:104px;height:136px}
+ #game .travel-heading{font-size:12px;line-height:16px;margin-bottom:24px}
+ #game .travel-heading small{display:none}
+ #game .travel-visual{background:#102f3ec7}
+ #game .travel-visual>b{font-size:13px;top:-21px}
+ #game .view-bottom>div{max-width:calc(50% - 130px)}
+}
+@media(max-height:520px) and (orientation:landscape){
+ #game .travel-controls{width:200px;bottom:max(20px,calc(env(safe-area-inset-bottom) + 16px))}
+ #game .travel-lever{width:92px;height:96px}
+ #game .travel-heading{font-size:11px;line-height:14px;margin-bottom:20px}
+ #game .travel-visual>b{font-size:11px;top:-18px}
+ #game .travel-visual output{font-size:11px}
+ #game .view-bottom>div{max-width:calc(50% - 116px)}
+}
+
 /* Claude's 2026-11-20 cab-panel proposal, adapted to the existing offline game. */
 #game{--console-bg:#181f24;--console-low:#10161a;--console-ink:#edf2f4;--console-muted:#a7b3ba;--console-line:#ffffff24;--console-amber:#f2b632;--console-key:#ffffff0d}
 #game .topbar{height:auto;min-height:52px;flex:0 0 auto;display:flex;align-items:center;gap:14px;padding:4px max(10px,env(safe-area-inset-right)) 4px max(10px,env(safe-area-inset-left));background:var(--console-bg);color:var(--console-ink);border-bottom:1px solid var(--console-line);box-shadow:0 3px 12px #0003}
@@ -274,7 +294,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.22 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.23 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -285,7 +305,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.22</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.23</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -14127,7 +14147,8 @@ function machine(color=0xe66c22){
  round(cabin,.26,.31,.055,.57,1.43,-.65,M.dark,.025);mesh(cabin,new T.PlaneGeometry(.205,.205),new T.MeshBasicMaterial({map:displayTex}),.57,1.455,-.617);
  for(const x of [.5,.57,.64])mesh(cabin,new T.SphereGeometry(.013,8,5),x===.57?M.cyan:M.grey,x,1.32,-.609);
  for(let i=0;i<5;i++)box(cabin,.025,.025,.03,.39,1.43,.05+i*.09,i===0?M.yellow:M.dark);
- tube(cabin,V(.62,1.3,-.78),V(.63,1.95,-.78),.007,M.dark);tube(cabin,V(.63,1.95,-.78),V(.3,2.12,-.78),.007,M.dark);
+ const wiper=new T.Group();wiper.name='rain-wiper';wiper.position.set(.61,1.3,-.805);cabin.add(wiper);
+ tube(wiper,V(),V(-.025,.59,0),.008,M.dark);tube(wiper,V(-.03,.43,-.008),V(-.05,1.03,-.008),.011,M.rubber);
  round(cabin,.1,.06,.24,-.37,1.5,.3,material(0xb23d2e));
  for(const x of [-.34,.51]){round(cabin,.18,.09,.12,x,2.55,-.85,M.dark,.02);box(cabin,.145,.047,.012,x,2.55,-.918,M.white);}
  tube(cabin,V(-.32,2.6,.53),V(-.32,2.69,.53),.065,M.rubber);const beacon=mesh(cabin,new T.CylinderGeometry(.057,.067,.12,12),new T.MeshStandardMaterial({color:0xffa922,emissive:0xea6d12,emissiveIntensity:.6}),-.32,2.75,.53);
@@ -14166,7 +14187,7 @@ function machine(color=0xe66c22){
  const exhausts=[];for(const x of [-.43,.43]){tube(jet,V(x,1.14,.5),V(x,1.14,1.9),.24,M.dark);tube(jet,V(x,1.14,1.87),V(x,1.14,2.04),.2,M.steel);tube(jet,V(x,1.14,2.03),V(x,1.14,2.06),.15,M.cyan);const flame=mesh(jet,new T.ConeGeometry(.145,1.15,12,1,true),new T.MeshBasicMaterial({color:0x66cfff,transparent:true,opacity:.65,depthWrite:false,side:T.DoubleSide}),x,1.14,2.57);flame.rotation.x=Math.PI/2;exhausts.push(flame);}
  function animateTracks(left=0,right=0){const radius=.29,straight=1.7,arc=Math.PI*radius,loop=2*straight+2*arc;trackPods.forEach((track,j)=>{track.userData.phase=(track.userData.phase-(j===0?left:right))%loop;track.userData.shoes.forEach((shoe,i)=>{let d=((i/32*loop+track.userData.phase)%loop+loop)%loop,y,z,angle;if(d<straight){y=radius;z=-.85+d;angle=0;}else if((d-=straight)<arc){const t=Math.PI/2-d/radius;y=radius*Math.sin(t);z=.85+radius*Math.cos(t);angle=Math.PI/2-t;}else if((d-=arc)<straight){y=-radius;z=.85-d;angle=Math.PI;}else{d-=straight;const t=-Math.PI/2-d/radius;y=radius*Math.sin(t);z=-.85+radius*Math.cos(t);angle=Math.PI/2-t;}shoe.position.set(0,y,z);shoe.rotation.x=angle;});});}
  animateTracks();
- return {animateTracks,root,upper,undercarriage,cabin,boomPivot,armPivot,bucketPivot,soilLoad,joysticks,travelLevers,heli,jet,rotor,tailRotor,wings,trackPods,rotorBlades,rotorDisk,tail,beacon,exhausts,paint};
+ return {animateTracks,root,upper,undercarriage,cabin,wiper,boomPivot,armPivot,bucketPivot,soilLoad,joysticks,travelLevers,heli,jet,rotor,tailRotor,wings,trackPods,rotorBlades,rotorDisk,tail,beacon,exhausts,paint};
 }
 function site(scene,field){
  const backdrop=BackhoeLandscape.create(scene,T,field);
@@ -14778,7 +14799,7 @@ function create(options={}){
   const recipes={pop:[['triangle',190,75,.09,.20],['noise',2100,0,.07,.11]],catch:[['sine',640,380,.07,.16],['noise',1800,0,.06,.10]],land:[['sine',125,42,.18,.24],['noise',1000,0,.16,.17]],bail:[['noise',1700,0,.36,.17],['triangle',110,36,.18,.17]],transform:[['sawtooth',100,510,.65,.055],['noise',1800,0,.5,.12],['triangle',240,70,.2,.15,.16]],clank:[['triangle',340,85,.16,.12],['noise',1900,0,.09,.10]],lock:[['sine',220,66,.2,.19],['noise',950,0,.12,.12]]};const recipe=recipes[name];if(!recipe)return false;counts[name]=(counts[name]||0)+1;for(const p of recipe)shot(...p.slice(0,5),p[5]||0,preview);return true;
  }
  function update(frame={}){const active=!!frame.playing&&!suspended;if(!active){if(playing)silence();return;}playing=true;if(!built)return;smooth(bus.gain,1,.025);const mode=frame.mode||'machine',work=clamp(frame.work),travel=clamp(frame.travel),speed=clamp(Math.abs(frame.speed||0)/16),flying=mode==='heli'||mode==='jet',transform=mode==='transform';
-  const gain={engine:mode==='machine'?.20+work*.035+travel*.03:flying?.18:transform?.12:0,hydraulic:mode==='machine'?work*.12:mode==='jet'?.12:0,track:mode==='machine'?travel*.13:mode==='heli'?.12:0,roll:mode==='skate'&&!frame.air&&!frame.bail?speed*(frame.grind?.19:.13):transform?.085:0,rain:mode==='skate'&&frame.rain&&!frame.bail&&speed>.01?.22:0};
+  const gain={engine:mode==='machine'?.20+work*.035+travel*.03:flying?.18:transform?.12:0,hydraulic:mode==='machine'?work*.12:mode==='jet'?.12:0,track:mode==='machine'?travel*.13:mode==='heli'?.12:0,roll:mode==='skate'&&!frame.air&&!frame.bail?speed*(frame.grind?.19:.13):transform?.085:0,rain:Math.max((mode==='machine'||mode==='skate')?clamp(frame.ambientRain)*.13:0,mode==='skate'&&frame.rain&&!frame.bail&&speed>.01?.22:0)};
   for(const name of Object.keys(loops)){smooth(loops[name].gain.gain,gain[name],name==='rain'?.18:.055);targets[name]=gain[name];}
   smooth(loops.engine.source.playbackRate,mode==='machine'?.72+work*.28+travel*.20:mode==='heli'?1.15:1.65);smooth(loops.hydraulic.filter.frequency,mode==='jet'?780:850+work*600);smooth(loops.track.source.playbackRate,mode==='heli'?1.8:.6+travel*.8);smooth(loops.roll.source.playbackRate,.6+speed*1.2);smooth(loops.roll.filter.frequency,frame.grind?2300:500+speed*850);
   if(transform){const stage=Math.floor(clamp(frame.phase,0,8.5)/1.8);if(previous!=='transform'){effect('transform');phase=stage;}else if(stage!==phase){effect('clank');phase=stage;}}else if(previous==='transform')effect('lock');previous=mode;
@@ -14791,6 +14812,48 @@ root.BackhoeAudio={create};if(typeof module!=='undefined')module.exports=root.Ba
 
 </script>
 <script>
+(function(root){
+'use strict';
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+function fresh(random=Math.random){return {phase:'clear',age:0,duration:60+random()*30,intensity:0,wiperPhase:0,wiperAngle:0,showers:0};}
+function step(s,dt,random=Math.random){
+ if(!(dt>0))return s;
+ let remaining=dt;
+ while(remaining>0){const part=Math.min(remaining,s.duration-s.age);s.age+=part;remaining-=part;
+  if(s.age>=s.duration){s.phase=s.phase==='clear'?'rain':'clear';s.age=0;s.duration=s.phase==='rain'?30+random()*15:100+random()*80;if(s.phase==='rain')s.showers++;}
+ }
+ const fade=s.phase==='rain'?Math.min(clamp(s.age/4),clamp((s.duration-s.age)/5)):0;
+ s.intensity=fade*fade*(3-2*fade);
+ if(s.intensity>0){s.wiperPhase=(s.wiperPhase+dt*.55)%1;s.wiperAngle=(.5-.5*Math.cos(s.wiperPhase*Math.PI*2))*1.02*s.intensity;}
+ else{s.wiperPhase=0;s.wiperAngle=0;}
+ return s;
+}
+function create(scene,T,machine){
+ const state=fresh(),count=600,positions=new Float32Array(count*6),drops=new Float32Array(count*3),group=new T.Group();group.name='occasional-rain';
+ const geometry=new T.BufferGeometry();geometry.setAttribute('position',new T.BufferAttribute(positions,3).setUsage(T.DynamicDrawUsage));
+ const material=new T.LineBasicMaterial({color:0xcbe3ed,transparent:true,opacity:0,depthWrite:false});
+ const rain=new T.LineSegments(geometry,material);rain.frustumCulled=false;group.add(rain);scene.add(group);group.visible=false;
+ for(let i=0;i<count;i++){drops[i*3]=(Math.random()-.5)*44;drops[i*3+1]=Math.random()*18;drops[i*3+2]=(Math.random()-.5)*44;}
+ const local=new T.Vector3(),cabInverse=new T.Matrix4();
+ function update(dt,origin,visible=true){
+  step(state,dt);group.visible=visible&&state.intensity>.001;group.position.set(origin.x,origin.y||0,origin.z);
+  machine.wiper.rotation.z=state.wiperAngle;
+  if(!group.visible)return;
+  machine.cabin.updateWorldMatrix(true,false);cabInverse.copy(machine.cabin.matrixWorld).invert();material.opacity=.30*state.intensity;geometry.setDrawRange(0,Math.ceil(count*state.intensity)*2);
+  for(let i=0;i<count;i++){const d=i*3,p=i*6;drops[d+1]-=dt*(8+i%7*.4);if(drops[d+1]<0)drops[d+1]+=18;
+   const x=drops[d],y=drops[d+1],z=drops[d+2];local.set(x+group.position.x,y+group.position.y,z+group.position.z).applyMatrix4(cabInverse);
+   // Stop the streaks at the cab roof; never draw rain through the operator.
+   const inCab=machine.root.visible&&local.x>-.55&&local.x<.76&&local.z>-.85&&local.z<.83&&local.y<2.62;
+   positions[p]=x;positions[p+1]=y;positions[p+2]=z;positions[p+3]=inCab?x:x-.025;positions[p+4]=inCab?y:y+.33;positions[p+5]=z;
+  }geometry.attributes.position.needsUpdate=true;
+ }
+ return {update,status:()=>({...state,visible:group.visible,segments:count})};
+}
+root.BackhoeWeather={fresh,step,create};if(typeof module!=='undefined')module.exports=root.BackhoeWeather;
+})(globalThis);
+
+</script>
+<script>
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], C=BackhoeCore, F=BackhoeFlight, D=BackhoeDrive, P=BackhoeContact, T=THREE;
@@ -14799,7 +14862,7 @@ const keys=new Set(), pointerKeys=new Map(), blockedKeys=new Set();
 const sticks=[{x:0,y:0,id:null},{x:0,y:0,id:null}],stickElements=[];
 const soil=new BackhoeSoil.SoilField(),capacity=.32,falling=[];
 const travel=new D.TravelLevers(),travelElements=[];
-let vehicle=D.fresh(),terrainView,effects,yard,siteView,backdrop,savedVehicle,homeZone='hub',driveSpeed=1.4;
+let vehicle=D.fresh(),terrainView,effects,yard,siteView,backdrop,weather,savedVehicle,homeZone='hub',driveSpeed=1.4;
 let cargo=0,deposited=0,terrainMesh,terrainLines,soilVersion=-1,dugFrame=0,dumpedFrame=0,groundContact=false,controlsVisible=true;
 let pattern='vertical', running=false, paused=false, state=C.fresh(), speed=.45, lookX=0,lookY=-.16, toastTimer, flight=null;
 const recovery=new BackhoeRecovery.Monitor();let cameraMode='cockpit',skate=null;
@@ -14851,7 +14914,7 @@ try{
  contactMarker=new T.Mesh(new T.RingGeometry(.32,.36,36),new T.MeshBasicMaterial({color:0x55e9c8,side:T.DoubleSide,depthWrite:false}));contactMarker.rotation.x=-Math.PI/2;contactMarker.visible=false;scene.add(contactMarker);
  label(scene,'CONTACT FIELD',v(16,1.5,2.5),3.2,'#94f2e0');
  for(const x of [8.5,24.5])for(const z of [2.5,18.5]){box(scene,.09,.5,.09,x,.45,z,mats.white);box(scene,.11,.1,.11,x,.68,z,mats.yellow);}
-effects=new BackhoeFieldEffects(T,scene,machine,soil);machineInset=BackhoeInset.create(scene,machine.root,soil,{cockpit:machine.upper});D.settle(vehicle,soil,1);applyVehicle();
+weather=BackhoeWeather.create(scene,T,machine);effects=new BackhoeFieldEffects(T,scene,machine,soil);machineInset=BackhoeInset.create(scene,machine.root,soil,{cockpit:machine.upper});D.settle(vehicle,soil,1);applyVehicle();
  for(const type of ['vertical','horizontal']){
   const r=renderer($('#preview-'+type)),s=new T.Scene();s.background=new T.Color(0xcdeef7);const cam=new T.PerspectiveCamera(34,1,.1,60);cam.position.set(7,4.6,8);cam.lookAt(0,1,-.7);const m=model(type==='vertical'?0xe66c22:0x258cb6);pose(m,{yaw:0,boom:.47,arm:-1.5,bucket:.05});s.add(m.root);s.add(new T.HemisphereLight(0xd5f4ff,0x72816e,1.9));const fill=new T.DirectionalLight(0x7798b7,1.1);fill.position.set(-5,3,-3);s.add(fill);const spot=new T.SpotLight(0xffdc9c,type===pattern?220:0,25,.57,.6,1.4);spot.position.set(0,8,2);spot.target.position.set(0,0,-.5);spot.castShadow=true;spot.shadow.mapSize.set(512,512);s.add(spot,spot.target);const floor=new T.Mesh(new T.CylinderGeometry(3.9,3.9,.12,48),new T.MeshStandardMaterial({color:0xa5bca8,roughness:.8}));floor.position.y=-.08;floor.receiveShadow=true;s.add(floor);
   const beam=new T.Mesh(new T.ConeGeometry(3.1,8,32,1,true),new T.MeshBasicMaterial({color:0xffdf9a,transparent:true,opacity:.045,side:T.DoubleSide,depthWrite:false}));beam.position.set(0,4,.2);beam.material.opacity=type===pattern?.04:0;s.add(beam);const rim=new T.Mesh(new T.TorusGeometry(3.7,.015,6,100),new T.MeshBasicMaterial({color:0x88b4c1}));rim.rotation.x=Math.PI/2;rim.position.y=.01;s.add(rim);preview.push({type,r,s,cam,spot,beam,m});
@@ -15010,7 +15073,8 @@ function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;co
  }
  const navVehicle=skate?.active?skate.position:flight?{...vehicle,x:flight.air.x,z:flight.air.z,heading:flight.air.heading}:vehicle;
  const skatePad=BackhoeSite.zones.find(z=>z.id==='skate').landing;$('#skate-board').hidden=!!flight||skate?.active||recovery.active||!!yard.hook||Math.hypot(vehicle.x-skatePad[0],vehicle.z-skatePad[1])>7;
- sound.update({playing:!paused&&!dialog&&!recovery.active&&!document.hidden,mode:flight?((!flight.controllable&&!flight.returning)?'transform':flight.type):skate?.active?'skate':'machine',phase:flight?.t||0,work:Math.max(0,...Object.values(weights)),travel:Math.max(Math.abs(trackInput.left),Math.abs(trackInput.right)),speed:skate?.active?skate.state.speed:0,air:skate?.state.air,bail:skate?.state.bail,rain:!!skate?.state.surf&&!skate.state.surf.ramp&&!skate.state.surf.transfer,grind:!!skate?.state.grind});
+ weather.update(paused||dialog||document.hidden||flight?0:dt,navVehicle,!flight);
+ sound.update({ambientRain:weather.status().visible?weather.status().intensity:0,playing:!paused&&!dialog&&!recovery.active&&!document.hidden,mode:flight?((!flight.controllable&&!flight.returning)?'transform':flight.type):skate?.active?'skate':'machine',phase:flight?.t||0,work:Math.max(0,...Object.values(weights)),travel:Math.max(Math.abs(trackInput.left),Math.abs(trackInput.right)),speed:skate?.active?skate.state.speed:0,air:skate?.state.air,bail:skate?.state.bail,rain:!!skate?.state.surf&&!skate.state.surf.ramp&&!skate.state.surf.transfer,grind:!!skate?.state.grind});
  updateSafetyTip();paintTravel(trackInput);updateContactHud();if(skate?.active)contactMarker.visible=false;yard.updateView(flight||skate?.active?null:vehicle,state);siteView.update(elapsed,{airborne:!!flight,camera,viewportHeight:$('#viewport').clientHeight});backdrop.update(elapsed);backdrop.light.position.set(navVehicle.x-25,40,navVehicle.z-18);backdrop.light.target.position.set(navVehicle.x,0,navVehicle.z);
  if(!flight&&!skate?.active&&!recovery.active){camera.updateMatrixWorld(true);const gate=BackhoeSiteView.facingFlag(camera,soil,vehicle,T);const el=$('#flag-tooltip');el.hidden=!gate;if(gate){el.querySelector('strong').textContent=gate.zone.name;el.querySelector('span').textContent=Math.round(gate.distance)+' m / 旗が入口';const view=$('#viewport');el.style.left=clamp((gate.screen.x*.5+.5)*view.clientWidth-100,12,view.clientWidth-212)+'px';el.style.top=(innerHeight<=520&&innerWidth>innerHeight?8:clamp((-gate.screen.y*.5+.5)*view.clientHeight+18,75,view.clientHeight-240))+'px';el.style.borderColor=gate.zone.color;}if(elapsed-lastMini>.15||lastMini<0){BackhoeSiteView.drawMap($('#mini-canvas'),soil,vehicle,$('#destination').value,true);lastMini=elapsed;}}else $('#flag-tooltip').hidden=true;
  const zone=BackhoeSite.zoneAt(navVehicle.x,navVehicle.z),target=BackhoeSite.zones.find(z=>z.id===$('#destination').value);$('#area-name').textContent=zone?zone.name:'場内の連絡路';
@@ -15027,7 +15091,7 @@ if(location.protocol==='https:'&&location.hostname==='daruiddddddd.github.io'&&l
 // Read-only diagnostics for prototype verification.
 if(location.hash==='#airloop')$('#start-airloop').click();
 else if(location.hash==='#skate')$('#start-skate').click();
-window.backhoeDiagnostics=()=>({audio:sound.status(),pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,skate:skate?.active?{position:skate.position,mode:skate.mode,score:skate.state.score,motion:{air:skate.state.air,landed:skate.state.landed,bails:skate.state.bails,surf:skate.state.surf?.progress||0,y:skate.state.y,grind:!!skate.state.grind}}:null,view:skate?.active?skate.mode:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
+window.backhoeDiagnostics=()=>({weather:weather.status(),audio:sound.status(),pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,skate:skate?.active?{position:skate.position,mode:skate.mode,score:skate.state.score,motion:{air:skate.state.air,landed:skate.state.landed,bails:skate.state.bails,surf:skate.state.surf?.progress||0,y:skate.state.y,grind:!!skate.state.grind}}:null,view:skate?.active?skate.mode:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
 })();
 
 </script>
