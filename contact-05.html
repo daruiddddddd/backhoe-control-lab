@@ -288,24 +288,53 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 #skate-hud .skate-course button:active{background:#fff}#skate-hud .skate-course button:disabled{opacity:.65}
 @media(max-height:520px) and (orientation:landscape){.skate-course{top:112px;right:max(12px,env(safe-area-inset-right))}#skate-hud .skate-course button{min-height:58px;min-width:196px;padding:6px 10px;gap:7px}#skate-hud .skate-course b{font-size:13px}.skate-course .airloop-icon{width:42px;height:38px}}
 @media(max-width:480px) and (orientation:portrait){.skate-course{top:194px;right:12px}#skate-hud .skate-course button{min-width:0;max-width:195px;min-height:66px;padding:8px;gap:6px}#skate-hud .skate-course b{font-size:12px}.skate-course .airloop-icon{width:38px;height:38px}}
+
+#opening{position:fixed;inset:0;z-index:60;overflow:hidden;background:#d9e2df;color:#203136;isolation:isolate;font-family:system-ui,-apple-system,'Yu Gothic UI',sans-serif}
+#opening::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% -15%,#fff 0,transparent 60%),linear-gradient(120deg,#edf1ec,#d5dfdf);z-index:-1}
+.opening-title{position:absolute;top:24px;left:50%;transform:translateX(-50%);margin:0;display:flex;gap:16px;z-index:3;font-weight:500}
+.title-balloon{position:relative;display:grid;place-items:center;width:78px;height:88px;border-radius:49% 49% 46% 46% / 47% 47% 54% 54%;color:#273b43;font-size:43px;line-height:1;background:radial-gradient(ellipse at 30% 17%,#ffffffb8 0,transparent 35%),linear-gradient(110deg,#7f929b 0,#cdd7db 19%,#edf2f2 35%,#aebec4 67%,#70868f 100%);box-shadow:inset 1px 0 2px #fff9,inset -2px -2px 4px #314e5859,0 9px 20px #29435112;border:1px solid #f3f7f780;text-shadow:0 1px #ffffff60;animation:opening-drift 5s ease-in-out both}
+.title-balloon:nth-child(2){background:radial-gradient(ellipse at 30% 17%,#ffffffa0,transparent 40%),linear-gradient(110deg,#526c79,#a4bbc5 23%,#d3dfe4 40%,#6f8c9b 73%,#3d5969);animation-delay:-1.1s}
+.title-balloon:nth-child(3){background:radial-gradient(ellipse at 30% 17%,#ffffffe0,transparent 40%),linear-gradient(110deg,#71928b,#d3e3dd 30%,#e4eeea 43%,#90afa5 76%,#547e75);animation-delay:-2.2s}
+.title-balloon:nth-child(4){background:radial-gradient(ellipse at 30% 17%,#ffffffa8,transparent 40%),linear-gradient(110deg,#667789,#b5c2ce 26%,#e3e8eb 42%,#98a7b8 70%,#60758a);animation-delay:-.8s}
+.title-balloon:nth-child(5){background:radial-gradient(ellipse at 30% 17%,#ffffffe0,transparent 40%),linear-gradient(110deg,#8f805c,#d8cbaa 27%,#ede5d0 44%,#b7a67f 76%,#938159);animation-delay:-1.7s}
+.title-balloon::before{content:'';position:absolute;inset:5px;border:1px solid #ffffff38;border-radius:inherit;pointer-events:none}
+.title-balloon::after{content:'';position:absolute;bottom:-6px;width:9px;height:8px;background:#8b9d9d;clip-path:polygon(50% 0,100% 100%,0 100%)}
+.title-balloon svg{position:absolute;top:calc(100% + 4px);width:22px;height:40px;overflow:visible;fill:none;stroke:#49616975;stroke-width:1}
+#opening-skip{position:absolute;right:max(18px,env(safe-area-inset-right));top:max(18px,env(safe-area-inset-top));z-index:5;min-height:44px;min-width:104px;padding:10px 17px;border:1px solid #58707350;border-radius:24px;background:#edf3f0bf;color:#273e43;font-size:14px;font-weight:600;backdrop-filter:blur(8px)}
+#opening-skip:hover{background:#fff}
+#opening-map{position:absolute;inset:154px 0 52px;overflow:hidden}
+#opening-map canvas{display:block;width:100%;height:100%;touch-action:none}
+#opening-places{position:absolute;inset:0;pointer-events:none}
+.opening-place{position:absolute;display:block;white-space:nowrap;padding:7px 12px 7px 16px;color:#f3f7f4;background:#253a3ded;border:1px solid #dbe7e465;border-radius:5px;font-size:13px;font-weight:600;line-height:18px;box-shadow:0 3px 10px #142a3020;opacity:0;transition:opacity .25s ease;transform:translate(-50%,-50%)}
+.opening-place::before{content:'';position:absolute;left:7px;top:12px;bottom:12px;width:2px;border-radius:2px;background:var(--place-color,#b1c8c6)}
+.opening-place.is-visible{opacity:1}
+.opening-footer{position:absolute;bottom:max(18px,env(safe-area-inset-bottom));left:28px;right:28px;display:flex;align-items:center;gap:18px;color:#3e575c;font-size:12px;letter-spacing:.06em}
+.opening-track{height:2px;flex:1;background:#637e792c;overflow:hidden}.opening-track span{height:100%;display:block;transform:scaleX(0);transform-origin:left;background:#527d79}
+.opening-next{color:#607376;font-size:11px;letter-spacing:0}
+#opening-replay{padding:4px 9px;min-height:32px;font-size:12px;background:#fff9;color:#245d70;border-color:#a0c9d5;margin-left:6px}
+@keyframes opening-drift{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-4px) rotate(1deg)}}
+@media(max-height:520px) and (orientation:landscape){.opening-title{top:9px;gap:12px}.title-balloon{width:52px;height:58px;font-size:30px}.title-balloon svg{height:23px}#opening-map{inset:83px 0 35px}.opening-place{font-size:11px;padding:4px 8px 4px 13px;line-height:16px}.opening-place::before{top:8px;bottom:8px;left:6px}.opening-footer{bottom:10px;font-size:10px}.opening-next{font-size:10px}#opening-skip{top:9px;min-width:90px;font-size:12px}}
+@media(orientation:portrait){.opening-title{top:82px;gap:10px}.title-balloon{width:52px;height:62px;font-size:31px}#opening-map{inset:196px 0 70px}.opening-place{font-size:11px;line-height:15px;padding:5px 8px 5px 13px}.opening-place::before{top:9px;bottom:9px;left:6px}.opening-footer{left:17px;right:17px;gap:10px;flex-wrap:wrap}.opening-next{width:100%;text-align:right}}
+@media(prefers-reduced-motion:reduce){.title-balloon{animation:none}.opening-place{transition:none}}
 </style>
 </head>
 <body>
+<section id="opening" hidden aria-label="たてよこ軸・全体マップのオープニング"><h1 class="opening-title" aria-label="たてよこ軸"><span class="title-balloon" aria-hidden="true">た<svg viewBox="0 0 22 40"><path d="M11 0C2 13 22 24 11 40"/></svg></span><span class="title-balloon" aria-hidden="true">て<svg viewBox="0 0 22 40"><path d="M11 0C2 13 22 24 11 40"/></svg></span><span class="title-balloon" aria-hidden="true">よ<svg viewBox="0 0 22 40"><path d="M11 0C2 13 22 24 11 40"/></svg></span><span class="title-balloon" aria-hidden="true">こ<svg viewBox="0 0 22 40"><path d="M11 0C2 13 22 24 11 40"/></svg></span><span class="title-balloon" aria-hidden="true">軸<svg viewBox="0 0 22 40"><path d="M11 0C2 13 22 24 11 40"/></svg></span></h1><button id="opening-skip">スキップ</button><div id="opening-map"><div id="opening-places" aria-label="7つの遊び場"></div></div><div class="opening-footer"><span>全体マップ</span><div class="opening-track" aria-hidden="true"><span id="opening-progress"></span></div><span class="opening-next">まもなく操作選択へ</span></div></section>
 <section id="selection">
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.23 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.24 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
    <button class="choice" data-pattern="horizontal" aria-pressed="false"><canvas id="preview-horizontal" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">02 / HORIZONTAL SWING</div><h2>横旋回</h2><div>左レバーの <b>左右</b> で旋回</div><small>BLUE / ISO・クボタパターン</small></div></button>
   </div>
   <div class="launch-options"><b>共通の入口からスタート</b><span>区画の切り替えなし。旗まで走って入ります。</span></div><div class="start-row"><div class="tiny">HTML１ファイルで動作 / オフライン対応・ログイン不要<br>参考機：クボタ RX-506 キャブ仕様<br>昼間の起伏ある現場 / 縦旋回・横旋回の２方式</div><div class="start-buttons"><button id="start" class="primary">縦旋回で現場へ入る</button><button id="start-skate">スケボーパークから遊ぶ</button><button id="start-airloop" aria-label="空中外周を滑る"><svg class="airloop-icon" viewBox="0 0 72 54" aria-hidden="true"><path d="M16 10H56Q65 10 65 19V35Q65 44 56 44H16Q7 44 7 35V19Q7 10 16 10Z" fill="none" stroke="currentColor" stroke-width="7" opacity=".3"/><path d="M16 10H56Q65 10 65 19V35Q65 44 56 44H16Q7 44 7 35V19Q7 10 16 10Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 30L36 20L48 30M36 21V38" fill="none" stroke="currentColor" stroke-width="2.5"/></svg><span><b>空中外周を滑る</b><small>半透明の水路で、パークを一周</small></span><span aria-hidden="true">↗</span></button></div></div>
-  <p class="tiny">両端の作業レバーと中央２本の走行レバーを同時操作。土をすくって、丘を越えよう。<br>操作表示は隠す・戻すを切り替えできます。横画面を基本に設計。縦画面でも操作できます。キーボードにも対応。<button id="intro-help" style="padding:4px 8px;font-size:11px">２方式の対応表・出典</button></p>
+  <p class="tiny">両端の作業レバーと中央２本の走行レバーを同時操作。土をすくって、丘を越えよう。<br>操作表示は隠す・戻すを切り替えできます。横画面を基本に設計。縦画面でも操作できます。キーボードにも対応。<button id="intro-help" style="padding:4px 8px;font-size:11px">２方式の対応表・出典</button><button id="opening-replay">オープニングを再生</button></p>
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.23</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.24</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
@@ -14854,6 +14883,47 @@ root.BackhoeWeather={fresh,step,create};if(typeof module!=='undefined')module.ex
 
 </script>
 <script>
+(function(root){
+'use strict';
+const DURATION=5;
+function create({T,scene,renderer,canvas,zones,onFinish}){
+ const el=document.getElementById('opening'),map=document.getElementById('opening-map'),places=document.getElementById('opening-places'),selection=document.getElementById('selection'),skip=document.getElementById('opening-skip'),bar=document.getElementById('opening-progress');
+ const parent=canvas.parentNode,next=canvas.nextSibling,camera=new T.OrthographicCamera(-90,90,75,-75,1,600),point=new T.Vector3(),background=new T.Color(0xd9e2df);
+ let active=false,age=0,width=1,height=1;let originalCanvasLabel='';const reduced=root.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+ const names={skate:'スケボーパーク',flat:'平坦走行',dig:'穴掘り',hill:'山・谷コース',support:'接地練習',lift:'荷揚げ',plate:'鉄板移動'};
+ const order=['hill','flat','dig','support','lift','plate','skate'];
+ const labels=order.map((id,i)=>{const zone=zones.find(z=>z.id===id),node=document.createElement('span');node.className='opening-place';node.textContent=names[id];node.style.setProperty('--place-color',zone.color);places.appendChild(node);return {zone,node,delay:.55+i*.23};});
+ function layout(){
+  camera.position.set(98,142,176);camera.lookAt(-1,0,8);camera.updateMatrixWorld(true);
+  let minX=Infinity,maxX=-Infinity,minY=Infinity,maxY=-Infinity;
+  for(const x of [-60,60])for(const z of [-60,60])for(const y of [0,8]){point.set(x,y,z).applyMatrix4(camera.matrixWorldInverse);minX=Math.min(minX,point.x);maxX=Math.max(maxX,point.x);minY=Math.min(minY,point.y);maxY=Math.max(maxY,point.y);}
+  const aspect=width/height,halfH=Math.max((maxY-minY)/2+5,((maxX-minX)/2+8)/aspect),cx=(minX+maxX)/2,cy=(minY+maxY)/2;
+  camera.left=cx-halfH*aspect;camera.right=cx+halfH*aspect;camera.top=cy+halfH;camera.bottom=cy-halfH;camera.updateProjectionMatrix();
+  const occupied=[];
+  for(const {zone,node} of labels){point.set(zone.x,3,zone.z).project(camera);let x=(point.x*.5+.5)*width,y=(-point.y*.5+.5)*height;const w=node.offsetWidth,h=node.offsetHeight;
+   x=Math.max(w/2+7,Math.min(width-w/2-7,x));y=Math.max(h/2+5,Math.min(height-h/2-5,y));
+   for(let n=0;n<8;n++){const collision=occupied.find(r=>Math.abs(r.x-x)<(r.w+w)/2+4&&Math.abs(r.y-y)<(r.h+h)/2+4);if(!collision)break;y=collision.y+(collision.h+h)/2+5;if(y>height-h/2-5)y=collision.y-(collision.h+h)/2-5;}
+   node.style.left=x+'px';node.style.top=y+'px';occupied.push({x,y,w,h});
+  }
+ }
+ function resize(){if(!active)return;width=Math.max(1,map.clientWidth);height=Math.max(1,map.clientHeight);renderer.setSize(width,height,false);layout();}
+ function finish(){if(!active)return;active=false;el.hidden=true;parent.insertBefore(canvas,next);canvas.setAttribute('aria-label',originalCanvasLabel);selection.hidden=false;selection.inert=false;labels.forEach(l=>l.node.classList.remove('is-visible'));onFinish?.();document.getElementById('start')?.focus({preventScroll:true});}
+ function start(){if(active)return;active=true;age=0;originalCanvasLabel=canvas.getAttribute('aria-label')||'';canvas.setAttribute('aria-label','現在の全体マップと7つの遊び場');selection.hidden=true;selection.inert=true;el.hidden=false;map.insertBefore(canvas,places);bar.style.transform='scaleX(0)';labels.forEach(l=>l.node.classList.remove('is-visible'));resize();skip.focus({preventScroll:true});update(0);}
+ function update(dt){if(!active)return;if(!document.hidden)age=Math.min(DURATION,age+Math.max(0,dt));if(age>=DURATION){finish();return;}
+  labels.forEach(l=>l.node.classList.toggle('is-visible',age>=l.delay));bar.style.transform='scaleX('+age/DURATION+')';
+  camera.zoom=reduced?1:1+age/DURATION*.025;camera.updateProjectionMatrix();
+  // Opening only: use the existing map without distance fog hiding its far side.
+  const fog=scene.fog,oldBackground=scene.background;scene.fog=null;scene.background=background;
+  try{renderer.render(scene,camera);}finally{scene.fog=fog;scene.background=oldBackground;}
+ }
+ skip.onclick=finish;document.addEventListener('keydown',e=>{if(active&&e.key==='Escape'){e.preventDefault();finish();}});
+ return {start,finish,resize,update,get active(){return active;},status:()=>({active,age,duration:DURATION,visiblePlaces:labels.filter(l=>l.node.classList.contains('is-visible')).length})};
+}
+root.BackhoeOpening={create,DURATION};if(typeof module!=='undefined')module.exports=root.BackhoeOpening;
+})(globalThis);
+
+</script>
+<script>
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)], C=BackhoeCore, F=BackhoeFlight, D=BackhoeDrive, P=BackhoeContact, T=THREE;
@@ -14865,7 +14935,7 @@ const travel=new D.TravelLevers(),travelElements=[];
 let vehicle=D.fresh(),terrainView,effects,yard,siteView,backdrop,weather,savedVehicle,homeZone='hub',driveSpeed=1.4;
 let cargo=0,deposited=0,terrainMesh,terrainLines,soilVersion=-1,dugFrame=0,dumpedFrame=0,groundContact=false,controlsVisible=true;
 let pattern='vertical', running=false, paused=false, state=C.fresh(), speed=.45, lookX=0,lookY=-.16, toastTimer, flight=null;
-const recovery=new BackhoeRecovery.Monitor();let cameraMode='cockpit',skate=null;
+const recovery=new BackhoeRecovery.Monitor();let cameraMode='cockpit',skate=null,opening=null;
 const v=(x=0,y=0,z=0)=>new T.Vector3(x,y,z), lerp=T.MathUtils.lerp, smooth=t=>t*t*(3-2*t), clamp=T.MathUtils.clamp;
 const mats=BackhoeVisuals.materials;
 function box(parent,w,h,d,x,y,z,mat=mats.dark){const m=new T.Mesh(new T.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;parent.add(m);return m;}
@@ -14980,7 +15050,7 @@ syncAudioUI();
 $$('.choice').forEach(b=>b.onclick=()=>setPattern(b.dataset.pattern));$$('[data-set-pattern]').forEach(b=>b.onclick=()=>setPattern(b.dataset.setPattern));
 $('#start-skate').onclick=()=>{ $('#start').click(); enterSkate(); };
 $('#start-airloop').onclick=()=>{ $('#start-skate').click(); $('#skate-wave-enter').click(); };
-$('#start').onclick=()=>{running=true;$('#selection').hidden=true;$('#game').hidden=false;resetPose();pause(false);resize();relocate();$('#scene').focus();};
+$('#start').onclick=()=>{opening?.finish();running=true;$('#selection').hidden=true;$('#game').hidden=false;resetPose();pause(false);resize();relocate();$('#scene').focus();};
 $('#pause').onclick=()=>pause(!paused);$('#resume').onclick=()=>pause(false);$('#skate-front').onclick=()=>{lookX=lookY=0;};$('#look-reset').onclick=()=>{lookX=0;lookY=skate?.active?0:-.16;};$('#speed').onchange=e=>{speed=Number(e.target.value);clearInput();};
 $('#controls-toggle').onclick=()=>setControlsVisible(!controlsVisible);
 $('#settings-toggle').onclick=()=>openDialog('#settings-dialog');
@@ -15050,12 +15120,13 @@ $('#skate-board').onclick=()=>{if(!yard.hook&&!flight&&!skate.active)enterSkate(
 function updateGroundCamera(){if(flight||skate?.active)return;if(cameraMode==='cockpit'){if(camera.parent!==machine.upper)machine.upper.add(camera);camera.position.set(-.51,2.17,.28);camera.rotation.set(lookY,lookX,0,'YXZ');}else{if(camera.parent!==scene)scene.add(camera);const a=vehicle.heading+state.yaw+lookX,d=7.5,target=v(vehicle.x,vehicle.y+1.3,vehicle.z);camera.position.set(target.x+Math.sin(a)*d,target.y+2.0-lookY*3,target.z+Math.cos(a)*d);camera.position.y=Math.max(camera.position.y,soil.sample(camera.position.x,camera.position.z)+1.2);camera.lookAt(target.x,target.y-2.6,target.z);}$('#view-label').textContent=cameraMode==='cockpit'?'運転席 / 主観':'車体の後方 / 三人称';$('#scene').setAttribute('aria-label',cameraMode==='cockpit'?'運転席からの主観画面':'車体後方からの三人称画面');updateMachineInsetLabel();}
 $('#view-toggle').onclick=()=>{if(flight)return;if(skate?.active){clearInput();lookX=lookY=0;skate.toggle(camera);return;}clearInput();cameraMode=cameraMode==='cockpit'?'third':'cockpit';$('#view-toggle').textContent=cameraMode==='cockpit'?'三人称':'主観';$('#view-toggle').setAttribute('aria-label',cameraMode==='cockpit'?'三人称へ切り替える':'主観へ切り替える');lookX=0;lookY=-.16;updateGroundCamera();};
 $('#recover-machine').onclick=()=>{const result=BackhoeRecovery.recoverySpot(soil,yard,recovery.lastSafe,cargo);if(!result){$('#recovery-status').textContent='戻り先が塞がっています。荷物を避けられる場所が必要です。';return;}if(yard.hook)yard.releaseForRecovery();clearInput();vehicle=result.vehicle;state=result.state;recovery.reset();$('#recovery-overlay').hidden=true;$('#game').classList.remove('recovery-needed');lookX=0;lookY=-.16;effects.lastTrack=null;pose(machine,state);applyVehicle();updateGroundCamera();pause(false);toast('車体を復帰しました。土と荷物は残っています。');};
-function resize(){const compact=inputMode.mode==='touch'||innerWidth<=1100;$('#game').classList.toggle('compact',compact);if(running){const el=$('#viewport'),w=el.clientWidth,h=el.clientHeight;render.setSize(w,h,false);camera.aspect=w/h;camera.fov=w<h?Math.min(108,72+(1-w/h)*64):72;camera.updateProjectionMatrix();}else for(const p of preview){const w=p.r.domElement.clientWidth,h=p.r.domElement.clientHeight;p.r.setSize(w,h,false);p.cam.aspect=w/h;p.cam.updateProjectionMatrix();}}
+function resize(){if(opening?.active){opening.resize();return;}const compact=inputMode.mode==='touch'||innerWidth<=1100;$('#game').classList.toggle('compact',compact);if(running){const el=$('#viewport'),w=el.clientWidth,h=el.clientHeight;render.setSize(w,h,false);camera.aspect=w/h;camera.fov=w<h?Math.min(108,72+(1-w/h)*64):72;camera.updateProjectionMatrix();}else for(const p of preview){const w=p.r.domElement.clientWidth,h=p.r.domElement.clientHeight;p.r.setSize(w,h,false);p.cam.aspect=w/h;p.cam.updateProjectionMatrix();}}
 addEventListener('resize',()=>{clearInput();resize();});if(window.visualViewport)visualViewport.addEventListener('resize',()=>{clearInput();resize();});new ResizeObserver(()=>resize()).observe($('#viewport'));
 $('#speed').value=String(speed);updateLabels();applyInputMode();let last=performance.now(),elapsed=0,frameCount=0,lastMini=-1;
 function updateContactHud(){const s=vehicle.support;if(s?.foot&&s.contact){contactMarker.visible=!flight;contactMarker.position.set(s.foot.x,soil.sample(s.foot.x,s.foot.z)+.015,s.foot.z);contactMarker.material.color.setHex(s.slip>.0008?0xffb445:0x55e9c8);contactMarker.scale.setScalar(.7+s.bucketLoad);}else contactMarker.visible=false;}
 function trackLabel(value){return value>.01?'前':value<-.01?'後':'中立';}
 function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;const dialog=!!document.querySelector('dialog[open]');if(!paused&&!dialog)elapsed+=dt;
+ if(opening?.active){sound.update({playing:false});backdrop.update(elapsed);opening.update(dt);return;}
  if(!running){sound.update({playing:false});for(const p of preview){const selected=p.type===pattern;p.spot.intensity=lerp(p.spot.intensity,selected?220:0,.12);p.beam.material.opacity=lerp(p.beam.material.opacity,selected?.045:0,.12);p.r.render(p.s,p.cam);}return;}
  if(!flight&&!skate?.active&&!paused&&!dialog){const was=recovery.active;if(recovery.update(vehicle,dt)&&!was){clearInput();$('#recovery-overlay').hidden=false;$('#game').classList.add('recovery-needed');}}
  const active=activeKeys(),trackInput=paused||recovery.active||flight||skate?.active||dialog?{left:0,right:0}:D.inputs(active,travel.levers),weights=paused||recovery.active||flight||skate?.active||dialog?{}:C.inputs(pattern,active,sticks),acts=Object.keys(weights).filter(a=>weights[a]>.025);dugFrame=dumpedFrame=0;groundContact=false;
@@ -15089,9 +15160,12 @@ function frame(now){const dt=Math.min(1,Math.max(0,(now-last)/1000));last=now;co
 setInterval(()=>frame(performance.now()),1000/30);
 if(location.protocol==='https:'&&location.hostname==='daruiddddddd.github.io'&&location.pathname.startsWith('/backhoe-control-lab/')&&'serviceWorker' in navigator)navigator.serviceWorker.register('./sw.js',{scope:'./'}).catch(()=>{});
 // Read-only diagnostics for prototype verification.
+backdrop.update(elapsed);opening=BackhoeOpening.create({T,scene,renderer:render,canvas:$('#scene'),zones:BackhoeSite.zones,onFinish:resize});
+$('#opening-replay').onclick=()=>opening.start();
 if(location.hash==='#airloop')$('#start-airloop').click();
 else if(location.hash==='#skate')$('#start-skate').click();
-window.backhoeDiagnostics=()=>({weather:weather.status(),audio:sound.status(),pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,skate:skate?.active?{position:skate.position,mode:skate.mode,score:skate.state.score,motion:{air:skate.state.air,landed:skate.state.landed,bails:skate.state.bails,surf:skate.state.surf?.progress||0,y:skate.state.y,grind:!!skate.state.grind}}:null,view:skate?.active?skate.mode:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
+else opening.start();
+window.backhoeDiagnostics=()=>({opening:opening.status(),weather:weather.status(),audio:sound.status(),pattern,state:{...state},running,paused,flight:flight?{...flight}:null,pressed:[...activeKeys()],sticks:sticks.map(s=>({...s})),controlsVisible,soil:{cargo,deposited,deepest:soil.deepest(),volume:soil.volume(),falling:falling.reduce((s,p)=>s+p.volume,0)},frameCount,skate:skate?.active?{position:skate.position,mode:skate.mode,score:skate.state.score,motion:{air:skate.state.air,landed:skate.state.landed,bails:skate.state.bails,surf:skate.state.surf?.progress||0,y:skate.state.y,grind:!!skate.state.grind}}:null,view:skate?.active?skate.mode:flight?'external':cameraMode,camera:camera.position.toArray(),webgl:!!render.getContext(),inputMode:{mode:inputMode.mode,preference:inputMode.preference},vehicle:{...vehicle},travel:travel.levers.map(s=>({...s})),version:'ground-contact-prototype-05'});
 })();
 
 </script>
