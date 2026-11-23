@@ -218,3 +218,9 @@ BGMなし。Web Audioで短い波形を生成し、エンジン・油圧・ク�
 5秒の風船演出、スキップで同じ絵のスタート待ち、スタートから2機選択、という順序は維持。
 通常開始：https://daruiddddddd.github.io/backhoe-control-lab/contact-05.html?v=0526
 
+
+05.27（2026-11-23）走行レバーを横長・薄型へ
+iPad横画面の左右走行レバーを各136×104px（以前104×136px）に変更。下端24pxを維持し、幅を32px拡大・高さを32px縮小しました。短いスマホ横画面は各112×80px（以前92×96px）、下端20px。
+上下ドラッグで前後進、離すと中立、左右独立・作業レバー同時操作、操作の非表示は同じです。
+通常開始：https://daruiddddddd.github.io/backhoe-control-lab/contact-05.html?v=0527
+

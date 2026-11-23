@@ -166,24 +166,24 @@ body{overscroll-behavior:none}button{touch-action:manipulation}#game{height:100d
 
 #game.transforming .workbar{display:none}
 
-/* Keep the digging sightline clear, with the same broad finger targets. */
+/* Wide, shallow travel pads leave more of the digging sightline open. */
 @media(orientation:landscape){
- #game .travel-controls{bottom:max(24px,calc(env(safe-area-inset-bottom) + 20px));width:224px}
+ #game .travel-controls{bottom:max(24px,calc(env(safe-area-inset-bottom) + 20px));width:288px}
  #game .travel-pair{gap:16px}
- #game .travel-lever{width:104px;height:136px}
+ #game .travel-lever{width:136px;height:104px}
  #game .travel-heading{font-size:12px;line-height:16px;margin-bottom:24px}
  #game .travel-heading small{display:none}
  #game .travel-visual{background:#102f3ec7}
  #game .travel-visual>b{font-size:13px;top:-21px}
- #game .view-bottom>div{max-width:calc(50% - 130px)}
+ #game .view-bottom>div{max-width:calc(50% - 162px)}
 }
 @media(max-height:520px) and (orientation:landscape){
- #game .travel-controls{width:200px;bottom:max(20px,calc(env(safe-area-inset-bottom) + 16px))}
- #game .travel-lever{width:92px;height:96px}
+ #game .travel-controls{width:240px;bottom:max(20px,calc(env(safe-area-inset-bottom) + 16px))}
+ #game .travel-lever{width:112px;height:80px}
  #game .travel-heading{font-size:11px;line-height:14px;margin-bottom:20px}
  #game .travel-visual>b{font-size:11px;top:-18px}
  #game .travel-visual output{font-size:11px}
- #game .view-bottom>div{max-width:calc(50% - 116px)}
+ #game .view-bottom>div{max-width:calc(50% - 136px)}
 }
 
 /* Claude's 2026-11-20 cab-panel proposal, adapted to the existing offline game. */
@@ -320,7 +320,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
 <section id="selection" hidden inert>
  <div class="intro">
   <div class="intro-head"><div class="eyebrow">BACKHOE / TERRAIN LAB</div><span class="tag">接地動作試作版 / 05</span></div>
-  <div class="edition-note">05.26 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
+  <div class="edition-note">05.27 / 重機もスケボーも、この１本</div><h1>旗を目指して、現場を走ろう。</h1>
   <p>平坦路から山・谷、穴掘り、荷揚げ、そしてスケボーパークへ。<br>120 m四方のひとつの現場を、４本の独立レバーで移動します。</p><div class="feature-strip"><span>広い走行レバー</span><span>旗でつながる７区画</span><span>荷・鉄板の重力と衝突</span></div>
   <div class="choices">
    <button class="choice selected" data-pattern="vertical" aria-pressed="true"><canvas id="preview-vertical" aria-hidden="true"></canvas><div class="choice-info"><span class="check">✓</span><div class="choice-kicker">01 / VERTICAL SWING</div><h2>縦旋回</h2><div>左レバーの <b>前後</b> で旋回</div><small>ORANGE / Cパターン</small></div></button>
@@ -331,7 +331,7 @@ body[data-paused=true] #game #pause::before{background:currentColor;clip-path:po
  </div>
 </section>
 <main id="game" hidden>
- <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.26</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
+ <header class="topbar"><div class="brand"><div class="eyebrow">BACKHOE TERRAIN LAB</div><strong>接地動作試作版 <span class="muted">FIELD / 05.27</span></strong></div><div class="top-actions"><div class="switch" aria-label="操作方式"><button data-set-pattern="vertical" class="active" aria-pressed="true">縦旋回</button><button data-set-pattern="horizontal" aria-pressed="false">横旋回</button></div><button id="controls-toggle" aria-expanded="true" aria-controls="touch-controls travel-controls">操作を隠す</button><button id="view-toggle" aria-label="三人称へ切り替える">三人称</button><button id="settings-toggle" aria-haspopup="dialog">設定</button><button id="sound-toggle" aria-label="音の設定" aria-haspopup="dialog">音</button><button id="pause">一時停止</button></div></header>
  <nav class="workbar" aria-label="現場の案内"><strong id="area-name">共通の入口</strong><label for="destination">目印</label><select id="destination" aria-label="目指す旗"></select><span id="route-distance"></span></nav><div class="workspace">
   <section id="viewport" aria-label="運転席からの３D画面">
    <canvas id="scene" tabindex="0" aria-label="主観視点。作業はWASDと矢印、左走行I・K、右走行O・L。ドラッグで見回す"></canvas>
